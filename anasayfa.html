@@ -90,7 +90,7 @@
 .pd-hero-inner{max-width:580px}
 .pd-hero-badge{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pd-gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .pd-hero-badge::before{content:'';width:28px;height:2px;background:var(--pd-gold)}
-.pd-hero-title{font-family:var(--pd-h);font-size:clamp(38px,5vw,72px);font-weight:700;color:#fff !important;line-height:1.08;letter-spacing:-.01em;margin-bottom:20px}
+.pd-hero-title{font-family:var(--pd-h);font-size:clamp(34px,4.2vw,58px);font-weight:700;color:#fff !important;line-height:1.08;letter-spacing:-.01em;margin-bottom:20px}
 .pd-hero-desc{font-family:var(--pd-b);font-size:17px;color:rgba(255,255,255,.82) !important;line-height:1.75;margin-bottom:36px;max-width:460px}
 .pd-hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .pd-hero .swiper-pagination{bottom:34px;left:6vw;width:auto;text-align:left;z-index:5}
@@ -112,8 +112,8 @@
 @keyframes pdPulse{0%,100%{opacity:.35}50%{opacity:1}}
 
 /* ── Banner görseli pozisyon — slide başına ── */
-/* Slide 1: uzun başlık → font küçültme, diğer slide'lar etkilenmez */
-.pd-hs1 .pd-hero-title{font-size:clamp(30px,3.6vw,50px)}
+/* Slide 1 (en uzun başlık) için ek küçültme — diğer slide'lar 58px'te kalır */
+.pd-hs1 .pd-hero-title{font-size:clamp(28px,3.4vw,48px)}
 /* Slide 1: Çift fotoğrafı — insanlar sağda, metin solda */
 .pd-hs1 .pd-hero-bg{background-position:72% center}
 /* Slide 2: NLP beyin — ortada */
@@ -449,7 +449,7 @@
         <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg')"></div>
         <div class="pd-hero-content"><div class="pd-hero-inner">
           <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
-          <h1 class="pd-hero-title">NLP Uygulayıcı<br>Eğitimi ve<br>Sertifika Programı</h1>
+          <h1 class="pd-hero-title">NLP Uygulayıcı Eğitimi<br>ve Sertifika Programı</h1>
           <p class="pd-hero-desc">Beyninin dilini çöz, düşünce kalıplarını yeniden yapılandır — uluslararası onaylı sertifikanla güçlü bir adım at.</p>
           <div class="pd-hero-actions">
             <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>

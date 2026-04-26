@@ -1,0 +1,764 @@
+<!-- ================================================
+     Pozitif Dünya — Header / Navigation  v1.0
+     JegKit Global HTML/Kod Widget'ına yapıştır
+     ================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────
+   Pozitif Dünya Nav — CSS Variables & Reset
+───────────────────────────────────────────── */
+:root {
+  --pd-navy:      #005175;
+  --pd-blue:      #29ABDF;
+  --pd-gold:      #D4A574;
+  --pd-gold-dk:   #B88A56;
+  --pd-white:     #FFFFFF;
+  --pd-nav-h:     80px;
+  --pd-nav-h-sm:  64px;
+  --pd-ease:      0.28s ease;
+  --pd-shadow:    0 2px 24px rgba(0,81,117,0.10);
+  --pd-font-h:    'Playfair Display', serif;
+  --pd-font-b:    'Inter', sans-serif;
+}
+
+.pd-nav *, .pd-nav *::before, .pd-nav *::after,
+.pd-mobile *, .pd-mobile *::before, .pd-mobile *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.pd-nav a, .pd-mobile a  { text-decoration: none; }
+.pd-nav ul, .pd-mobile ul { list-style: none; }
+
+/* ─────────────────────────────────────────────
+   Header shell
+───────────────────────────────────────────── */
+.pd-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 9900;
+  height: var(--pd-nav-h);
+  display: flex;
+  align-items: center;
+  background: transparent;
+  transition:
+    background  var(--pd-ease),
+    box-shadow  var(--pd-ease),
+    height      var(--pd-ease);
+}
+
+/* Hero üstünde şeffaf gradient */
+.pd-nav.pd-transparent {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,81,117,0.72) 0%,
+    rgba(0,81,117,0.20) 60%,
+    transparent 100%
+  );
+}
+
+/* Scroll ya da non-home → frosted beyaz */
+.pd-nav.pd-solid {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--pd-shadow);
+  height: var(--pd-nav-h-sm);
+}
+
+/* ─────────────────────────────────────────────
+   Inner container
+───────────────────────────────────────────── */
+.pd-nav__wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ─────────────────────────────────────────────
+   Logo
+───────────────────────────────────────────── */
+.pd-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.pd-logo img {
+  height: 42px;
+  width: auto;
+  transition: height var(--pd-ease);
+}
+.pd-solid .pd-logo img { height: 34px; }
+
+/* ─────────────────────────────────────────────
+   Desktop menü
+───────────────────────────────────────────── */
+.pd-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.pd-menu__list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Üst seviye linkler */
+.pd-menu__link {
+  font-family: var(--pd-font-b);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.92) !important;
+  padding: 8px 13px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  white-space: nowrap;
+  transition: color var(--pd-ease);
+}
+
+/* Solid state → navy metin */
+header.pd-nav.pd-solid .pd-menu__link {
+  color: var(--pd-navy) !important;
+}
+
+/* Altın underline göstergesi */
+.pd-menu__link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+  background: var(--pd-gold);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--pd-ease);
+}
+.pd-menu__link:hover::after,
+.pd-menu__link.is-active::after { transform: scaleX(1); }
+
+.pd-menu__link:hover { color: rgba(255,255,255,1) !important; }
+.pd-menu__link.is-active { color: rgba(255,255,255,1) !important; }
+
+header.pd-nav.pd-solid .pd-menu__link:hover  { color: var(--pd-gold-dk) !important; }
+header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !important; }
+
+/* Chevron */
+.pd-chevron {
+  width: 13px;
+  height: 13px;
+  transition: transform var(--pd-ease);
+  flex-shrink: 0;
+}
+.pd-menu__item:hover .pd-chevron { transform: rotate(180deg); }
+
+/* ─────────────────────────────────────────────
+   Dropdown
+───────────────────────────────────────────── */
+.pd-menu__item { position: relative; }
+
+/* Hover köprüsü — link ile dropdown arasındaki gap */
+.pd-menu__item::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  right: -20px;
+  height: 14px;
+}
+
+.pd-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--pd-white);
+  border-radius: 12px;
+  box-shadow: 0 10px 48px rgba(0,81,117,0.16);
+  border-top: 3px solid var(--pd-gold);
+  padding: 10px;
+  min-width: 340px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity    var(--pd-ease),
+    transform  var(--pd-ease),
+    visibility var(--pd-ease);
+}
+
+.pd-menu__item:hover .pd-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.pd-dropdown__link {
+  font-family: var(--pd-font-b);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--pd-navy);
+  padding: 9px 12px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background var(--pd-ease), color var(--pd-ease);
+}
+.pd-dropdown__link::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #dde3ea;
+  flex-shrink: 0;
+  transition: background var(--pd-ease);
+}
+.pd-dropdown__link:hover {
+  background: rgba(212,165,116,0.10);
+  color: var(--pd-gold-dk);
+}
+.pd-dropdown__link:hover::before { background: var(--pd-gold); }
+
+.pd-dropdown__link.is-active {
+  background: rgba(212,165,116,0.12);
+  color: var(--pd-navy);
+  font-weight: 600;
+}
+.pd-dropdown__link.is-active::before { background: var(--pd-gold); }
+
+/* ─────────────────────────────────────────────
+   Sağ aksiyonlar (CTA + hamburger)
+───────────────────────────────────────────── */
+.pd-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.pd-cta {
+  font-family: var(--pd-font-b);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.9) !important;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  padding: 8px 18px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition:
+    background   var(--pd-ease),
+    border-color var(--pd-ease),
+    color        var(--pd-ease),
+    transform    var(--pd-ease);
+}
+.pd-cta:hover {
+  background: rgba(212,165,116,0.18);
+  border-color: var(--pd-gold);
+  color: var(--pd-white) !important;
+  transform: translateY(-1px);
+}
+header.pd-nav.pd-solid .pd-cta {
+  color: var(--pd-navy) !important;
+  border-color: rgba(0,81,117,0.40);
+  background: transparent;
+}
+header.pd-nav.pd-solid .pd-cta:hover {
+  background: var(--pd-gold);
+  border-color: var(--pd-gold);
+  color: var(--pd-white) !important;
+  transform: translateY(-1px);
+}
+.pd-cta svg { flex-shrink: 0; }
+
+/* Hamburger */
+.pd-burger {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.pd-burger-icon {
+  display: block;
+  overflow: visible;
+}
+.pd-b1, .pd-b2, .pd-b3 {
+  fill: #ffffff;
+  transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pd-solid .pd-b1,
+.pd-solid .pd-b2,
+.pd-solid .pd-b3 { fill: #005175; }
+
+/* Açık hali → X */
+.pd-burger.is-open .pd-b1 { transform: translateY(8px) rotate(45deg); }
+.pd-burger.is-open .pd-b2 { opacity: 0; transform: scaleX(0); }
+.pd-burger.is-open .pd-b3 { transform: translateY(-8px) rotate(-45deg); }
+
+/* ─────────────────────────────────────────────
+   Mobil overlay menü
+───────────────────────────────────────────── */
+.pd-mobile {
+  position: fixed;
+  inset: 0;
+  z-index: 9899;
+  background: var(--pd-navy);
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--pd-nav-h) + 24px) 28px 40px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.pd-mobile.is-open { transform: translateX(0); }
+
+.pd-mobile__list { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+
+.pd-mobile__link {
+  font-family: var(--pd-font-b);
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color var(--pd-ease);
+}
+.pd-mobile__link:hover,
+.pd-mobile__link.is-active { color: var(--pd-gold); }
+
+/* Accordion toggle */
+.pd-mobile__acc-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: var(--pd-font-b);
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color var(--pd-ease);
+}
+.pd-mobile__acc-btn:hover,
+.pd-mobile__acc-btn.is-active { color: var(--pd-gold); }
+
+.pd-mobile__chevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform var(--pd-ease);
+}
+.pd-mobile__acc-btn.is-open .pd-mobile__chevron { transform: rotate(180deg); }
+
+/* Accordion panel */
+.pd-mobile__panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.38s ease;
+}
+.pd-mobile__panel.is-open { max-height: 900px; }
+
+.pd-mobile__sub {
+  font-family: var(--pd-font-b);
+  font-size: 14.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.54);
+  padding: 10px 0 10px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: block;
+  transition: color var(--pd-ease);
+}
+.pd-mobile__sub:hover,
+.pd-mobile__sub.is-active { color: var(--pd-gold); }
+.pd-mobile__sub.is-active { font-weight: 600; }
+
+/* Alt CTA butonu */
+.pd-mobile__cta {
+  margin-top: 28px;
+  display: block;
+  font-family: var(--pd-font-b);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--pd-white) !important;
+  background: var(--pd-gold);
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  transition: background var(--pd-ease);
+}
+.pd-mobile__cta:hover { background: var(--pd-gold-dk); }
+
+/* Telefon */
+.pd-mobile__phone {
+  margin-top: 16px;
+  text-align: center;
+  font-family: var(--pd-font-b);
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.pd-mobile__phone a {
+  color: rgba(255,255,255,0.68);
+  transition: color var(--pd-ease);
+}
+.pd-mobile__phone a:hover { color: var(--pd-gold); }
+
+/* ─────────────────────────────────────────────
+   Non-home sayfa body offset
+───────────────────────────────────────────── */
+.pd-page-offset {
+  padding-top: var(--pd-nav-h) !important;
+}
+
+/* WordPress admin bar varsa header'ı aşağı kaydır */
+.admin-bar .pd-nav   { top: 32px !important; }
+.admin-bar .pd-mobile { padding-top: calc(var(--pd-nav-h) + 32px + 24px); }
+@media screen and (max-width: 782px) {
+  .admin-bar .pd-nav   { top: 46px !important; }
+  .admin-bar .pd-mobile { padding-top: calc(var(--pd-nav-h) + 46px + 24px); }
+}
+
+/* ─────────────────────────────────────────────
+   Responsive kırılımlar
+───────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .pd-menu   { display: none !important; }
+  .pd-cta    { display: none !important; }
+  .pd-burger { display: flex !important; }
+  .pd-nav__wrap { padding: 0 20px; }
+}
+@media (max-width: 480px) {
+  .pd-nav__wrap { padding: 0 14px; }
+  .pd-logo img  { height: 34px; }
+  .pd-mobile    { padding-left: 20px; padding-right: 20px; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════ -->
+<header class="pd-nav pd-transparent" id="pd-nav" role="banner">
+  <div class="pd-nav__wrap">
+
+    <!-- Logo -->
+    <a class="pd-logo" href="https://www.pozitifdunya.com.tr/" aria-label="Pozitif Dünya Ana Sayfa">
+      <img
+        src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/05/PozitifDunya-Logo.png"
+        alt="Pozitif Dünya Logo"
+        height="42"
+        width="auto"
+        loading="eager"
+      >
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="pd-menu" aria-label="Ana menü">
+      <ul class="pd-menu__list">
+
+        <li class="pd-menu__item">
+          <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a>
+        </li>
+
+        <!-- Eğitimler dropdown -->
+        <li class="pd-menu__item">
+          <a class="pd-menu__link" href="#" aria-haspopup="true" aria-expanded="false">
+            Eğitimler
+            <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </a>
+          <ul class="pd-dropdown" role="menu">
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril-Dişil Denge Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/money-brain-code/" role="menuitem">Money Brain Code™</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/" role="menuitem">5'li Bireysel Danışmanlık Paketi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/" role="menuitem">Bireysel Seans Al</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" role="menuitem">Öğrenci Koçluğu Seansı</a></li>
+          </ul>
+        </li>
+
+        <li class="pd-menu__item">
+          <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a>
+        </li>
+        <li class="pd-menu__item">
+          <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a>
+        </li>
+        <li class="pd-menu__item">
+          <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <!-- Aksiyonlar -->
+    <div class="pd-actions">
+      <a class="pd-cta" href="https://www.pozitifdunya.com.tr/iletisim/">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Bana Ulaş
+      </a>
+      <button class="pd-burger"
+              id="pd-burger"
+              aria-label="Menüyü aç"
+              aria-expanded="false"
+              aria-controls="pd-mobile">
+        <svg class="pd-burger-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect class="pd-b1" x="0" y="0"  width="24" height="2" rx="1"/>
+          <rect class="pd-b2" x="0" y="8"  width="24" height="2" rx="1"/>
+          <rect class="pd-b3" x="0" y="16" width="24" height="2" rx="1"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     MOBİL MENÜ
+═══════════════════════════════════════════ -->
+<div class="pd-mobile" id="pd-mobile" aria-hidden="true" role="dialog" aria-label="Mobil menü">
+  <ul class="pd-mobile__list">
+
+    <li>
+      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a>
+    </li>
+
+    <!-- Eğitimler accordion -->
+    <li>
+      <button class="pd-mobile__acc-btn"
+              id="pd-acc-btn"
+              aria-expanded="false"
+              aria-controls="pd-acc-panel">
+        Eğitimler
+        <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="pd-mobile__panel" id="pd-acc-panel">
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril-Dişil Denge Eğitimi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">NLP Uygulayıcı Eğitimi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Evlilik ve İlişki Atölyesi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/money-brain-code/">Money Brain Code™</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">5'li Bireysel Danışmanlık Paketi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">Bireysel Seans Al</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">Öğrenci Koçluğu Seansı</a>
+      </div>
+    </li>
+
+    <li>
+      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a>
+    </li>
+    <li>
+      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a>
+    </li>
+    <li>
+      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a>
+    </li>
+
+  </ul>
+
+  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/iletisim/">
+    Bana Ulaş
+  </a>
+
+  <p class="pd-mobile__phone">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.08 6.09l.92-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>
+    <a href="tel:+905419052977">0541 905 29 77</a>
+  </p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var nav      = document.getElementById('pd-nav');
+  var burger   = document.getElementById('pd-burger');
+  var mobile   = document.getElementById('pd-mobile');
+  var accBtn   = document.getElementById('pd-acc-btn');
+  var accPanel = document.getElementById('pd-acc-panel');
+
+  /* JegKit/Elementor wrapper'ı position:fixed'i kırabilir.
+     Elemanları doğrudan body'e taşıyoruz. */
+  if (nav && nav.parentElement !== document.body) {
+    document.body.insertBefore(nav, document.body.firstChild);
+  }
+  if (mobile && mobile.parentElement !== document.body) {
+    document.body.insertBefore(mobile, nav.nextSibling || document.body.firstChild);
+  }
+
+  /* ── Sayfa tipi tespiti ──────────────────────── */
+  /* Ana sayfada hero section varsa transparan başlat */
+  var isHome = document.body.classList.contains('home') ||
+               document.body.classList.contains('front-page') ||
+               window.location.pathname === '/' ||
+               document.querySelector('.pd-hero') !== null;
+
+  if (!isHome) {
+    nav.classList.remove('pd-transparent');
+    nav.classList.add('pd-solid');
+    document.body.classList.add('pd-page-offset');
+  }
+
+  /* ── Scroll ───────────────────────────────────── */
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        if (isHome) {
+          if (window.scrollY > 80) {
+            nav.classList.remove('pd-transparent');
+            nav.classList.add('pd-solid');
+          } else {
+            nav.classList.add('pd-transparent');
+            nav.classList.remove('pd-solid');
+          }
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  /* ── Hamburger ─────────────────────────────────── */
+  function openMenu() {
+    mobile.classList.add('is-open');
+    burger.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    mobile.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobile.classList.remove('is-open');
+    burger.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobile.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  burger.addEventListener('click', function () {
+    mobile.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobile.classList.contains('is-open')) {
+      closeMenu();
+      burger.focus();
+    }
+  });
+
+  /* ── Eğitimler accordion (mobil) ────────────── */
+  accBtn.addEventListener('click', function () {
+    var open = accPanel.classList.contains('is-open');
+    accPanel.classList.toggle('is-open', !open);
+    accBtn.classList.toggle('is-open', !open);
+    accBtn.setAttribute('aria-expanded', String(!open));
+  });
+
+  /* ── Aktif link tespiti ───────────────────────── */
+  var cur = window.location.pathname.replace(/\/$/, '') || '/';
+
+  /* Dropdown linkleri */
+  var egitimPagesActive = false;
+  document.querySelectorAll('.pd-dropdown__link').forEach(function (a) {
+    try {
+      var p = new URL(a.href).pathname.replace(/\/$/, '');
+      if (p === cur) {
+        a.classList.add('is-active');
+        egitimPagesActive = true;
+      }
+    } catch (e) {}
+  });
+
+  /* Üst menü linkleri */
+  document.querySelectorAll('.pd-menu__link').forEach(function (a) {
+    if (a.getAttribute('href') === '#') return;
+    try {
+      var p = new URL(a.href).pathname.replace(/\/$/, '');
+      if (p === cur) a.classList.add('is-active');
+    } catch (e) {}
+  });
+
+  /* Eğitim alt sayfasındaysa "Eğitimler" üst öğeyi aktif et */
+  if (egitimPagesActive) {
+    var egitimParent = document.querySelector('.pd-menu__link[aria-haspopup]');
+    if (egitimParent) egitimParent.classList.add('is-active');
+  }
+
+  /* Mobil alt linkler */
+  document.querySelectorAll('.pd-mobile__sub').forEach(function (a) {
+    try {
+      var p = new URL(a.href).pathname.replace(/\/$/, '');
+      if (p === cur) {
+        a.classList.add('is-active');
+        accPanel.classList.add('is-open');
+        accBtn.classList.add('is-open');
+        accBtn.setAttribute('aria-expanded', 'true');
+      }
+    } catch (e) {}
+  });
+
+  /* Mobil ana linkler */
+  document.querySelectorAll('.pd-mobile__link').forEach(function (a) {
+    if (a.tagName !== 'A') return;
+    try {
+      var p = new URL(a.href).pathname.replace(/\/$/, '');
+      if (p === cur) a.classList.add('is-active');
+    } catch (e) {}
+  });
+
+  console.log('[PD-Nav] v1.0 yüklendi. isHome:', isHome, '| path:', cur);
+
+})();
+</script>

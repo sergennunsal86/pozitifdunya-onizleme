@@ -1,0 +1,837 @@
+<meta charset="UTF-8">
+<!-- ================================================================
+     Pozitif Dünya Ana Sayfa v5.0
+     Elementor HTML Widget — tam genişlik, responsive
+     ================================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<style>
+/* ── RESET & SCOPE ─────────────────────────────── */
+.pd-pg *,.pd-pg *::before,.pd-pg *::after{box-sizing:border-box;margin:0;padding:0}
+.pd-pg a{text-decoration:none}
+.pd-pg ul{list-style:none}
+.pd-pg img{display:block;max-width:100%}
+.pd-pg{
+  font-family:'Cabin',sans-serif;color:#7B7B7B;overflow-x:hidden;
+  margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;
+  width:100vw !important;max-width:100vw !important;position:relative;
+}
+
+:root{
+  --pd-violet:#5F3DC4;
+  --pd-navy:#005175;--pd-navy-deep:#003a52;
+  --pd-blue:#29ABDF;
+  --pd-gold:#D4A574;--pd-gold-2:#B88A56;
+  --pd-cream:#FAF6F0;--pd-light:#F4F8FB;
+  --pd-text:#7B7B7B;--pd-white:#fff;
+  --pd-h:'Playfair Display',serif;--pd-b:'Cabin',sans-serif;
+  --pd-ease:0.32s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.pd-pg .pd-c{width:100%;max-width:1280px;margin:0 auto;padding:0 32px}
+.pd-pg .pd-tag{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pd-gold);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.pd-pg .pd-tag::before{content:'';width:30px;height:2px;background:var(--pd-gold);flex-shrink:0}
+.pd-pg .pd-tag.light{color:rgba(255,255,255,.7)}.pd-pg .pd-tag.light::before{background:var(--pd-gold)}
+
+/* text-transform KULLANILMIYOR — Türkçe i→I sorunu yaratır */
+.pd-pg .pd-h2{
+  font-family:var(--pd-h);font-size:clamp(28px,3.6vw,46px);
+  font-weight:700;color:var(--pd-violet);line-height:1.2;letter-spacing:-.01em;
+}
+.pd-pg .pd-h2.light{color:#fff}
+.pd-pg .pd-btn{font-family:var(--pd-b);font-size:14px;font-weight:600;letter-spacing:.04em;padding:13px 26px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all var(--pd-ease);border:none;white-space:nowrap}
+.pd-pg .pd-btn-gold{background:var(--pd-gold);color:#fff}.pd-pg .pd-btn-gold:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,165,116,.40)}
+.pd-pg .pd-btn-navy{background:var(--pd-navy);color:#fff}.pd-pg .pd-btn-navy:hover{background:var(--pd-navy-deep);transform:translateY(-2px)}
+.pd-pg .pd-btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}.pd-pg .pd-btn-outline:hover{background:rgba(255,255,255,.10);border-color:#fff}
+.pd-pg .pd-btn-outline-gold{background:transparent;color:var(--pd-gold);border:1.5px solid var(--pd-gold)}.pd-pg .pd-btn-outline-gold:hover{background:var(--pd-gold);color:#fff;transform:translateY(-2px)}
+
+/* ── YORUMLAR OK BUTONU — Elementor agresif override ── */
+.pd-pg .pd-reviews__svc-wrap .pd-nav-btn,
+.elementor .pd-pg .pd-reviews__svc-wrap .pd-nav-btn,
+.elementor-widget-container .pd-pg .pd-reviews__svc-wrap .pd-nav-btn,
+.elementor-section .pd-pg .pd-reviews__svc-wrap .pd-nav-btn{
+  display:flex !important;visibility:visible !important;opacity:1 !important;
+  pointer-events:auto !important;z-index:20 !important;
+  position:absolute !important;
+  width:46px !important;height:46px !important;
+  background:var(--pd-navy) !important;border-radius:50% !important;
+  border:none !important;outline:none !important;cursor:pointer !important;
+  color:#fff !important;align-items:center !important;justify-content:center !important;
+  transition:background var(--pd-ease),transform var(--pd-ease) !important;
+  flex-shrink:0 !important;padding:0 !important;
+  box-shadow:0 4px 16px rgba(0,81,117,.22) !important;
+}
+.pd-pg .pd-reviews__svc-wrap .pd-nav-btn:hover{background:var(--pd-gold) !important;transform:scale(1.10) !important}
+.pd-pg .pd-reviews__svc-wrap .pd-nav-btn svg{pointer-events:none !important;flex-shrink:0 !important}
+#pd-rev-prev{left:0 !important;top:calc(50% - 52px) !important}
+#pd-rev-next{right:0 !important;top:calc(50% - 52px) !important}
+@media(max-width:899px){.pd-pg .pd-reviews__svc-wrap .pd-nav-btn{display:none !important}}
+
+/* ═══════════════════════════════════════════════
+   1. HERO BANNER
+═══════════════════════════════════════════════ */
+.pd-hero{position:relative;width:100%;height:100vh;min-height:580px;max-height:940px}
+.pd-hero .swiper{width:100%;height:100%}
+.pd-hero-slide{position:relative;width:100%;height:100%;overflow:hidden}
+.pd-hero-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center center; /* varsayılan — her slide override eder */
+}
+.swiper-slide-active .pd-hero-bg{animation:pdKenBurns 7s ease-out forwards}
+@keyframes pdKenBurns{from{transform:scale(1)}to{transform:scale(1.07)}}
+.pd-hero-slide::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(0,81,117,.92) 0%,rgba(0,81,117,.60) 48%,rgba(0,0,0,.15) 100%)}
+.pd-hero-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;padding:0 6vw}
+.pd-hero-inner{max-width:580px}
+.pd-hero-badge{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pd-gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.pd-hero-badge::before{content:'';width:28px;height:2px;background:var(--pd-gold)}
+.pd-hero-title{font-family:var(--pd-h);font-size:clamp(38px,5vw,72px);font-weight:700;color:#fff !important;line-height:1.08;letter-spacing:-.01em;margin-bottom:20px}
+.pd-hero-desc{font-family:var(--pd-b);font-size:17px;color:rgba(255,255,255,.82) !important;line-height:1.75;margin-bottom:36px;max-width:460px}
+.pd-hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pd-hero .swiper-pagination{bottom:34px;left:6vw;width:auto;text-align:left;z-index:5}
+.pd-hero .swiper-pagination-bullet{width:8px;height:8px;background:rgba(255,255,255,.38);opacity:1;border-radius:4px;transition:width .35s,background .35s}
+.pd-hero .swiper-pagination-bullet-active{width:30px;background:var(--pd-gold)}
+.pd-hero .swiper-button-next,.pd-hero .swiper-button-prev{
+  width:52px !important;height:52px !important;
+  background:rgba(255,255,255,.12) !important;
+  backdrop-filter:blur(10px) !important;-webkit-backdrop-filter:blur(10px) !important;
+  border:1.5px solid rgba(255,255,255,.35) !important;border-radius:50% !important;
+  box-shadow:0 4px 20px rgba(0,0,0,.18) !important;color:#fff !important;
+  transition:all var(--pd-ease) !important;
+}
+.pd-hero .swiper-button-next:hover,.pd-hero .swiper-button-prev:hover{background:var(--pd-gold) !important;border-color:var(--pd-gold) !important}
+.pd-hero .swiper-button-next::after,.pd-hero .swiper-button-prev::after{font-size:14px !important;font-weight:700 !important;color:#fff !important}
+@media(max-width:767px){.pd-hero .swiper-button-next,.pd-hero .swiper-button-prev{display:none !important}}
+.pd-scroll-hint{position:absolute;bottom:36px;right:5vw;z-index:5;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.40);font-family:var(--pd-b);font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+.pd-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.38));animation:pdPulse 1.8s ease-in-out infinite}
+@keyframes pdPulse{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ── Banner görseli pozisyon — slide başına ── */
+/* Slide 1: Çift fotoğrafı — insanlar sağda, metin solda */
+.pd-hs1 .pd-hero-bg{background-position:72% center}
+/* Slide 2: NLP beyin — ortada */
+.pd-hs2 .pd-hero-bg{background-position:center center}
+/* Slide 3: İlişki silueti — ortada */
+.pd-hs3 .pd-hero-bg{background-position:center center}
+/* Mobil: daha merkezli, insan figürü kesmesin */
+@media(max-width:767px){
+  .pd-hs1 .pd-hero-bg{background-position:60% top}
+  .pd-hs2 .pd-hero-bg{background-position:center center}
+  .pd-hs3 .pd-hero-bg{background-position:center top}
+}
+
+/* ═══════════════════════════════════════════════
+   2. HAKKIMDA
+═══════════════════════════════════════════════ */
+.pd-about{background:#fff;padding:80px 0}
+.pd-about__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:center}
+.pd-about__img-wrap{position:relative}
+.pd-about__img{width:100%;border-radius:16px;object-fit:cover;display:block;box-shadow:0 16px 56px rgba(0,81,117,.14);position:relative;z-index:1}
+.pd-about__badge{
+  position:absolute;bottom:24px;right:-22px;z-index:2;
+  background:var(--pd-gold);color:#fff;font-family:var(--pd-h);font-size:14px;font-weight:700;
+  padding:14px 18px;border-radius:12px;box-shadow:0 8px 28px rgba(212,165,116,.40);
+  display:flex;align-items:center;gap:10px;white-space:nowrap;
+}
+.pd-about__badge em{font-style:normal;font-size:24px;font-weight:800;line-height:1;display:block}
+.pd-about__img-wrap::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:2px solid rgba(41,171,223,.12);bottom:-24px;left:-24px;z-index:0}
+.pd-about__img-wrap::after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(95,61,196,.06);top:-18px;right:-18px;z-index:0}
+.pd-about__sub{font-family:var(--pd-b);font-size:14px;color:var(--pd-blue);font-weight:600;margin-bottom:6px;display:block}
+.pd-about__desc{font-family:var(--pd-b);font-size:16px;color:var(--pd-text);line-height:1.8;margin:16px 0 24px}
+.pd-about__list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.pd-about__li{display:flex;align-items:flex-start;gap:12px;font-family:var(--pd-b);font-size:15px;color:var(--pd-text);line-height:1.5}
+.pd-about__check{width:24px;height:24px;background:rgba(95,61,196,.10);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pd-about__actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════
+   3. KOMPAKT EĞİTİM LİSTESİ
+═══════════════════════════════════════════════ */
+.pd-list{background:var(--pd-navy);padding:72px 0}
+.pd-list__head{margin-bottom:40px}
+.pd-list__grid{max-width:900px}
+.pd-list__item{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:18px 12px;border-bottom:1px solid rgba(255,255,255,.08);
+  border-radius:8px;margin:0 -12px;
+  transition:background var(--pd-ease);text-decoration:none;cursor:pointer;
+}
+.pd-list__item:last-child{border-bottom:none}
+.pd-list__item:hover{background:rgba(255,255,255,.05)}
+.pd-list__item:hover .pd-list__arrow{transform:translateX(6px);color:var(--pd-gold)}
+.pd-list__left{display:flex;align-items:center;gap:14px;flex:1;min-width:0}
+.pd-list__icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.08);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--pd-gold)}
+.pd-list__name{font-family:var(--pd-h);font-size:18px;font-weight:600;color:#fff;line-height:1.2}
+.pd-list__right{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.pd-list__price{font-family:var(--pd-b);font-size:15px;font-weight:700;color:var(--pd-gold);white-space:nowrap}
+.pd-list__arrow{color:rgba(255,255,255,.40);transition:transform var(--pd-ease),color var(--pd-ease);flex-shrink:0}
+
+/* ═══════════════════════════════════════════════
+   4. ÖDEME VİTRİNİ
+═══════════════════════════════════════════════ */
+.pd-pay{background:var(--pd-cream);padding:80px 0}
+.pd-pay__head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.pd-pay__sub{font-family:var(--pd-b);font-size:15px;color:var(--pd-text)}
+.pd-pay__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pd-pay-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,81,117,.10);display:flex;flex-direction:column;transition:transform var(--pd-ease),box-shadow var(--pd-ease);border:1px solid rgba(95,61,196,.07)}
+.pd-pay-card:hover{transform:translateY(-7px);box-shadow:0 16px 52px rgba(95,61,196,.14)}
+.pd-pay-card__img-wrap{height:220px !important;overflow:hidden !important;flex-shrink:0 !important;position:relative}
+.pd-pay-card__img{width:100% !important;height:100% !important;object-fit:cover !important;object-position:center !important;display:block !important;min-height:220px !important;transition:transform .6s ease}
+.pd-pay-card:hover .pd-pay-card__img{transform:scale(1.05)}
+.pd-pay-card__badge{position:absolute;top:14px;left:14px;background:var(--pd-navy);color:#fff;font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 12px;border-radius:20px}
+.pd-pay-card__body{padding:24px 24px 28px;flex:1;display:flex;flex-direction:column}
+.pd-pay-card__title{font-family:var(--pd-h);font-size:19px;font-weight:700;color:var(--pd-violet) !important;line-height:1.3;margin-bottom:16px}
+.pd-pay-card__features{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;flex:1}
+.pd-pay-card__feat{font-family:var(--pd-b);font-size:14px;color:var(--pd-text);display:flex;align-items:center;gap:9px;line-height:1.4}
+.pd-pay-card__feat::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;background:rgba(95,61,196,.08);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235F3DC4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:10px}
+.pd-pay-card__divider{height:1px;background:rgba(95,61,196,.08);margin:18px 0}
+.pd-pay-card__price{font-family:var(--pd-h);font-size:30px;font-weight:700;color:var(--pd-violet);line-height:1;margin-bottom:4px}
+.pd-pay-card__price span{font-family:var(--pd-b);font-size:13px;font-weight:400;color:var(--pd-text);margin-left:4px}
+.pd-pay-card__actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.pd-pay-card__buy{font-family:var(--pd-b);font-size:14px;font-weight:700;letter-spacing:.04em;text-align:center;padding:14px;border-radius:8px;background:var(--pd-gold);color:#fff;transition:background var(--pd-ease),transform var(--pd-ease),box-shadow var(--pd-ease);display:flex;align-items:center;justify-content:center;gap:8px}
+.pd-pay-card__buy:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,165,116,.38)}
+.pd-pay-card__detail{font-family:var(--pd-b);font-size:13px;font-weight:500;text-align:center;color:var(--pd-violet);opacity:.6;padding:8px;display:block;transition:opacity var(--pd-ease),color var(--pd-ease)}
+.pd-pay-card__detail:hover{opacity:1;color:var(--pd-blue)}
+
+/* ═══════════════════════════════════════════════
+   5. YOUTUBE — flex + scroll-snap + modal
+═══════════════════════════════════════════════ */
+.pd-yt{background:var(--pd-cream);padding:80px 0}
+.pd-pg .yt-wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.pd-pg .yt-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px}
+.pd-pg .yt-head-left{display:flex;flex-direction:column}
+.pd-pg .yt-sub{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:16px;background:#ff0000;
+  font-family:var(--pd-b);font-weight:700;font-size:14px;
+  box-shadow:0 8px 24px rgba(255,0,0,.28);transition:.2s ease;
+  -webkit-tap-highlight-color:transparent;flex-shrink:0;
+}
+.pd-pg .yt-sub,.pd-pg .yt-sub:link,.pd-pg .yt-sub:visited,
+.pd-pg .yt-sub:hover,.pd-pg .yt-sub:active{color:#fff !important}
+.pd-pg .yt-sub:hover{background:#e60000;transform:translateY(-3px)}
+.pd-pg .yt-row-wrap{position:relative}
+.pd-pg .yt-row{
+  display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:10px 44px;cursor:grab;
+}
+.pd-pg .yt-row:active{cursor:grabbing}
+.pd-pg .yt-row::-webkit-scrollbar{height:6px}
+.pd-pg .yt-row::-webkit-scrollbar-thumb{background:rgba(95,61,196,.2);border-radius:999px}
+.pd-pg .yt-card{
+  flex:0 0 240px;scroll-snap-align:start;
+  border-radius:18px;overflow:hidden;position:relative;
+  background:#111;box-shadow:0 12px 36px rgba(0,0,0,.18);
+  transition:.22s ease;cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.pd-pg .yt-card:hover{transform:translateY(-6px);box-shadow:0 22px 56px rgba(0,0,0,.30)}
+.pd-pg .yt-thumb{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.pd-pg .yt-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 55%)}
+.pd-pg .yt-play{
+  position:absolute;bottom:16px;right:16px;
+  width:52px;height:52px;border-radius:999px;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.28);pointer-events:none;
+  transition:transform .2s ease;
+}
+.pd-pg .yt-card:hover .yt-play{transform:scale(1.10)}
+.pd-pg .yt-play::after{content:'';width:0;height:0;border-left:13px solid #111;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px}
+.pd-pg .yt-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:999px;border:none;
+  background:rgba(0,81,117,.85);color:#fff;font-size:22px;
+  cursor:pointer;z-index:5;
+  display:flex;align-items:center;justify-content:center;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .2s ease;box-shadow:0 4px 16px rgba(0,0,0,.25);line-height:1;
+}
+.pd-pg .yt-nav:hover{background:var(--pd-gold)}
+.pd-pg .yt-nav.prev{left:4px}
+.pd-pg .yt-nav.next{right:4px}
+.pd-pg .yt-modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.84);
+  display:none;align-items:center;justify-content:center;z-index:9999999;padding:14px;
+}
+.pd-pg .yt-modal.open{display:flex}
+.pd-pg .yt-modal-inner{width:min(400px,88vw);aspect-ratio:9/16;background:#000;border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.55)}
+.pd-pg .yt-modal-inner iframe{width:100%;height:100%;border:0;display:block}
+.pd-pg .yt-close{
+  position:fixed;top:14px;right:14px;width:48px;height:48px;border-radius:999px;border:none;
+  background:#fff;display:none;align-items:center;justify-content:center;
+  z-index:10000000;box-shadow:0 10px 28px rgba(0,0,0,.30);cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.pd-pg .yt-modal.open + .yt-close{display:flex}
+.pd-pg .yt-close::before,.pd-pg .yt-close::after{content:'';position:absolute;width:22px;height:3px;background:#111;border-radius:3px;left:50%;top:50%;transform-origin:center}
+.pd-pg .yt-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.pd-pg .yt-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+
+/* ═══════════════════════════════════════════════
+   6. YORUMLAR
+═══════════════════════════════════════════════ */
+.pd-reviews{background:var(--pd-light);padding:80px 0}
+.pd-reviews__head{margin-bottom:44px}
+.pd-reviews__svc-wrap{position:relative}
+@media(min-width:900px){.pd-reviews__svc-wrap{padding:0 56px}}
+.pd-reviews-swiper{padding-bottom:52px !important;overflow:visible !important}
+@media(min-width:900px){.pd-reviews-swiper{overflow:hidden !important}}
+.pd-reviews-swiper .swiper-wrapper{align-items:stretch}
+.pd-reviews-swiper .swiper-pagination-bullet{background:var(--pd-violet);opacity:.18;width:8px;height:8px}
+.pd-reviews-swiper .swiper-pagination-bullet-active{opacity:1;background:var(--pd-gold);width:22px;border-radius:4px}
+.pd-review-card{
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 2px 16px rgba(95,61,196,.08);
+  transition:transform var(--pd-ease),box-shadow var(--pd-ease);
+  height:100%;cursor:pointer;
+}
+.pd-review-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 40px rgba(95,61,196,.16)}
+.pd-review-card img{width:100%;height:100%;display:block;object-fit:cover;transition:none}
+
+/* ── Yorumlar Lightbox ── */
+.pd-lb{
+  position:fixed;inset:0;background:rgba(0,0,0,.92);
+  z-index:9999998;display:none;
+  align-items:center;justify-content:center;
+  padding:60px 80px;
+}
+.pd-lb.open{display:flex}
+.pd-lb-inner{
+  position:relative;
+  max-width:min(520px,88vw);
+  animation:pdLbIn .22s ease;
+}
+@keyframes pdLbIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.pd-lb-img{
+  width:100%;max-height:85vh;
+  object-fit:contain;border-radius:14px;display:block;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+/* Kapat butonu — modal içinde, sağ üste */
+.pd-lb-close{
+  position:absolute;top:-46px;right:0;
+  width:38px;height:38px;border-radius:50%;
+  border:none;background:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.pd-lb-close::before,.pd-lb-close::after{content:'';position:absolute;width:18px;height:2.5px;background:#111;border-radius:3px;left:50%;top:50%;transform-origin:center}
+.pd-lb-close::before{transform:translate(-50%,-50%) rotate(45deg)}
+.pd-lb-close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+/* Sol/sağ oklar — MODAL İÇİNDE, position absolute */
+.pd-lb-prev,.pd-lb-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:46px;height:46px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:#fff;font-size:26px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;line-height:1;
+}
+.pd-lb-prev:hover,.pd-lb-next:hover{background:rgba(255,255,255,.28)}
+.pd-lb-prev{left:-64px}
+.pd-lb-next{right:-64px}
+@media(max-width:767px){
+  .pd-lb{padding:50px 20px}
+  .pd-lb-prev{left:-44px}
+  .pd-lb-next{right:-44px}
+}
+@media(max-width:480px){
+  .pd-lb{padding:50px 10px}
+  .pd-lb-prev{left:-34px;width:36px;height:36px;font-size:20px}
+  .pd-lb-next{right:-34px;width:36px;height:36px;font-size:20px}
+}
+
+/* ═══════════════════════════════════════════════
+   7. SON CTA — Profesyonel ve şık
+═══════════════════════════════════════════════ */
+.pd-cta-final{
+  background:var(--pd-navy);padding:90px 0;
+  position:relative;overflow:hidden;
+}
+/* Dekoratif daireler */
+.pd-cta-final::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;border:1px solid rgba(212,165,116,.10);top:-160px;right:-120px;pointer-events:none}
+.pd-cta-final::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(41,171,223,.05);bottom:-80px;left:-60px;pointer-events:none}
+.pd-cta-final__inner{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto}
+.pd-cta-final__desc{
+  font-family:var(--pd-b);font-size:17px;
+  color:rgba(255,255,255,.62);line-height:1.75;
+  margin:20px auto 52px;max-width:520px;
+}
+/* İki büyük CTA kutusu yan yana */
+.pd-cta-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  max-width:600px;margin:0 auto;
+}
+.pd-cta-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:16px;padding:28px 24px;
+  transition:background var(--pd-ease),border-color var(--pd-ease),transform var(--pd-ease);
+  text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.pd-cta-card:hover{background:rgba(255,255,255,.11);border-color:rgba(212,165,116,.50);transform:translateY(-4px)}
+.pd-cta-card__icon{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--pd-gold);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(212,165,116,.35);
+  flex-shrink:0;
+}
+.pd-cta-card__label{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pd-gold)}
+.pd-cta-card__title{font-family:var(--pd-h);font-size:20px;font-weight:700;color:#fff;line-height:1.2;text-align:center}
+.pd-cta-card__sub{font-family:var(--pd-b);font-size:13px;color:rgba(255,255,255,.45);text-align:center}
+
+@media(max-width:540px){
+  .pd-cta-cards{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1023px){
+  .pd-pg .pd-c,.pd-pg .yt-wrap{padding:0 24px}
+  .pd-about__grid{grid-template-columns:1fr;gap:48px}
+  .pd-about__badge{right:16px}
+  .pd-about__img-wrap::before,.pd-about__img-wrap::after{display:none}
+  .pd-pay__grid{grid-template-columns:1fr 1fr}
+  .pd-list__name{font-size:16px}
+}
+@media(max-width:767px){
+  .pd-hero{height:90vh;min-height:500px}
+  .pd-hero-desc{font-size:15px;margin-bottom:24px}
+  .pd-hero-actions{flex-direction:column;align-items:flex-start;gap:10px}
+  .pd-pay__grid{grid-template-columns:1fr}
+  .pd-about,.pd-list,.pd-pay,.pd-yt,.pd-reviews,.pd-cta-final{padding:56px 0}
+  .pd-pg .pd-c,.pd-pg .yt-wrap{padding:0 16px}
+  .pd-list__item{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 12px}
+  .pd-list__right{align-self:flex-end}
+  .pd-pg .yt-nav{display:none !important}
+  .pd-pg .yt-card{flex-basis:200px}
+  .pd-pg .yt-row{padding:10px 0}
+}
+@media(max-width:480px){
+  .pd-hero-title{font-size:34px}
+  .pd-pay-card__price{font-size:26px}
+  .pd-about__badge{right:0;bottom:16px}
+}
+</style>
+
+<div class="pd-pg">
+
+<!-- ══ 1. HERO BANNER ═══════════════════════════════════════════ -->
+<section class="pd-hero" aria-label="Öne Çıkan Eğitimler">
+  <div class="swiper pd-hero-swiper">
+    <div class="swiper-wrapper">
+
+      <!-- Slide 1: Duygu Odaklı Eril-Dişil Denge — pd-hs1 class ile mobil pozisyon CSS'de -->
+      <div class="swiper-slide pd-hero-slide pd-hs1">
+        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/disil-enerji-egitimi-banner.jpg')"></div>
+        <div class="pd-hero-content"><div class="pd-hero-inner">
+          <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
+          <h1 class="pd-hero-title">Duygu Odaklı<br>Eril-Dişil Denge<br>Eğitimi</h1>
+          <p class="pd-hero-desc">İlişkilerinde, iş yaşamında ve içsel dünyanızda dengeyi kurmanın dönüşüm dolu yolculuğuna hazır mısınız?</p>
+          <div class="pd-hero-actions">
+            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Slide 2: NLP — pd-hs2 -->
+      <div class="swiper-slide pd-hero-slide pd-hs2">
+        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg')"></div>
+        <div class="pd-hero-content"><div class="pd-hero-inner">
+          <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
+          <h1 class="pd-hero-title">NLP Uygulayıcı<br>Eğitimi ve<br>Sertifika Programı</h1>
+          <p class="pd-hero-desc">Beyninin dilini çöz, düşünce kalıplarını yeniden yapılandır — uluslararası onaylı sertifikanla güçlü bir adım at.</p>
+          <div class="pd-hero-actions">
+            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Slide 3: Evlilik Atölyesi — pd-hs3 -->
+      <div class="swiper-slide pd-hero-slide pd-hs3">
+        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg')"></div>
+        <div class="pd-hero-content"><div class="pd-hero-inner">
+          <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
+          <h1 class="pd-hero-title">Evlilik ve İleri<br>Seviye İlişki<br>Atölyesi</h1>
+          <p class="pd-hero-desc">Bilinçaltındaki ilişki kalıplarını dönüştür, derin bağ kur ve ilişkinde sürdürülebilir bir sevgi alanı yarat.</p>
+          <div class="pd-hero-actions">
+            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+  <div class="pd-scroll-hint"><div class="pd-scroll-line"></div>SCROLL</div>
+</section>
+
+<!-- ══ 2. HAKKIMDA ════════════════════════════════════════════════ -->
+<section class="pd-about" aria-label="Hakkımda">
+  <div class="pd-c">
+    <div class="pd-about__grid">
+      <div class="pd-about__img-wrap">
+        <img class="pd-about__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/06/para-egitimi-sayfasi-icin-scaled.jpg" alt="Gülhan Toktay — NLP Trainer ve İlişki Koçu" loading="lazy">
+        <div class="pd-about__badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><em>17+</em> Yıl</span></div>
+      </div>
+      <div>
+        <div class="pd-tag">Kimim?</div>
+        <h2 class="pd-h2" style="margin-bottom:6px">Gülhan Toktay</h2>
+        <span class="pd-about__sub">NLP Trainer · İlişki Koçu · Bilinçaltı Dönüşüm Uzmanı</span>
+        <p class="pd-about__desc">Dışındaki değil, içindeki dünyaya uyanmak isteyenler için buradayım. 17 yılı aşkın NLP eğitmenliği, ilişki koçluğu ve bilinçaltı dönüşüm pratiğimle; ilişkilerinde, kariyer yolculuğunda ve hayatının her alanında gerçek ve kalıcı değişim yaşamana destek oluyorum.</p>
+        <p class="pd-about__desc" style="margin-top:-10px;margin-bottom:28px">Beyninin dilini çözüyoruz, eski kalıplardan özgürleşiyorsun. Duygularına alan açtığın her adımda birlikteyiz.</p>
+        <ul class="pd-about__list">
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>NLP Trainer — E-Devlet ve uluslararası onaylı sertifika</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Money Brain Code™ — Patentli Zenginlik ve Başarı Programı'nın sahibi</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Binlerce kişinin dönüşüm yolculuğuna tanıklık etti</li>
+        </ul>
+        <div class="pd-about__actions">
+          <a class="pd-btn pd-btn-navy" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="pd-btn pd-btn-outline-gold" href="https://www.pozitifdunya.com.tr/iletisim/">Bana Ulaş</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 3. DİĞER EĞİTİMLER ════════════════════════════════════════ -->
+<section class="pd-list" aria-label="Tüm Eğitimlerimiz">
+  <div class="pd-c">
+    <div class="pd-list__head">
+      <div class="pd-tag light">Tüm Programlar</div>
+      <h2 class="pd-h2 light">Diğer Eğitimlerimiz</h2>
+    </div>
+    <div class="pd-list__grid">
+      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/money-brain-code/">
+        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="pd-list__name">Money Brain Code™</span></div>
+        <div class="pd-list__right"><span class="pd-list__price">₺33.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">
+        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="pd-list__name">5'li Online Bireysel Danışmanlık Paketi</span></div>
+        <div class="pd-list__right"><span class="pd-list__price">₺20.000</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">
+        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="pd-list__name">Bireysel Seans Al</span></div>
+        <div class="pd-list__right"><span class="pd-list__price">₺4.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">
+        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="pd-list__name">Öğrenci Koçluğu Bireysel Seansı</span></div>
+        <div class="pd-list__right"><span class="pd-list__price">₺4.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 4. ÖDEME VİTRİNİ ══════════════════════════════════════════ -->
+<section class="pd-pay" id="odeme-vitrin" aria-label="Eğitim Kayıt ve Ödeme">
+  <div class="pd-c">
+    <div class="pd-pay__head">
+      <div>
+        <div class="pd-tag">Hemen Kayıt Ol</div>
+        <h2 class="pd-h2">Öne Çıkan Eğitimlerimiz</h2>
+      </div>
+      <p class="pd-pay__sub">Aşağıdaki butonlardan PayTR güvenli ödeme sayfasına yönleneceksiniz.</p>
+    </div>
+    <div class="pd-pay__grid">
+
+      <div class="pd-pay-card">
+        <div class="pd-pay-card__img-wrap">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/disil-enerji-egitimi-banner.jpg" alt="Eril Dişil Denge Eğitimi" style="object-position:72% center">
+          <span class="pd-pay-card__badge">Canlı Online</span>
+        </div>
+        <div class="pd-pay-card__body">
+          <div class="pd-pay-card__title">Duygu Odaklı Eril-Dişil Denge ve Dişil Enerji Eğitimi</div>
+          <ul class="pd-pay-card__features">
+            <li class="pd-pay-card__feat">4 gün canlı ders (Zoom)</li>
+            <li class="pd-pay-card__feat">10 gün kişisel danışmanlık desteği</li>
+            <li class="pd-pay-card__feat">3 ay sınırsız ders kaydı erişimi</li>
+            <li class="pd-pay-card__feat">KDV dahil fiyat</li>
+          </ul>
+          <div class="pd-pay-card__divider"></div>
+          <div class="pd-pay-card__price">₺7.000 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__actions">
+            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/9dbXluR" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Eğitim Detaylarını İncele →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-pay-card">
+        <div class="pd-pay-card__img-wrap">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg" alt="NLP Uygulayıcı Eğitimi">
+          <span class="pd-pay-card__badge">Sertifikalı Program</span>
+        </div>
+        <div class="pd-pay-card__body">
+          <div class="pd-pay-card__title">NLP Uygulayıcı Eğitimi ve Sertifika Programı</div>
+          <ul class="pd-pay-card__features">
+            <li class="pd-pay-card__feat">Canlı Zoom dersleri ve uygulamalar</li>
+            <li class="pd-pay-card__feat">2 haftalık NLP Koçluğu Stajı</li>
+            <li class="pd-pay-card__feat">3 ay sınırsız ders kaydı erişimi</li>
+            <li class="pd-pay-card__feat">E-Devlet ve uluslararası sertifika</li>
+          </ul>
+          <div class="pd-pay-card__divider"></div>
+          <div class="pd-pay-card__price">₺33.599 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__actions">
+            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/ejt23B7" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Eğitim Detaylarını İncele →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pd-pay-card">
+        <div class="pd-pay-card__img-wrap">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg" alt="Evlilik İlişki Atölyesi">
+          <span class="pd-pay-card__badge">Atölye</span>
+        </div>
+        <div class="pd-pay-card__body">
+          <div class="pd-pay-card__title">Evlilik ve İleri Seviye İlişki Atölyesi</div>
+          <ul class="pd-pay-card__features">
+            <li class="pd-pay-card__feat">3 canlı ders (Zoom)</li>
+            <li class="pd-pay-card__feat">1 ay WhatsApp danışmanlık desteği</li>
+            <li class="pd-pay-card__feat">1 birebir hediye seans dahil</li>
+            <li class="pd-pay-card__feat">3 ay sınırsız video erişimi</li>
+          </ul>
+          <div class="pd-pay-card__divider"></div>
+          <div class="pd-pay-card__price">₺16.500 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__actions">
+            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/xvRn0y3" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Eğitim Detaylarını İncele →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 5. YOUTUBE ════════════════════════════════════════════════ -->
+<section class="pd-yt" aria-label="YouTube Kanalı">
+  <div class="yt-wrap">
+    <div class="yt-head">
+      <div class="yt-head-left">
+        <div class="pd-tag">Kanala Göz At</div>
+        <h2 class="pd-h2">Gülhan Toktay YouTube Kanalı</h2>
+      </div>
+      <a class="yt-sub" target="_blank" rel="noopener noreferrer"
+         href="https://www.youtube.com/channel/UCR5rsXZpXck5L5fPnShTaig?sub_confirmation=1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        Abone Ol
+      </a>
+    </div>
+    <div class="yt-row-wrap">
+      <button class="yt-nav prev" type="button" aria-label="Önceki">&#8249;</button>
+      <div class="yt-row" id="ytRow">
+        <div class="yt-card" data-id="SZv74jHeZ9Y"><img class="yt-thumb" src="https://i.ytimg.com/vi/SZv74jHeZ9Y/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="ze09LhSTTi0"><img class="yt-thumb" src="https://i.ytimg.com/vi/ze09LhSTTi0/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="o1OaIggrSP0"><img class="yt-thumb" src="https://i.ytimg.com/vi/o1OaIggrSP0/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="f0fNgi9h6gs"><img class="yt-thumb" src="https://i.ytimg.com/vi/f0fNgi9h6gs/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="0EG-EjRaQW0"><img class="yt-thumb" src="https://i.ytimg.com/vi/0EG-EjRaQW0/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="t3MfyCVSIYI"><img class="yt-thumb" src="https://i.ytimg.com/vi/t3MfyCVSIYI/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="r1uQUfYSnmc"><img class="yt-thumb" src="https://i.ytimg.com/vi/r1uQUfYSnmc/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+        <div class="yt-card" data-id="pKKEO2P13jc"><img class="yt-thumb" src="https://i.ytimg.com/vi/pKKEO2P13jc/maxresdefault.jpg" alt="Video" loading="lazy"><div class="yt-overlay"></div><div class="yt-play"></div></div>
+      </div>
+      <button class="yt-nav next" type="button" aria-label="Sonraki">&#8250;</button>
+    </div>
+  </div>
+</section>
+<div class="yt-modal" id="ytModal" aria-hidden="true" role="dialog" aria-label="Video Oynatıcı">
+  <div class="yt-modal-inner">
+    <iframe id="ytFrame" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Video"></iframe>
+  </div>
+</div>
+<button class="yt-close" id="ytClose" type="button" aria-label="Kapat"></button>
+
+<!-- ══ 6. YORUMLAR ════════════════════════════════════════════════ -->
+<section class="pd-reviews" aria-label="Danışan Yorumları">
+  <div class="pd-c">
+    <div class="pd-reviews__head">
+      <div class="pd-tag">Değişen Hayatlar</div>
+      <h2 class="pd-h2">Gülhan Toktay ile Değişen Hayatlar</h2>
+    </div>
+    <div class="pd-reviews__svc-wrap">
+      <button class="pd-nav-btn" id="pd-rev-prev" aria-label="Önceki yorum"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="pd-nav-btn" id="pd-rev-next" aria-label="Sonraki yorum"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="swiper pd-reviews-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/musteri-yorumlari-pozitifdunya.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-24.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-23.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-22.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-21.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-20.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-19.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-18.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-17.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-16.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-15.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-14.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-13.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-12.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-11.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-10.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-9.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-7.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-6.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+          <div class="swiper-slide"><div class="pd-review-card"><img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/10/Gulhan-Hanim-Karusel-post-kopyasi-5.jpg" alt="Danışan Yorumu" loading="lazy"></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Yorumlar Lightbox — ok butonları MODAL İÇİNDE -->
+<div id="pd-lb" class="pd-lb" role="dialog" aria-label="Yorum Görseli" aria-modal="true">
+  <div class="pd-lb-inner">
+    <button id="pd-lb-close" class="pd-lb-close" aria-label="Kapat"></button>
+    <button id="pd-lb-prev" class="pd-lb-prev" aria-label="Önceki yorum">&#8249;</button>
+    <img id="pd-lb-img" class="pd-lb-img" src="" alt="Danışan Yorumu">
+    <button id="pd-lb-next" class="pd-lb-next" aria-label="Sonraki yorum">&#8250;</button>
+  </div>
+</div>
+
+<!-- ══ 7. SON CTA — Profesyonel ve şık ══════════════════════════ -->
+<section class="pd-cta-final" aria-label="İletişim">
+  <div class="pd-c">
+    <div class="pd-cta-final__inner">
+      <div class="pd-tag light" style="justify-content:center">İletişim</div>
+      <h2 class="pd-h2 light">Bir Adım Yeter</h2>
+      <p class="pd-cta-final__desc">Sormak, keşfetmek ya da başlamak için bizi arayın veya formu doldurun — en kısa sürede dönelim.</p>
+      <div class="pd-cta-cards">
+
+        <a class="pd-cta-card" href="tel:+905419052977">
+          <div class="pd-cta-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.08 6.09l.92-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <span class="pd-cta-card__label">Hemen Ara</span>
+          <span class="pd-cta-card__title">0541 905 29 77</span>
+          <span class="pd-cta-card__sub">Hafta içi 09:00 – 18:00</span>
+        </a>
+
+        <a class="pd-cta-card" href="https://www.pozitifdunya.com.tr/iletisim/">
+          <div class="pd-cta-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="pd-cta-card__label">İletişim Formu</span>
+          <span class="pd-cta-card__title">Mesaj Gönder</span>
+          <span class="pd-cta-card__sub">Sizi arayıp bilgi verelim</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Hero */
+  new Swiper('.pd-hero-swiper',{
+    loop:true,effect:'fade',fadeEffect:{crossFade:true},speed:1000,
+    autoplay:{delay:3000,disableOnInteraction:false,pauseOnMouseEnter:true},
+    pagination:{el:'.pd-hero .swiper-pagination',clickable:true},
+    navigation:{nextEl:'.pd-hero .swiper-button-next',prevEl:'.pd-hero .swiper-button-prev'}
+  });
+
+  /* Yorumlar */
+  var revSw=new Swiper('.pd-reviews-swiper',{
+    loop:true,slidesPerView:1.2,spaceBetween:16,
+    autoplay:{delay:3800,disableOnInteraction:false,pauseOnMouseEnter:true},
+    pagination:{el:'.pd-reviews-swiper .swiper-pagination',clickable:true},
+    breakpoints:{580:{slidesPerView:2,spaceBetween:16},900:{slidesPerView:3,spaceBetween:20},1200:{slidesPerView:3,spaceBetween:24}}
+  });
+  var rp=document.getElementById('pd-rev-prev'),rn=document.getElementById('pd-rev-next');
+  if(rp)rp.addEventListener('click',function(){revSw.slidePrev()});
+  if(rn)rn.addEventListener('click',function(){revSw.slideNext()});
+
+  /* YouTube */
+  (function(){
+    var row=document.getElementById('ytRow');
+    var modal=document.getElementById('ytModal');
+    var frame=document.getElementById('ytFrame');
+    var closeBtn=document.getElementById('ytClose');
+    if(!row||!modal)return;
+    var prevBtn=document.querySelector('.pd-pg .yt-nav.prev');
+    var nextBtn=document.querySelector('.pd-pg .yt-nav.next');
+    if(prevBtn)prevBtn.onclick=function(){row.scrollBy({left:-280,behavior:'smooth'})};
+    if(nextBtn)nextBtn.onclick=function(){row.scrollBy({left:280,behavior:'smooth'})};
+    function openVideo(id){
+      frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&playsinline=1&rel=0';
+      modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeVideo(){
+      modal.classList.remove('open');modal.setAttribute('aria-hidden','true');
+      frame.src='';document.body.style.overflow='';
+    }
+    row.querySelectorAll('.yt-card').forEach(function(card){
+      card.addEventListener('click',function(){openVideo(card.getAttribute('data-id'))});
+    });
+    closeBtn.addEventListener('click',closeVideo);
+    modal.addEventListener('click',function(e){if(e.target===modal)closeVideo()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVideo()});
+  })();
+
+  /* Yorumlar Lightbox */
+  (function(){
+    var imgs=[];
+    document.querySelectorAll('.pd-review-card img').forEach(function(img,i){
+      imgs.push(img.src);
+      img.closest('.pd-review-card').setAttribute('data-lb',i);
+    });
+    var lb=document.getElementById('pd-lb');
+    var lbImg=document.getElementById('pd-lb-img');
+    var lbClose=document.getElementById('pd-lb-close');
+    var lbPrev=document.getElementById('pd-lb-prev');
+    var lbNext=document.getElementById('pd-lb-next');
+    if(!lb||!lbImg||!imgs.length)return;
+    var cur=0;
+    function openLB(i){
+      cur=((i%imgs.length)+imgs.length)%imgs.length;
+      lbImg.src=imgs[cur];
+      lb.classList.add('open');
+      document.body.style.overflow='hidden';
+    }
+    function closeLB(){
+      lb.classList.remove('open');
+      lbImg.src='';
+      document.body.style.overflow='';
+    }
+    function go(d){
+      cur=((cur+d)+imgs.length)%imgs.length;
+      lbImg.src=imgs[cur];
+    }
+    document.querySelectorAll('.pd-review-card').forEach(function(card){
+      card.addEventListener('click',function(){openLB(parseInt(card.getAttribute('data-lb')||0))});
+    });
+    lbClose.addEventListener('click',closeLB);
+    lb.addEventListener('click',function(e){if(e.target===lb)closeLB()});
+    lbPrev.addEventListener('click',function(e){e.stopPropagation();go(-1)});
+    lbNext.addEventListener('click',function(e){e.stopPropagation();go(1)});
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('open'))return;
+      if(e.key==='Escape')closeLB();
+      if(e.key==='ArrowLeft')go(-1);
+      if(e.key==='ArrowRight')go(1);
+    });
+  })();
+
+  console.log('[PD-Ana Sayfa] v5.0 yüklendi.');
+})();
+</script>

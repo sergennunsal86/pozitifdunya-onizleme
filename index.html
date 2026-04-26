@@ -23,11 +23,117 @@
       padding: 0 40px;
       position: relative;
     }
+
+    /* Topbar + nav yükseklik değişkenleri (preview) */
+    :root {
+      --pd-topbar-h: 36px;
+      --pd-nav-h:    80px;
+      --pd-total-h:  116px;
+    }
   </style>
 </head>
 
 <!-- body.home → header transparan başlar (hero tespiti için) -->
 <body class="home">
+
+<!-- ═══════════════════════════════════════════
+     ÜST BAR
+═══════════════════════════════════════════ -->
+<style>
+.pd-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9901;
+  height: var(--pd-topbar-h);
+  background: rgba(0,28,48,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.pd-topbar__wrap {
+  width: 100%; max-width: 1440px; margin: 0 auto;
+  padding: 0 32px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pd-topbar__social { display: flex; align-items: center; gap: 2px; }
+.pd-topbar__soc {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; color: rgba(255,255,255,0.52);
+  transition: color .2s ease, background .2s ease;
+}
+.pd-topbar__soc:hover { color: rgba(255,255,255,0.92); background: rgba(255,255,255,0.08); }
+.pd-topbar__right { display: flex; align-items: center; gap: 8px; }
+.pd-topbar__user {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; color: rgba(255,255,255,0.52);
+  transition: color .2s ease, background .2s ease;
+}
+.pd-topbar__user:hover { color: rgba(255,255,255,0.92); background: rgba(255,255,255,0.08); }
+.pd-topbar__btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: #fff !important; background: #D4A574;
+  padding: 5px 14px; border-radius: 20px;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.pd-topbar__btn:hover { background: #B88A56; transform: translateY(-1px); }
+/* Mobilde topbar gizle */
+.pd-mobile__bottom {
+  margin-top: 20px; display: flex; align-items: center; justify-content: space-between;
+}
+.pd-mobile__social { display: flex; align-items: center; gap: 4px; }
+.pd-mobile__soc {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; color: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.10);
+  transition: color .2s ease, border-color .2s ease;
+}
+.pd-mobile__soc:hover { color: #D4A574; border-color: #D4A574; }
+.pd-mobile__login {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.45); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 7px 12px; border-radius: 8px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.pd-mobile__login:hover { color: #D4A574; border-color: #D4A574; }
+@media (max-width: 639px) {
+  .pd-topbar { display: none !important; }
+  .pd-mobile { padding-top: calc(80px + 24px) !important; }
+}
+@media (max-width: 1023px) { .pd-topbar__wrap { padding: 0 20px; } }
+</style>
+
+<div class="pd-topbar" id="pd-topbar">
+  <div class="pd-topbar__wrap">
+    <div class="pd-topbar__social">
+      <a class="pd-topbar__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a class="pd-topbar__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="pd-topbar__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+    </div>
+    <div class="pd-topbar__right">
+      <a class="pd-topbar__user" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a class="pd-topbar__btn" href="https://www.pozitifdunya.com.tr/egitimler/">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Ders Kayıtları
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════
      HEADER — header-nav.html içeriği
@@ -62,13 +168,17 @@
 
 .pd-nav {
   position: fixed;
-  inset: 0 0 auto 0;
+  top: var(--pd-topbar-h);
+  left: 0; right: 0;
   z-index: 9900;
   height: var(--pd-nav-h);
   display: flex;
   align-items: center;
   background: transparent;
   transition: background var(--pd-ease), box-shadow var(--pd-ease), height var(--pd-ease);
+}
+@media (max-width: 639px) {
+  .pd-nav { top: 0 !important; }
 }
 
 .pd-nav.pd-transparent {
@@ -94,8 +204,10 @@
 }
 
 .pd-logo { flex-shrink: 0; display: flex; align-items: center; }
-.pd-logo img { height: 42px; width: auto; transition: height var(--pd-ease); }
+.pd-logo img { height: 42px; width: auto; transition: height var(--pd-ease), filter var(--pd-ease); }
 .pd-solid .pd-logo img { height: 34px; }
+.pd-nav.pd-transparent .pd-logo img { filter: brightness(0) invert(1); }
+.pd-nav.pd-solid .pd-logo img { filter: none; }
 
 .pd-menu { flex: 1; display: flex; justify-content: center; }
 .pd-menu__list { display: flex; align-items: center; gap: 2px; }
@@ -386,7 +498,26 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
     <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
     <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
   </ul>
-  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/iletisim/">Bana Ulaş</a>
+  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/egitimler/">Ders Kayıtları</a>
+
+  <div class="pd-mobile__bottom">
+    <div class="pd-mobile__social">
+      <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+    </div>
+    <a class="pd-mobile__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Kullanıcı Girişi
+    </a>
+  </div>
+
   <p class="pd-mobile__phone">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.08 6.09l.92-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     <a href="tel:+905419052977">0541 905 29 77</a>
@@ -1038,11 +1169,17 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
 /* ── Header Nav Script ── */
 (function () {
   'use strict';
+  var topbar   = document.getElementById('pd-topbar');
   var nav      = document.getElementById('pd-nav');
   var burger   = document.getElementById('pd-burger');
   var mobile   = document.getElementById('pd-mobile');
   var accBtn   = document.getElementById('pd-acc-btn');
   var accPanel = document.getElementById('pd-acc-panel');
+
+  /* Topbar da body'e taşı */
+  if (topbar && topbar.parentElement !== document.body) {
+    document.body.insertBefore(topbar, document.body.firstChild);
+  }
 
   var ticking = false;
   window.addEventListener('scroll', function () {

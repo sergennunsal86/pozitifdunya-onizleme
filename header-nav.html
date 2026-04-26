@@ -1,5 +1,5 @@
 <!-- ================================================
-     Pozitif Dünya — Header / Navigation  v1.0
+     Pozitif Dünya — Header / Navigation  v2.0
      JegKit Global HTML/Kod Widget'ına yapıştır
      ================================================ -->
 
@@ -9,59 +9,133 @@
 
 <style>
 /* ─────────────────────────────────────────────
-   Pozitif Dünya Nav — CSS Variables & Reset
+   Değişkenler & Reset
 ───────────────────────────────────────────── */
 :root {
-  --pd-navy:      #005175;
-  --pd-blue:      #29ABDF;
-  --pd-gold:      #D4A574;
-  --pd-gold-dk:   #B88A56;
-  --pd-white:     #FFFFFF;
-  --pd-nav-h:     80px;
-  --pd-nav-h-sm:  64px;
-  --pd-ease:      0.28s ease;
-  --pd-shadow:    0 2px 24px rgba(0,81,117,0.10);
-  --pd-font-h:    'Playfair Display', serif;
-  --pd-font-b:    'Inter', sans-serif;
+  --pd-navy:       #005175;
+  --pd-blue:       #29ABDF;
+  --pd-gold:       #D4A574;
+  --pd-gold-dk:    #B88A56;
+  --pd-white:      #FFFFFF;
+  --pd-topbar-h:   36px;
+  --pd-nav-h:      80px;
+  --pd-nav-h-sm:   64px;
+  --pd-total-h:    calc(var(--pd-topbar-h) + var(--pd-nav-h));
+  --pd-ease:       0.28s ease;
+  --pd-shadow:     0 2px 24px rgba(0,81,117,0.10);
+  --pd-font-h:     'Playfair Display', serif;
+  --pd-font-b:     'Inter', sans-serif;
 }
 
-.pd-nav *, .pd-nav *::before, .pd-nav *::after,
+.pd-topbar *, .pd-topbar *::before, .pd-topbar *::after,
+.pd-nav *,   .pd-nav *::before,   .pd-nav *::after,
 .pd-mobile *, .pd-mobile *::before, .pd-mobile *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-.pd-nav a, .pd-mobile a  { text-decoration: none; }
+.pd-topbar a, .pd-nav a, .pd-mobile a { text-decoration: none; }
 .pd-nav ul, .pd-mobile ul { list-style: none; }
 
 /* ─────────────────────────────────────────────
-   Header shell
+   Üst Bar (sosyal + giriş + ders kayıtları)
+───────────────────────────────────────────── */
+.pd-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9901;
+  height: var(--pd-topbar-h);
+  background: rgba(0,28,48,0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.pd-topbar__wrap {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pd-topbar__social {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.pd-topbar__soc {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.52);
+  transition: color var(--pd-ease), background var(--pd-ease);
+}
+.pd-topbar__soc:hover {
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.08);
+}
+.pd-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pd-topbar__user {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.52);
+  transition: color var(--pd-ease), background var(--pd-ease);
+}
+.pd-topbar__user:hover {
+  color: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.08);
+}
+.pd-topbar__btn {
+  font-family: var(--pd-font-b);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--pd-white) !important;
+  background: var(--pd-gold);
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: background var(--pd-ease), transform var(--pd-ease);
+}
+.pd-topbar__btn:hover {
+  background: var(--pd-gold-dk);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────
+   Header shell — topbar altına konumlanır
 ───────────────────────────────────────────── */
 .pd-nav {
   position: fixed;
-  inset: 0 0 auto 0;
+  top: var(--pd-topbar-h);
+  left: 0; right: 0;
   z-index: 9900;
   height: var(--pd-nav-h);
   display: flex;
   align-items: center;
   background: transparent;
-  transition:
-    background  var(--pd-ease),
-    box-shadow  var(--pd-ease),
-    height      var(--pd-ease);
+  transition: background var(--pd-ease), box-shadow var(--pd-ease), height var(--pd-ease);
 }
 
-/* Hero üstünde şeffaf gradient */
 .pd-nav.pd-transparent {
   background: linear-gradient(
     to bottom,
-    rgba(0,81,117,0.72) 0%,
-    rgba(0,81,117,0.20) 60%,
+    rgba(0,81,117,0.68) 0%,
+    rgba(0,81,117,0.18) 60%,
     transparent 100%
   );
 }
 
-/* Scroll ya da non-home → frosted beyaz */
 .pd-nav.pd-solid {
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(12px);
@@ -71,7 +145,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Inner container
+   Logo — transparan: beyaz filtre / solid: orijinal
 ───────────────────────────────────────────── */
 .pd-nav__wrap {
   width: 100%;
@@ -82,10 +156,6 @@
   align-items: center;
   gap: 24px;
 }
-
-/* ─────────────────────────────────────────────
-   Logo
-───────────────────────────────────────────── */
 .pd-logo {
   flex-shrink: 0;
   display: flex;
@@ -94,25 +164,22 @@
 .pd-logo img {
   height: 42px;
   width: auto;
-  transition: height var(--pd-ease);
+  transition: height var(--pd-ease), filter var(--pd-ease);
+}
+.pd-nav.pd-transparent .pd-logo img {
+  filter: brightness(0) invert(1);
+}
+.pd-nav.pd-solid .pd-logo img {
+  filter: none;
 }
 .pd-solid .pd-logo img { height: 34px; }
 
 /* ─────────────────────────────────────────────
    Desktop menü
 ───────────────────────────────────────────── */
-.pd-menu {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-.pd-menu__list {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
+.pd-menu { flex: 1; display: flex; justify-content: center; }
+.pd-menu__list { display: flex; align-items: center; gap: 2px; }
 
-/* Üst seviye linkler */
 .pd-menu__link {
   font-family: var(--pd-font-b);
   font-size: 15px;
@@ -128,19 +195,12 @@
   white-space: nowrap;
   transition: color var(--pd-ease);
 }
+header.pd-nav.pd-solid .pd-menu__link { color: var(--pd-navy) !important; }
 
-/* Solid state → navy metin */
-header.pd-nav.pd-solid .pd-menu__link {
-  color: var(--pd-navy) !important;
-}
-
-/* Altın underline göstergesi */
 .pd-menu__link::after {
   content: '';
   position: absolute;
-  bottom: 4px;
-  left: 13px;
-  right: 13px;
+  bottom: 4px; left: 13px; right: 13px;
   height: 2px;
   background: var(--pd-gold);
   border-radius: 2px;
@@ -148,39 +208,25 @@ header.pd-nav.pd-solid .pd-menu__link {
   transform-origin: center;
   transition: transform var(--pd-ease);
 }
-.pd-menu__link:hover::after,
-.pd-menu__link.is-active::after { transform: scaleX(1); }
-
-.pd-menu__link:hover { color: rgba(255,255,255,1) !important; }
+.pd-menu__link:hover::after, .pd-menu__link.is-active::after { transform: scaleX(1); }
+.pd-menu__link:hover  { color: rgba(255,255,255,1) !important; }
 .pd-menu__link.is-active { color: rgba(255,255,255,1) !important; }
-
-header.pd-nav.pd-solid .pd-menu__link:hover  { color: var(--pd-gold-dk) !important; }
+header.pd-nav.pd-solid .pd-menu__link:hover    { color: var(--pd-gold-dk) !important; }
 header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !important; }
 
-/* Chevron */
-.pd-chevron {
-  width: 13px;
-  height: 13px;
-  transition: transform var(--pd-ease);
-  flex-shrink: 0;
-}
+.pd-chevron { width: 13px; height: 13px; transition: transform var(--pd-ease); flex-shrink: 0; }
 .pd-menu__item:hover .pd-chevron { transform: rotate(180deg); }
 
 /* ─────────────────────────────────────────────
    Dropdown
 ───────────────────────────────────────────── */
 .pd-menu__item { position: relative; }
-
-/* Hover köprüsü — link ile dropdown arasındaki gap */
 .pd-menu__item::after {
   content: '';
   position: absolute;
-  top: 100%;
-  left: -20px;
-  right: -20px;
+  top: 100%; left: -20px; right: -20px;
   height: 14px;
 }
-
 .pd-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -198,19 +244,12 @@ header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !impo
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition:
-    opacity    var(--pd-ease),
-    transform  var(--pd-ease),
-    visibility var(--pd-ease);
+  transition: opacity var(--pd-ease), transform var(--pd-ease), visibility var(--pd-ease);
 }
-
 .pd-menu__item:hover .pd-dropdown {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  opacity: 1; visibility: visible; pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
-
 .pd-dropdown__link {
   font-family: var(--pd-font-b);
   font-size: 13.5px;
@@ -225,36 +264,21 @@ header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !impo
 }
 .pd-dropdown__link::before {
   content: '';
-  width: 5px;
-  height: 5px;
+  width: 5px; height: 5px;
   border-radius: 50%;
   background: #dde3ea;
   flex-shrink: 0;
   transition: background var(--pd-ease);
 }
-.pd-dropdown__link:hover {
-  background: rgba(212,165,116,0.10);
-  color: var(--pd-gold-dk);
-}
+.pd-dropdown__link:hover { background: rgba(212,165,116,0.10); color: var(--pd-gold-dk); }
 .pd-dropdown__link:hover::before { background: var(--pd-gold); }
-
-.pd-dropdown__link.is-active {
-  background: rgba(212,165,116,0.12);
-  color: var(--pd-navy);
-  font-weight: 600;
-}
+.pd-dropdown__link.is-active { background: rgba(212,165,116,0.12); color: var(--pd-navy); font-weight: 600; }
 .pd-dropdown__link.is-active::before { background: var(--pd-gold); }
 
 /* ─────────────────────────────────────────────
-   Sağ aksiyonlar (CTA + hamburger)
+   Sağ aksiyonlar
 ───────────────────────────────────────────── */
-.pd-actions {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto;
-}
+.pd-actions { flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
 .pd-cta {
   font-family: var(--pd-font-b);
@@ -269,67 +293,34 @@ header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !impo
   display: flex;
   align-items: center;
   gap: 7px;
-  transition:
-    background   var(--pd-ease),
-    border-color var(--pd-ease),
-    color        var(--pd-ease),
-    transform    var(--pd-ease);
+  transition: background var(--pd-ease), border-color var(--pd-ease), color var(--pd-ease), transform var(--pd-ease);
 }
-.pd-cta:hover {
-  background: rgba(212,165,116,0.18);
-  border-color: var(--pd-gold);
-  color: var(--pd-white) !important;
-  transform: translateY(-1px);
-}
-header.pd-nav.pd-solid .pd-cta {
-  color: var(--pd-navy) !important;
-  border-color: rgba(0,81,117,0.40);
-  background: transparent;
-}
-header.pd-nav.pd-solid .pd-cta:hover {
-  background: var(--pd-gold);
-  border-color: var(--pd-gold);
-  color: var(--pd-white) !important;
-  transform: translateY(-1px);
-}
-.pd-cta svg { flex-shrink: 0; }
+.pd-cta:hover { background: rgba(212,165,116,0.18); border-color: var(--pd-gold); color: var(--pd-white) !important; transform: translateY(-1px); }
+header.pd-nav.pd-solid .pd-cta { color: var(--pd-navy) !important; border-color: rgba(0,81,117,0.40); }
+header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color: var(--pd-gold); color: var(--pd-white) !important; transform: translateY(-1px); }
 
 /* Hamburger */
 .pd-burger {
   display: none;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  cursor: pointer;
-  padding: 4px;
+  justify-content: center; align-items: center;
+  width: 40px; height: 40px;
+  background: none !important; border: none !important;
+  box-shadow: none !important; outline: none !important;
+  cursor: pointer; padding: 4px;
 }
-
-.pd-burger-icon {
-  display: block;
-  overflow: visible;
-}
+.pd-burger-icon { display: block; overflow: visible; }
 .pd-b1, .pd-b2, .pd-b3 {
   fill: #ffffff;
   transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.2s ease;
-  transform-box: fill-box;
-  transform-origin: center;
+  transform-box: fill-box; transform-origin: center;
 }
-.pd-solid .pd-b1,
-.pd-solid .pd-b2,
-.pd-solid .pd-b3 { fill: #005175; }
-
-/* Açık hali → X */
+.pd-solid .pd-b1, .pd-solid .pd-b2, .pd-solid .pd-b3 { fill: #005175; }
 .pd-burger.is-open .pd-b1 { transform: translateY(8px) rotate(45deg); }
 .pd-burger.is-open .pd-b2 { opacity: 0; transform: scaleX(0); }
 .pd-burger.is-open .pd-b3 { transform: translateY(-8px) rotate(-45deg); }
 
 /* ─────────────────────────────────────────────
-   Mobil overlay menü
+   Mobil overlay
 ───────────────────────────────────────────── */
 .pd-mobile {
   position: fixed;
@@ -338,141 +329,122 @@ header.pd-nav.pd-solid .pd-cta:hover {
   background: var(--pd-navy);
   display: flex;
   flex-direction: column;
-  padding: calc(var(--pd-nav-h) + 24px) 28px 40px;
+  padding: calc(var(--pd-topbar-h) + var(--pd-nav-h) + 24px) 28px 40px;
   overflow-y: auto;
   transform: translateX(100%);
   transition: transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .pd-mobile.is-open { transform: translateX(0); }
-
 .pd-mobile__list { flex: 1; display: flex; flex-direction: column; gap: 2px; }
 
 .pd-mobile__link {
-  font-family: var(--pd-font-b);
-  font-size: 22px;
-  font-weight: 500;
+  font-family: var(--pd-font-b); font-size: 22px; font-weight: 500;
   color: rgba(255,255,255,0.82);
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
   transition: color var(--pd-ease);
 }
-.pd-mobile__link:hover,
-.pd-mobile__link.is-active { color: var(--pd-gold); }
+.pd-mobile__link:hover, .pd-mobile__link.is-active { color: var(--pd-gold); }
 
-/* Accordion toggle */
 .pd-mobile__acc-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  font-family: var(--pd-font-b);
-  font-size: 22px;
-  font-weight: 500;
+  background: none; border: none; cursor: pointer; width: 100%; text-align: left;
+  font-family: var(--pd-font-b); font-size: 22px; font-weight: 500;
   color: rgba(255,255,255,0.82);
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; justify-content: space-between; align-items: center;
   transition: color var(--pd-ease);
 }
-.pd-mobile__acc-btn:hover,
-.pd-mobile__acc-btn.is-active { color: var(--pd-gold); }
-
-.pd-mobile__chevron {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  transition: transform var(--pd-ease);
-}
+.pd-mobile__acc-btn:hover, .pd-mobile__acc-btn.is-active { color: var(--pd-gold); }
+.pd-mobile__chevron { width: 20px; height: 20px; flex-shrink: 0; transition: transform var(--pd-ease); }
 .pd-mobile__acc-btn.is-open .pd-mobile__chevron { transform: rotate(180deg); }
 
-/* Accordion panel */
-.pd-mobile__panel {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.38s ease;
-}
+.pd-mobile__panel { overflow: hidden; max-height: 0; transition: max-height 0.38s ease; }
 .pd-mobile__panel.is-open { max-height: 900px; }
 
 .pd-mobile__sub {
-  font-family: var(--pd-font-b);
-  font-size: 14.5px;
-  font-weight: 400;
+  font-family: var(--pd-font-b); font-size: 14.5px; font-weight: 400;
   color: rgba(255,255,255,0.54);
-  padding: 10px 0 10px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  display: block;
-  transition: color var(--pd-ease);
+  padding: 10px 0 10px 18px; border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: block; transition: color var(--pd-ease);
 }
-.pd-mobile__sub:hover,
-.pd-mobile__sub.is-active { color: var(--pd-gold); }
+.pd-mobile__sub:hover, .pd-mobile__sub.is-active { color: var(--pd-gold); }
 .pd-mobile__sub.is-active { font-weight: 600; }
 
-/* Alt CTA butonu */
 .pd-mobile__cta {
-  margin-top: 28px;
-  display: block;
-  font-family: var(--pd-font-b);
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-align: center;
-  color: var(--pd-white) !important;
-  background: var(--pd-gold);
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
+  margin-top: 28px; display: block;
+  font-family: var(--pd-font-b); font-size: 16px; font-weight: 600; letter-spacing: 0.03em;
+  text-align: center; color: var(--pd-white) !important;
+  background: var(--pd-gold); border: none; padding: 14px; border-radius: 8px;
   transition: background var(--pd-ease);
 }
 .pd-mobile__cta:hover { background: var(--pd-gold-dk); }
 
-/* Telefon */
-.pd-mobile__phone {
-  margin-top: 16px;
-  text-align: center;
-  font-family: var(--pd-font-b);
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.50);
+/* Mobil sosyal + giriş satırı */
+.pd-mobile__bottom {
+  margin-top: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
 }
-.pd-mobile__phone a {
-  color: rgba(255,255,255,0.68);
-  transition: color var(--pd-ease);
+.pd-mobile__social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-.pd-mobile__phone a:hover { color: var(--pd-gold); }
+.pd-mobile__soc {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.10);
+  transition: color var(--pd-ease), border-color var(--pd-ease);
+}
+.pd-mobile__soc:hover { color: var(--pd-gold); border-color: var(--pd-gold); }
+
+.pd-mobile__login {
+  font-family: var(--pd-font-b); font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 7px 12px; border-radius: 8px;
+  transition: color var(--pd-ease), border-color var(--pd-ease);
+}
+.pd-mobile__login:hover { color: var(--pd-gold); border-color: var(--pd-gold); }
 
 /* ─────────────────────────────────────────────
    Non-home sayfa body offset
 ───────────────────────────────────────────── */
 .pd-page-offset {
-  padding-top: var(--pd-nav-h) !important;
-}
-
-/* WordPress admin bar varsa header'ı aşağı kaydır */
-.admin-bar .pd-nav   { top: 32px !important; }
-.admin-bar .pd-mobile { padding-top: calc(var(--pd-nav-h) + 32px + 24px); }
-@media screen and (max-width: 782px) {
-  .admin-bar .pd-nav   { top: 46px !important; }
-  .admin-bar .pd-mobile { padding-top: calc(var(--pd-nav-h) + 46px + 24px); }
+  padding-top: var(--pd-total-h) !important;
 }
 
 /* ─────────────────────────────────────────────
-   Responsive kırılımlar
+   WordPress admin bar
+───────────────────────────────────────────── */
+.admin-bar .pd-topbar { top: 32px !important; }
+.admin-bar .pd-nav    { top: calc(var(--pd-topbar-h) + 32px) !important; }
+.admin-bar .pd-mobile { padding-top: calc(var(--pd-total-h) + 32px + 24px); }
+@media screen and (max-width: 782px) {
+  .admin-bar .pd-topbar { top: 46px !important; }
+  .admin-bar .pd-nav    { top: calc(var(--pd-topbar-h) + 46px) !important; }
+  .admin-bar .pd-mobile { padding-top: calc(var(--pd-total-h) + 46px + 24px); }
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
 ───────────────────────────────────────────── */
 @media (max-width: 1023px) {
   .pd-menu   { display: none !important; }
   .pd-cta    { display: none !important; }
   .pd-burger { display: flex !important; }
   .pd-nav__wrap { padding: 0 20px; }
+  .pd-topbar__wrap { padding: 0 20px; }
+}
+/* Küçük mobilde topbar gizle, nav en üste al */
+@media (max-width: 639px) {
+  .pd-topbar { display: none !important; }
+  .pd-nav    { top: 0 !important; }
+  .pd-mobile { padding-top: calc(var(--pd-nav-h) + 24px); }
 }
 @media (max-width: 480px) {
   .pd-nav__wrap { padding: 0 14px; }
@@ -482,12 +454,58 @@ header.pd-nav.pd-solid .pd-cta:hover {
 </style>
 
 <!-- ═══════════════════════════════════════════
+     ÜST BAR — sosyal + giriş + ders kayıtları
+═══════════════════════════════════════════ -->
+<div class="pd-topbar" id="pd-topbar">
+  <div class="pd-topbar__wrap">
+
+    <!-- Sosyal medya ikonları -->
+    <div class="pd-topbar__social">
+      <a class="pd-topbar__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a class="pd-topbar__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a class="pd-topbar__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Sağ: kullanıcı girişi + ders kayıtları -->
+    <div class="pd-topbar__right">
+      <a class="pd-topbar__user" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </a>
+      <a class="pd-topbar__btn" href="https://www.pozitifdunya.com.tr/egitimler/">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        Ders Kayıtları
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
      HEADER
 ═══════════════════════════════════════════ -->
 <header class="pd-nav pd-transparent" id="pd-nav" role="banner">
   <div class="pd-nav__wrap">
 
-    <!-- Logo -->
     <a class="pd-logo" href="https://www.pozitifdunya.com.tr/" aria-label="Pozitif Dünya Ana Sayfa">
       <img
         src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/05/PozitifDunya-Logo.png"
@@ -498,21 +516,15 @@ header.pd-nav.pd-solid .pd-cta:hover {
       >
     </a>
 
-    <!-- Desktop Nav -->
     <nav class="pd-menu" aria-label="Ana menü">
       <ul class="pd-menu__list">
-
         <li class="pd-menu__item">
           <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a>
         </li>
-
-        <!-- Eğitimler dropdown -->
         <li class="pd-menu__item">
           <a class="pd-menu__link" href="#" aria-haspopup="true" aria-expanded="false">
             Eğitimler
-            <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <ul class="pd-dropdown" role="menu">
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril-Dişil Denge Eğitimi</a></li>
@@ -524,7 +536,6 @@ header.pd-nav.pd-solid .pd-cta:hover {
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" role="menuitem">Öğrenci Koçluğu Seansı</a></li>
           </ul>
         </li>
-
         <li class="pd-menu__item">
           <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a>
         </li>
@@ -534,23 +545,15 @@ header.pd-nav.pd-solid .pd-cta:hover {
         <li class="pd-menu__item">
           <a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a>
         </li>
-
       </ul>
     </nav>
 
-    <!-- Aksiyonlar -->
     <div class="pd-actions">
       <a class="pd-cta" href="https://www.pozitifdunya.com.tr/iletisim/">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Bana Ulaş
       </a>
-      <button class="pd-burger"
-              id="pd-burger"
-              aria-label="Menüyü aç"
-              aria-expanded="false"
-              aria-controls="pd-mobile">
+      <button class="pd-burger" id="pd-burger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="pd-mobile">
         <svg class="pd-burger-icon" width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect class="pd-b1" x="0" y="0"  width="24" height="2" rx="1"/>
           <rect class="pd-b2" x="0" y="8"  width="24" height="2" rx="1"/>
@@ -567,21 +570,11 @@ header.pd-nav.pd-solid .pd-cta:hover {
 ═══════════════════════════════════════════ -->
 <div class="pd-mobile" id="pd-mobile" aria-hidden="true" role="dialog" aria-label="Mobil menü">
   <ul class="pd-mobile__list">
-
+    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a></li>
     <li>
-      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a>
-    </li>
-
-    <!-- Eğitimler accordion -->
-    <li>
-      <button class="pd-mobile__acc-btn"
-              id="pd-acc-btn"
-              aria-expanded="false"
-              aria-controls="pd-acc-panel">
+      <button class="pd-mobile__acc-btn" id="pd-acc-btn" aria-expanded="false" aria-controls="pd-acc-panel">
         Eğitimler
-        <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
+        <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="pd-mobile__panel" id="pd-acc-panel">
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril-Dişil Denge Eğitimi</a>
@@ -593,52 +586,56 @@ header.pd-nav.pd-solid .pd-cta:hover {
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">Öğrenci Koçluğu Seansı</a>
       </div>
     </li>
-
-    <li>
-      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a>
-    </li>
-    <li>
-      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a>
-    </li>
-    <li>
-      <a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a>
-    </li>
-
+    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a></li>
+    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
+    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
   </ul>
 
-  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/iletisim/">
-    Bana Ulaş
-  </a>
+  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/egitimler/">Ders Kayıtları</a>
 
-  <p class="pd-mobile__phone">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.08 6.09l.92-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </svg>
-    <a href="tel:+905419052977">0541 905 29 77</a>
-  </p>
+  <!-- Alt satır: sosyal ikonlar + kullanıcı girişi -->
+  <div class="pd-mobile__bottom">
+    <div class="pd-mobile__social">
+      <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </a>
+    </div>
+    <a class="pd-mobile__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Kullanıcı Girişi
+    </a>
+  </div>
 </div>
 
 <script>
 (function () {
   'use strict';
 
+  var topbar   = document.getElementById('pd-topbar');
   var nav      = document.getElementById('pd-nav');
   var burger   = document.getElementById('pd-burger');
   var mobile   = document.getElementById('pd-mobile');
   var accBtn   = document.getElementById('pd-acc-btn');
   var accPanel = document.getElementById('pd-acc-panel');
 
-  /* JegKit/Elementor wrapper'ı position:fixed'i kırabilir.
-     Elemanları doğrudan body'e taşıyoruz. */
+  /* JegKit/Elementor wrapper'ı position:fixed'i kırabilir */
+  if (topbar && topbar.parentElement !== document.body) {
+    document.body.insertBefore(topbar, document.body.firstChild);
+  }
   if (nav && nav.parentElement !== document.body) {
-    document.body.insertBefore(nav, document.body.firstChild);
+    document.body.insertBefore(nav, topbar ? topbar.nextSibling : document.body.firstChild);
   }
   if (mobile && mobile.parentElement !== document.body) {
-    document.body.insertBefore(mobile, nav.nextSibling || document.body.firstChild);
+    document.body.insertBefore(mobile, nav ? nav.nextSibling : document.body.firstChild);
   }
 
-  /* ── Sayfa tipi tespiti ──────────────────────── */
-  /* Ana sayfada hero section varsa transparan başlat */
+  /* ── Sayfa tipi ── */
   var isHome = document.body.classList.contains('home') ||
                document.body.classList.contains('front-page') ||
                window.location.pathname === '/' ||
@@ -650,7 +647,7 @@ header.pd-nav.pd-solid .pd-cta:hover {
     document.body.classList.add('pd-page-offset');
   }
 
-  /* ── Scroll ───────────────────────────────────── */
+  /* ── Scroll ── */
   var ticking = false;
   window.addEventListener('scroll', function () {
     if (!ticking) {
@@ -670,7 +667,7 @@ header.pd-nav.pd-solid .pd-cta:hover {
     }
   }, { passive: true });
 
-  /* ── Hamburger ─────────────────────────────────── */
+  /* ── Hamburger ── */
   function openMenu() {
     mobile.classList.add('is-open');
     burger.classList.add('is-open');
@@ -678,7 +675,6 @@ header.pd-nav.pd-solid .pd-cta:hover {
     mobile.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
-
   function closeMenu() {
     mobile.classList.remove('is-open');
     burger.classList.remove('is-open');
@@ -686,19 +682,16 @@ header.pd-nav.pd-solid .pd-cta:hover {
     mobile.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
-
   burger.addEventListener('click', function () {
     mobile.classList.contains('is-open') ? closeMenu() : openMenu();
   });
-
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && mobile.classList.contains('is-open')) {
-      closeMenu();
-      burger.focus();
+      closeMenu(); burger.focus();
     }
   });
 
-  /* ── Eğitimler accordion (mobil) ────────────── */
+  /* ── Accordion ── */
   accBtn.addEventListener('click', function () {
     var open = accPanel.classList.contains('is-open');
     accPanel.classList.toggle('is-open', !open);
@@ -706,22 +699,16 @@ header.pd-nav.pd-solid .pd-cta:hover {
     accBtn.setAttribute('aria-expanded', String(!open));
   });
 
-  /* ── Aktif link tespiti ───────────────────────── */
+  /* ── Aktif link tespiti ── */
   var cur = window.location.pathname.replace(/\/$/, '') || '/';
 
-  /* Dropdown linkleri */
-  var egitimPagesActive = false;
+  var egitimActive = false;
   document.querySelectorAll('.pd-dropdown__link').forEach(function (a) {
     try {
       var p = new URL(a.href).pathname.replace(/\/$/, '');
-      if (p === cur) {
-        a.classList.add('is-active');
-        egitimPagesActive = true;
-      }
+      if (p === cur) { a.classList.add('is-active'); egitimActive = true; }
     } catch (e) {}
   });
-
-  /* Üst menü linkleri */
   document.querySelectorAll('.pd-menu__link').forEach(function (a) {
     if (a.getAttribute('href') === '#') return;
     try {
@@ -729,14 +716,10 @@ header.pd-nav.pd-solid .pd-cta:hover {
       if (p === cur) a.classList.add('is-active');
     } catch (e) {}
   });
-
-  /* Eğitim alt sayfasındaysa "Eğitimler" üst öğeyi aktif et */
-  if (egitimPagesActive) {
+  if (egitimActive) {
     var egitimParent = document.querySelector('.pd-menu__link[aria-haspopup]');
     if (egitimParent) egitimParent.classList.add('is-active');
   }
-
-  /* Mobil alt linkler */
   document.querySelectorAll('.pd-mobile__sub').forEach(function (a) {
     try {
       var p = new URL(a.href).pathname.replace(/\/$/, '');
@@ -748,8 +731,6 @@ header.pd-nav.pd-solid .pd-cta:hover {
       }
     } catch (e) {}
   });
-
-  /* Mobil ana linkler */
   document.querySelectorAll('.pd-mobile__link').forEach(function (a) {
     if (a.tagName !== 'A') return;
     try {
@@ -758,7 +739,7 @@ header.pd-nav.pd-solid .pd-cta:hover {
     } catch (e) {}
   });
 
-  console.log('[PD-Nav] v1.0 yüklendi. isHome:', isHome, '| path:', cur);
+  console.log('[PD-Nav] v2.0 yüklendi. isHome:', isHome, '| path:', cur);
 
 })();
 </script>

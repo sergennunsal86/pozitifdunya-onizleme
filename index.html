@@ -64,13 +64,22 @@
 }
 .pd-topbar__soc:hover { color: rgba(255,255,255,0.92); background: rgba(255,255,255,0.08); }
 .pd-topbar__right { display: flex; align-items: center; gap: 8px; }
-.pd-topbar__user {
-  width: 30px; height: 30px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 6px; color: rgba(255,255,255,0.52);
-  transition: color .2s ease, background .2s ease;
+.pd-topbar__login {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.68) !important;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.24);
+  padding: 5px 12px; border-radius: 20px;
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; text-decoration: none;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
-.pd-topbar__user:hover { color: rgba(255,255,255,0.92); background: rgba(255,255,255,0.08); }
+.pd-topbar__login:hover {
+  color: rgba(255,255,255,0.95) !important;
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
+}
 .pd-topbar__btn {
   font-family: 'Inter', sans-serif;
   font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
@@ -82,27 +91,43 @@
 }
 .pd-topbar__btn:hover { background: #B88A56; transform: translateY(-1px); }
 /* Mobilde topbar gizle */
-.pd-mobile__bottom {
-  margin-top: 20px; display: flex; align-items: center; justify-content: space-between;
+.pd-mobile__btn-sec {
+  margin-top: 28px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  color: rgba(255,255,255,0.75) !important; text-decoration: none;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.22);
+  padding: 14px; border-radius: 8px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
-.pd-mobile__social { display: flex; align-items: center; gap: 4px; }
+.pd-mobile__btn-sec:hover {
+  color: rgba(255,255,255,0.95) !important;
+  border-color: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.05);
+}
+.pd-mobile__btn-pri {
+  margin-top: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+  color: #fff !important; text-decoration: none;
+  background: #D4A574; border: none;
+  padding: 14px; border-radius: 8px;
+  transition: background .2s ease, transform .2s ease;
+}
+.pd-mobile__btn-pri:hover { background: #B88A56; transform: translateY(-1px); }
+.pd-mobile__soc-row {
+  margin-top: 22px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
 .pd-mobile__soc {
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 8px; color: rgba(255,255,255,0.45);
+  border-radius: 10px; color: rgba(255,255,255,0.45);
   border: 1px solid rgba(255,255,255,0.10);
-  transition: color .2s ease, border-color .2s ease;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
-.pd-mobile__soc:hover { color: #D4A574; border-color: #D4A574; }
-.pd-mobile__login {
-  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.45); text-decoration: none;
-  display: flex; align-items: center; gap: 6px;
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 7px 12px; border-radius: 8px;
-  transition: color .2s ease, border-color .2s ease;
-}
-.pd-mobile__login:hover { color: #D4A574; border-color: #D4A574; }
+.pd-mobile__soc:hover { color: #D4A574; border-color: #D4A574; background: rgba(212,165,116,0.08); }
 @media (max-width: 639px) {
   .pd-topbar { display: none !important; }
   .pd-mobile { padding-top: calc(80px + 24px) !important; }
@@ -124,8 +149,9 @@
       </a>
     </div>
     <div class="pd-topbar__right">
-      <a class="pd-topbar__user" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <a class="pd-topbar__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Giriş Yap
       </a>
       <a class="pd-topbar__btn" href="https://www.pozitifdunya.com.tr/egitimler/">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
@@ -446,7 +472,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
             <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <ul class="pd-dropdown" role="menu">
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril-Dişil Denge Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/money-brain-code/" role="menuitem">Money Brain Code™</a></li>
@@ -485,7 +511,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
         <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="pd-mobile__panel" id="pd-acc-panel">
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril-Dişil Denge Eğitimi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">NLP Uygulayıcı Eğitimi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Evlilik ve İlişki Atölyesi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/money-brain-code/">Money Brain Code™</a>
@@ -498,23 +524,26 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
     <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
     <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
   </ul>
-  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/egitimler/">Ders Kayıtları</a>
-
-  <div class="pd-mobile__bottom">
-    <div class="pd-mobile__social">
-      <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-      </a>
-    </div>
-    <a class="pd-mobile__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Kullanıcı Girişi
+  <!-- Kullanıcı Girişi — outline, üstte -->
+  <a class="pd-mobile__btn-sec" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Kullanıcı Girişi
+  </a>
+  <!-- Ders Kayıtları — altın, altta -->
+  <a class="pd-mobile__btn-pri" href="https://www.pozitifdunya.com.tr/egitimler/">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    Ders Kayıtları
+  </a>
+  <!-- Sosyal ikonlar — ortalanmış -->
+  <div class="pd-mobile__soc-row">
+    <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
     </a>
   </div>
 
@@ -884,7 +913,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
         <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/disil-enerji-egitimi-banner.jpg')"></div>
         <div class="pd-hero-content"><div class="pd-hero-inner">
           <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
-          <h1 class="pd-hero-title">Duygu Odaklı<br>Eril-Dişil Denge<br>Eğitimi</h1>
+          <h1 class="pd-hero-title">Duygu Odaklı<br>Eril Dişil Denge Ve<br>Dişil Enerji Eğitimi</h1>
           <p class="pd-hero-desc">İlişkilerinde, iş yaşamında ve içsel dünyanızda dengeyi kurmanın dönüşüm dolu yolculuğuna hazır mısınız?</p>
           <div class="pd-hero-actions">
             <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -994,7 +1023,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <span class="pd-pay-card__badge">Canlı Online</span>
         </div>
         <div class="pd-pay-card__body">
-          <div class="pd-pay-card__title">Duygu Odaklı Eril-Dişil Denge ve Dişil Enerji Eğitimi</div>
+          <div class="pd-pay-card__title">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</div>
           <ul class="pd-pay-card__features">
             <li class="pd-pay-card__feat">4 gün canlı ders (Zoom)</li>
             <li class="pd-pay-card__feat">10 gün kişisel danışmanlık desteği</li>

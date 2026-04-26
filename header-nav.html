@@ -1,5 +1,5 @@
 <!-- ================================================
-     Pozitif Dünya — Header / Navigation  v2.0
+     Pozitif Dünya — Header / Navigation  v2.1
      JegKit Global HTML/Kod Widget'ına yapıştır
      ================================================ -->
 
@@ -17,7 +17,7 @@
   --pd-gold:       #D4A574;
   --pd-gold-dk:    #B88A56;
   --pd-white:      #FFFFFF;
-  --pd-topbar-h:   36px;
+  --pd-topbar-h:   38px;
   --pd-nav-h:      80px;
   --pd-nav-h-sm:   64px;
   --pd-total-h:    calc(var(--pd-topbar-h) + var(--pd-nav-h));
@@ -38,14 +38,14 @@
 .pd-nav ul, .pd-mobile ul { list-style: none; }
 
 /* ─────────────────────────────────────────────
-   Üst Bar (sosyal + giriş + ders kayıtları)
+   Üst Bar
 ───────────────────────────────────────────── */
 .pd-topbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 9901;
   height: var(--pd-topbar-h);
-  background: rgba(0,28,48,0.96);
+  background: rgba(0,28,48,0.97);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -69,7 +69,7 @@
   width: 30px; height: 30px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 6px;
-  color: rgba(255,255,255,0.52);
+  color: rgba(255,255,255,0.50);
   transition: color var(--pd-ease), background var(--pd-ease);
 }
 .pd-topbar__soc:hover {
@@ -81,22 +81,36 @@
   align-items: center;
   gap: 8px;
 }
-.pd-topbar__user {
-  width: 30px; height: 30px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 6px;
-  color: rgba(255,255,255,0.52);
-  transition: color var(--pd-ease), background var(--pd-ease);
+
+/* Giriş Yap — outline pill */
+.pd-topbar__login {
+  font-family: var(--pd-font-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.68) !important;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.24);
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: color var(--pd-ease), border-color var(--pd-ease), background var(--pd-ease);
 }
-.pd-topbar__user:hover {
-  color: rgba(255,255,255,0.92);
-  background: rgba(255,255,255,0.08);
+.pd-topbar__login:hover {
+  color: rgba(255,255,255,0.95) !important;
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.06);
 }
+
+/* Ders Kayıtları — altın pill */
 .pd-topbar__btn {
   font-family: var(--pd-font-b);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--pd-white) !important;
   background: var(--pd-gold);
   padding: 5px 14px;
@@ -113,7 +127,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Header shell — topbar altına konumlanır
+   Header shell
 ───────────────────────────────────────────── */
 .pd-nav {
   position: fixed;
@@ -126,7 +140,6 @@
   background: transparent;
   transition: background var(--pd-ease), box-shadow var(--pd-ease), height var(--pd-ease);
 }
-
 .pd-nav.pd-transparent {
   background: linear-gradient(
     to bottom,
@@ -135,7 +148,6 @@
     transparent 100%
   );
 }
-
 .pd-nav.pd-solid {
   background: rgba(255,255,255,0.96);
   backdrop-filter: blur(12px);
@@ -145,7 +157,7 @@
 }
 
 /* ─────────────────────────────────────────────
-   Logo — transparan: beyaz filtre / solid: orijinal
+   Logo
 ───────────────────────────────────────────── */
 .pd-nav__wrap {
   width: 100%;
@@ -166,12 +178,10 @@
   width: auto;
   transition: height var(--pd-ease), filter var(--pd-ease);
 }
-.pd-nav.pd-transparent .pd-logo img {
-  filter: brightness(0) invert(1);
-}
-.pd-nav.pd-solid .pd-logo img {
-  filter: none;
-}
+/* Transparan: logo beyaz */
+.pd-nav.pd-transparent .pd-logo img { filter: brightness(0) invert(1); }
+/* Solid: orijinal renk */
+.pd-nav.pd-solid .pd-logo img { filter: none; }
 .pd-solid .pd-logo img { height: 34px; }
 
 /* ─────────────────────────────────────────────
@@ -208,7 +218,8 @@ header.pd-nav.pd-solid .pd-menu__link { color: var(--pd-navy) !important; }
   transform-origin: center;
   transition: transform var(--pd-ease);
 }
-.pd-menu__link:hover::after, .pd-menu__link.is-active::after { transform: scaleX(1); }
+.pd-menu__link:hover::after,
+.pd-menu__link.is-active::after { transform: scaleX(1); }
 .pd-menu__link:hover  { color: rgba(255,255,255,1) !important; }
 .pd-menu__link.is-active { color: rgba(255,255,255,1) !important; }
 header.pd-nav.pd-solid .pd-menu__link:hover    { color: var(--pd-gold-dk) !important; }
@@ -370,46 +381,78 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
 .pd-mobile__sub:hover, .pd-mobile__sub.is-active { color: var(--pd-gold); }
 .pd-mobile__sub.is-active { font-weight: 600; }
 
-.pd-mobile__cta {
-  margin-top: 28px; display: block;
-  font-family: var(--pd-font-b); font-size: 16px; font-weight: 600; letter-spacing: 0.03em;
-  text-align: center; color: var(--pd-white) !important;
-  background: var(--pd-gold); border: none; padding: 14px; border-radius: 8px;
-  transition: background var(--pd-ease);
-}
-.pd-mobile__cta:hover { background: var(--pd-gold-dk); }
+/* --- Mobil CTA butonları --- */
 
-/* Mobil sosyal + giriş satırı */
-.pd-mobile__bottom {
-  margin-top: 20px;
+/* İkincil (outline) — Kullanıcı Girişi */
+.pd-mobile__btn-sec {
+  margin-top: 28px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--pd-font-b);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(255,255,255,0.75) !important;
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.22);
+  padding: 14px;
+  border-radius: 8px;
+  transition: color var(--pd-ease), border-color var(--pd-ease), background var(--pd-ease);
 }
-.pd-mobile__social {
+.pd-mobile__btn-sec:hover {
+  color: rgba(255,255,255,0.95) !important;
+  border-color: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Birincil (altın) — Ders Kayıtları */
+.pd-mobile__btn-pri {
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--pd-font-b);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--pd-white) !important;
+  background: var(--pd-gold);
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  transition: background var(--pd-ease), transform var(--pd-ease);
+}
+.pd-mobile__btn-pri:hover {
+  background: var(--pd-gold-dk);
+  transform: translateY(-1px);
+}
+
+/* Sosyal ikonlar satırı */
+.pd-mobile__soc-row {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .pd-mobile__soc {
-  width: 36px; height: 36px;
+  width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 8px;
+  border-radius: 10px;
   color: rgba(255,255,255,0.45);
   border: 1px solid rgba(255,255,255,0.10);
-  transition: color var(--pd-ease), border-color var(--pd-ease);
+  transition: color var(--pd-ease), border-color var(--pd-ease), background var(--pd-ease);
 }
-.pd-mobile__soc:hover { color: var(--pd-gold); border-color: var(--pd-gold); }
-
-.pd-mobile__login {
-  font-family: var(--pd-font-b); font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  display: flex; align-items: center; gap: 6px;
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 7px 12px; border-radius: 8px;
-  transition: color var(--pd-ease), border-color var(--pd-ease);
+.pd-mobile__soc:hover {
+  color: var(--pd-gold);
+  border-color: var(--pd-gold);
+  background: rgba(212,165,116,0.08);
 }
-.pd-mobile__login:hover { color: var(--pd-gold); border-color: var(--pd-gold); }
 
 /* ─────────────────────────────────────────────
    Non-home sayfa body offset
@@ -437,10 +480,10 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
   .pd-menu   { display: none !important; }
   .pd-cta    { display: none !important; }
   .pd-burger { display: flex !important; }
-  .pd-nav__wrap { padding: 0 20px; }
+  .pd-nav__wrap    { padding: 0 20px; }
   .pd-topbar__wrap { padding: 0 20px; }
 }
-/* Küçük mobilde topbar gizle, nav en üste al */
+/* Küçük mobilde topbar gizle */
 @media (max-width: 639px) {
   .pd-topbar { display: none !important; }
   .pd-nav    { top: 0 !important; }
@@ -454,12 +497,11 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
 </style>
 
 <!-- ═══════════════════════════════════════════
-     ÜST BAR — sosyal + giriş + ders kayıtları
+     ÜST BAR
 ═══════════════════════════════════════════ -->
 <div class="pd-topbar" id="pd-topbar">
   <div class="pd-topbar__wrap">
 
-    <!-- Sosyal medya ikonları -->
     <div class="pd-topbar__social">
       <a class="pd-topbar__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -480,14 +522,18 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
       </a>
     </div>
 
-    <!-- Sağ: kullanıcı girişi + ders kayıtları -->
     <div class="pd-topbar__right">
-      <a class="pd-topbar__user" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <!-- Giriş Yap: ikon + yazı, outline pill -->
+      <a class="pd-topbar__login"
+         href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1"
+         aria-label="Kullanıcı Girişi">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
           <circle cx="12" cy="7" r="4"/>
         </svg>
+        Giriş Yap
       </a>
+      <!-- Ders Kayıtları: altın pill -->
       <a class="pd-topbar__btn" href="https://www.pozitifdunya.com.tr/egitimler/">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
@@ -527,7 +573,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
             <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <ul class="pd-dropdown" role="menu">
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril-Dişil Denge Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>
             <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/money-brain-code/" role="menuitem">Money Brain Code™</a></li>
@@ -577,7 +623,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
         <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="pd-mobile__panel" id="pd-acc-panel">
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril-Dişil Denge Eğitimi</a>
+        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">NLP Uygulayıcı Eğitimi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Evlilik ve İlişki Atölyesi</a>
         <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/money-brain-code/">Money Brain Code™</a>
@@ -591,26 +637,38 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
     <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
   </ul>
 
-  <a class="pd-mobile__cta" href="https://www.pozitifdunya.com.tr/egitimler/">Ders Kayıtları</a>
+  <!-- Kullanıcı Girişi — outline, üstte -->
+  <a class="pd-mobile__btn-sec"
+     href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+    Kullanıcı Girişi
+  </a>
 
-  <!-- Alt satır: sosyal ikonlar + kullanıcı girişi -->
-  <div class="pd-mobile__bottom">
-    <div class="pd-mobile__social">
-      <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-      </a>
-      <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-      <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-      </a>
-    </div>
-    <a class="pd-mobile__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Kullanıcı Girişi
+  <!-- Ders Kayıtları — altın, altta -->
+  <a class="pd-mobile__btn-pri" href="https://www.pozitifdunya.com.tr/egitimler/">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+    </svg>
+    Ders Kayıtları
+  </a>
+
+  <!-- Sosyal ikonlar — ortalanmış -->
+  <div class="pd-mobile__soc-row">
+    <a class="pd-mobile__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+    <a class="pd-mobile__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a class="pd-mobile__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088C19.545 3.6 12 3.6 12 3.6s-7.532 0-9.395.517A3.007 3.007 0 0 0 .517 6.205C0 8.073 0 12 0 12s0 3.942.517 5.795a3.007 3.007 0 0 0 2.088 2.088C4.468 20.4 12 20.4 12 20.4s7.532 0 9.407-.517a3.007 3.007 0 0 0 2.088-2.088C24 15.927 24 12 24 12s0-3.927-.505-5.795zM9.609 15.601V8.408l6.264 3.602z"/></svg>
     </a>
   </div>
+
 </div>
 
 <script>
@@ -739,7 +797,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
     } catch (e) {}
   });
 
-  console.log('[PD-Nav] v2.0 yüklendi. isHome:', isHome, '| path:', cur);
+  console.log('[PD-Nav] v2.1 yüklendi. isHome:', isHome, '| path:', cur);
 
 })();
 </script>

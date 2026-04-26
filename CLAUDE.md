@@ -23,7 +23,7 @@
 ## Eğitimler & Ödeme Linkleri
 | Eğitim | Sayfa URL | PayTR | Fiyat |
 |---|---|---|---|
-| Duygu Odaklı Eril-Dişil Denge ve Dişil Enerji Eğitimi | /eril-disil-denge-egitimi/ | https://www.paytr.com/link/9dbXluR | ₺7.000 |
+| Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi | /eril-disil-denge-egitimi/ | https://www.paytr.com/link/9dbXluR | ₺7.000 |
 | NLP Uygulayıcı Eğitimi ve Sertifika Programı | /nlp-sertifika-programi-ve-uygulayici-egitimi/ | https://www.paytr.com/link/ejt23B7 | ₺33.599 |
 | Evlilik ve İleri Seviye İlişki Atölyesi | /evlilik-ve-ileri-seviye-iliski-atolyesi/ | https://www.paytr.com/link/xvRn0y3 | ₺16.500 |
 | MONEY BRAIN CODE | /money-brain-code/ | — | ₺33.500 |

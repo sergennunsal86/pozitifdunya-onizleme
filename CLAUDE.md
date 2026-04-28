@@ -7,13 +7,18 @@
 - **Teknoloji:** WordPress + Hello Tema + Elementor + JegElementor Kit
 - **Uygulama Yöntemi:** JegKit Global HTML Widget (header) + Elementor HTML Widget (ana sayfa)
 
-## Marka Renkleri
-- `#005175` — Koyu mavi / marka adı rengi / primary
-- `#29ABDF` — Açık mavi / logo rengi / secondary
-- `#D4A574` — Altın/bronz / CTA accent / hover vurguları
-- `#B88A56` — Altın derin ton / hover
-- `#FAF6F0` — Krem / hafif arka plan
-- `#5C6B7A` — Gövde metni rengi
+## Marka Renkleri (Marka Kiti v2 — Mor/Lavanta Paleti)
+- `#3e2a51` — Koyu mor (aubergine) / primary / hero overlay / nav / section bg / başlıklar
+- `#2d1f3d` — Koyu mor derin / hover / aktif state
+- `#725F99` — Orta mor / CTA buton / tag accent
+- `#674980` — Koyu-orta mor / buton hover
+- `#B8A9D5` — Açık lavanta / secondary accent / border
+- `#CEC9EB` — Pastel lavanta / section alternating bg
+- `#D6D4EB` — Çok açık lila / subtle bg
+- `#F2F2F0` — Krem/beyaz / ana arka plan
+- `#EFEFEE` — Açık gri-beyaz / kart arka planı
+- `#101010` — Neredeyse siyah / kalın başlıklar
+- `#3d3450` — Koyu mor-gri / gövde metni
 
 ## Tipografi
 - **Başlıklar:** Playfair Display (serif)

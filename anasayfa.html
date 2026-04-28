@@ -16,19 +16,19 @@
 .pd-pg ul{list-style:none}
 .pd-pg img{display:block;max-width:100%}
 .pd-pg{
-  font-family:'Cabin',sans-serif;color:#7B7B7B;overflow-x:hidden;
+  font-family:'Cabin',sans-serif;color:#3d3450;overflow-x:hidden;
   margin-left:calc(50% - 50vw) !important;
   margin-right:calc(50% - 50vw) !important;
   width:100vw !important;max-width:100vw !important;position:relative;
 }
 
 :root{
-  --pd-violet:#5F3DC4;
-  --pd-navy:#005175;--pd-navy-deep:#003a52;
-  --pd-blue:#29ABDF;
-  --pd-gold:#D4A574;--pd-gold-2:#B88A56;
-  --pd-cream:#FAF6F0;--pd-light:#F4F8FB;
-  --pd-text:#7B7B7B;--pd-white:#fff;
+  --pd-violet:#3e2a51;
+  --pd-navy:#3e2a51;--pd-navy-deep:#2d1f3d;
+  --pd-blue:#B8A9D5;
+  --pd-gold:#725F99;--pd-gold-2:#674980;
+  --pd-cream:#F2F2F0;--pd-light:#D6D4EB;
+  --pd-text:#3d3450;--pd-white:#fff;
   --pd-h:'Playfair Display',serif;--pd-b:'Cabin',sans-serif;
   --pd-ease:0.32s cubic-bezier(0.25,0.46,0.45,0.94);
 }
@@ -45,7 +45,7 @@
 }
 .pd-pg .pd-h2.light{color:#fff}
 .pd-pg .pd-btn{font-family:var(--pd-b);font-size:14px;font-weight:600;letter-spacing:.04em;padding:13px 26px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:all var(--pd-ease);border:none;white-space:nowrap}
-.pd-pg .pd-btn-gold{background:var(--pd-gold);color:#fff}.pd-pg .pd-btn-gold:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,165,116,.40)}
+.pd-pg .pd-btn-gold{background:var(--pd-gold);color:#fff}.pd-pg .pd-btn-gold:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(114,95,153,.40)}
 .pd-pg .pd-btn-navy{background:var(--pd-navy);color:#fff}.pd-pg .pd-btn-navy:hover{background:var(--pd-navy-deep);transform:translateY(-2px)}
 .pd-pg .pd-btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}.pd-pg .pd-btn-outline:hover{background:rgba(255,255,255,.10);border-color:#fff}
 .pd-pg .pd-btn-outline-gold{background:transparent;color:var(--pd-gold);border:1.5px solid var(--pd-gold)}.pd-pg .pd-btn-outline-gold:hover{background:var(--pd-gold);color:#fff;transform:translateY(-2px)}
@@ -64,7 +64,7 @@
   color:#fff !important;align-items:center !important;justify-content:center !important;
   transition:background var(--pd-ease),transform var(--pd-ease) !important;
   flex-shrink:0 !important;padding:0 !important;
-  box-shadow:0 4px 16px rgba(0,81,117,.22) !important;
+  box-shadow:0 4px 16px rgba(62,42,81,.22) !important;
 }
 .pd-pg .pd-reviews__svc-wrap .pd-nav-btn:hover{background:var(--pd-gold) !important;transform:scale(1.10) !important}
 .pd-pg .pd-reviews__svc-wrap .pd-nav-btn svg{pointer-events:none !important;flex-shrink:0 !important}
@@ -85,7 +85,7 @@
 }
 .swiper-slide-active .pd-hero-bg{animation:pdKenBurns 7s ease-out forwards}
 @keyframes pdKenBurns{from{transform:scale(1)}to{transform:scale(1.07)}}
-.pd-hero-slide::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(0,81,117,.92) 0%,rgba(0,81,117,.60) 48%,rgba(0,0,0,.15) 100%)}
+.pd-hero-slide::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(62,42,81,.92) 0%,rgba(62,42,81,.60) 48%,rgba(0,0,0,.15) 100%)}
 .pd-hero-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;padding:0 6vw}
 .pd-hero-inner{max-width:580px}
 .pd-hero-badge{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pd-gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
@@ -133,21 +133,21 @@
 .pd-about{background:#fff;padding:80px 0}
 .pd-about__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:center}
 .pd-about__img-wrap{position:relative}
-.pd-about__img{width:100%;border-radius:16px;object-fit:cover;display:block;box-shadow:0 16px 56px rgba(0,81,117,.14);position:relative;z-index:1}
+.pd-about__img{width:100%;border-radius:16px;object-fit:cover;display:block;box-shadow:0 16px 56px rgba(62,42,81,.14);position:relative;z-index:1}
 .pd-about__badge{
   position:absolute;bottom:24px;right:-22px;z-index:2;
   background:var(--pd-gold);color:#fff;font-family:var(--pd-h);font-size:14px;font-weight:700;
-  padding:14px 18px;border-radius:12px;box-shadow:0 8px 28px rgba(212,165,116,.40);
+  padding:14px 18px;border-radius:12px;box-shadow:0 8px 28px rgba(114,95,153,.40);
   display:flex;align-items:center;gap:10px;white-space:nowrap;
 }
 .pd-about__badge em{font-style:normal;font-size:24px;font-weight:800;line-height:1;display:block}
 .pd-about__img-wrap::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:2px solid rgba(41,171,223,.12);bottom:-24px;left:-24px;z-index:0}
-.pd-about__img-wrap::after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(95,61,196,.06);top:-18px;right:-18px;z-index:0}
+.pd-about__img-wrap::after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(62,42,81,.06);top:-18px;right:-18px;z-index:0}
 .pd-about__sub{font-family:var(--pd-b);font-size:14px;color:var(--pd-blue);font-weight:600;margin-bottom:6px;display:block}
 .pd-about__desc{font-family:var(--pd-b);font-size:16px;color:var(--pd-text);line-height:1.8;margin:16px 0 24px}
 .pd-about__list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
 .pd-about__li{display:flex;align-items:flex-start;gap:12px;font-family:var(--pd-b);font-size:15px;color:var(--pd-text);line-height:1.5}
-.pd-about__check{width:24px;height:24px;background:rgba(95,61,196,.10);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pd-about__check{width:24px;height:24px;background:rgba(62,42,81,.10);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pd-about__actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 
 /* ═══════════════════════════════════════════════
@@ -179,8 +179,8 @@
 .pd-pay__head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .pd-pay__sub{font-family:var(--pd-b);font-size:15px;color:var(--pd-text)}
 .pd-pay__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.pd-pay-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,81,117,.10);display:flex;flex-direction:column;transition:transform var(--pd-ease),box-shadow var(--pd-ease);border:1px solid rgba(95,61,196,.07)}
-.pd-pay-card:hover{transform:translateY(-7px);box-shadow:0 16px 52px rgba(95,61,196,.14)}
+.pd-pay-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(62,42,81,.10);display:flex;flex-direction:column;transition:transform var(--pd-ease),box-shadow var(--pd-ease);border:1px solid rgba(62,42,81,.07)}
+.pd-pay-card:hover{transform:translateY(-7px);box-shadow:0 16px 52px rgba(62,42,81,.14)}
 .pd-pay-card__img-wrap{height:220px !important;overflow:hidden !important;flex-shrink:0 !important;position:relative}
 .pd-pay-card__img{width:100% !important;height:100% !important;object-fit:cover !important;object-position:center !important;display:block !important;min-height:220px !important;transition:transform .6s ease}
 .pd-pay-card:hover .pd-pay-card__img{transform:scale(1.05)}
@@ -189,13 +189,13 @@
 .pd-pay-card__title{font-family:var(--pd-h);font-size:19px;font-weight:700;color:var(--pd-violet) !important;line-height:1.3;margin-bottom:16px}
 .pd-pay-card__features{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;flex:1}
 .pd-pay-card__feat{font-family:var(--pd-b);font-size:14px;color:var(--pd-text);display:flex;align-items:center;gap:9px;line-height:1.4}
-.pd-pay-card__feat::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;background:rgba(95,61,196,.08);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235F3DC4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:10px}
-.pd-pay-card__divider{height:1px;background:rgba(95,61,196,.08);margin:18px 0}
+.pd-pay-card__feat::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;background:rgba(62,42,81,.08);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%233e2a51' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;background-size:10px}
+.pd-pay-card__divider{height:1px;background:rgba(62,42,81,.08);margin:18px 0}
 .pd-pay-card__price{font-family:var(--pd-h);font-size:30px;font-weight:700;color:var(--pd-violet);line-height:1;margin-bottom:4px}
 .pd-pay-card__price span{font-family:var(--pd-b);font-size:13px;font-weight:400;color:var(--pd-text);margin-left:4px}
 .pd-pay-card__actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
 .pd-pay-card__buy{font-family:var(--pd-b);font-size:14px;font-weight:700;letter-spacing:.04em;text-align:center;padding:14px;border-radius:8px;background:var(--pd-gold);color:#fff;transition:background var(--pd-ease),transform var(--pd-ease),box-shadow var(--pd-ease);display:flex;align-items:center;justify-content:center;gap:8px}
-.pd-pay-card__buy:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,165,116,.38)}
+.pd-pay-card__buy:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(114,95,153,.38)}
 .pd-pay-card__detail{font-family:var(--pd-b);font-size:13px;font-weight:500;text-align:center;color:var(--pd-violet);opacity:.6;padding:8px;display:block;transition:opacity var(--pd-ease),color var(--pd-ease)}
 .pd-pay-card__detail:hover{opacity:1;color:var(--pd-blue)}
 
@@ -224,7 +224,7 @@
 }
 .pd-pg .yt-row:active{cursor:grabbing}
 .pd-pg .yt-row::-webkit-scrollbar{height:6px}
-.pd-pg .yt-row::-webkit-scrollbar-thumb{background:rgba(95,61,196,.2);border-radius:999px}
+.pd-pg .yt-row::-webkit-scrollbar-thumb{background:rgba(62,42,81,.2);border-radius:999px}
 .pd-pg .yt-card{
   flex:0 0 240px;scroll-snap-align:start;
   border-radius:18px;overflow:hidden;position:relative;
@@ -246,7 +246,7 @@
 .pd-pg .yt-nav{
   position:absolute;top:50%;transform:translateY(-50%);
   width:44px;height:44px;border-radius:999px;border:none;
-  background:rgba(0,81,117,.85);color:#fff;font-size:22px;
+  background:rgba(62,42,81,.85);color:#fff;font-size:22px;
   cursor:pointer;z-index:5;
   display:flex;align-items:center;justify-content:center;
   -webkit-tap-highlight-color:transparent;
@@ -286,11 +286,11 @@
 .pd-reviews-swiper .swiper-pagination-bullet-active{opacity:1;background:var(--pd-gold);width:22px;border-radius:4px}
 .pd-review-card{
   border-radius:14px;overflow:hidden;
-  box-shadow:0 2px 16px rgba(95,61,196,.08);
+  box-shadow:0 2px 16px rgba(62,42,81,.08);
   transition:transform var(--pd-ease),box-shadow var(--pd-ease);
   height:100%;cursor:pointer;
 }
-.pd-review-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 40px rgba(95,61,196,.16)}
+.pd-review-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 40px rgba(62,42,81,.16)}
 .pd-review-card img{width:100%;height:100%;display:block;object-fit:cover;transition:none}
 
 /* ── Yorumlar Lightbox ── */
@@ -356,7 +356,7 @@
   position:relative;overflow:hidden;
 }
 /* Dekoratif daireler */
-.pd-cta-final::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;border:1px solid rgba(212,165,116,.10);top:-160px;right:-120px;pointer-events:none}
+.pd-cta-final::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;border:1px solid rgba(114,95,153,.10);top:-160px;right:-120px;pointer-events:none}
 .pd-cta-final::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;background:rgba(41,171,223,.05);bottom:-80px;left:-60px;pointer-events:none}
 .pd-cta-final__inner{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto}
 .pd-cta-final__desc{
@@ -376,12 +376,12 @@
   transition:background var(--pd-ease),border-color var(--pd-ease),transform var(--pd-ease);
   text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:12px;
 }
-.pd-cta-card:hover{background:rgba(255,255,255,.11);border-color:rgba(212,165,116,.50);transform:translateY(-4px)}
+.pd-cta-card:hover{background:rgba(255,255,255,.11);border-color:rgba(114,95,153,.50);transform:translateY(-4px)}
 .pd-cta-card__icon{
   width:52px;height:52px;border-radius:14px;
   background:var(--pd-gold);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(212,165,116,.35);
+  box-shadow:0 6px 20px rgba(114,95,153,.35);
   flex-shrink:0;
 }
 .pd-cta-card__label{font-family:var(--pd-b);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pd-gold)}
@@ -495,9 +495,9 @@
         <p class="pd-about__desc">Dışındaki değil, içindeki dünyaya uyanmak isteyenler için buradayım. 17 yılı aşkın NLP eğitmenliği, ilişki koçluğu ve bilinçaltı dönüşüm pratiğimle; ilişkilerinde, kariyer yolculuğunda ve hayatının her alanında gerçek ve kalıcı değişim yaşamana destek oluyorum.</p>
         <p class="pd-about__desc" style="margin-top:-10px;margin-bottom:28px">Beyninin dilini çözüyoruz, eski kalıplardan özgürleşiyorsun. Duygularına alan açtığın her adımda birlikteyiz.</p>
         <ul class="pd-about__list">
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>NLP Trainer — E-Devlet ve uluslararası onaylı sertifika</li>
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Money Brain Code™ — Patentli Zenginlik ve Başarı Programı'nın sahibi</li>
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#5F3DC4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Binlerce kişinin dönüşüm yolculuğuna tanıklık etti</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>NLP Trainer — E-Devlet ve uluslararası onaylı sertifika</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Money Brain Code™ — Patentli Zenginlik ve Başarı Programı'nın sahibi</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Binlerce kişinin dönüşüm yolculuğuna tanıklık etti</li>
         </ul>
         <div class="pd-about__actions">
           <a class="pd-btn pd-btn-navy" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>

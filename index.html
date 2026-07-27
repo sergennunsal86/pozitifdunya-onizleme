@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pozitif Dünya — Önizleme</title>
 
+  <!-- ÖNİZLEME SAYFASI — arama motorlarına kapalı.
+       Bu dosya canlı sitenin kopyası olduğu için indekslenirse
+       çift içerik (duplicate content) sorunu yaratır. -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,11 +157,11 @@
       </a>
     </div>
     <div class="pd-topbar__right">
-      <a class="pd-topbar__login" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" aria-label="Kullanıcı Girişi">
+      <a class="pd-topbar__login" data-onizleme-href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" href="#" aria-label="Kullanıcı Girişi">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Giriş Yap
       </a>
-      <a class="pd-topbar__btn" href="https://www.pozitifdunya.com.tr/egitimler/">
+      <a class="pd-topbar__btn" data-onizleme-href="https://www.pozitifdunya.com.tr/egitimler/" href="#">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         Ders Kayıtları
       </a>
@@ -474,22 +480,22 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
             <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <ul class="pd-dropdown" role="menu">
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" role="menuitem">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/money-brain-code/" role="menuitem">Money Brain Code™</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/" role="menuitem">5'li Bireysel Danışmanlık Paketi</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/" role="menuitem">Bireysel Seans Al</a></li>
-            <li><a class="pd-dropdown__link" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" role="menuitem">Öğrenci Koçluğu Seansı</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" href="#" role="menuitem">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" href="#" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" href="#" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/money-brain-code/" href="#" role="menuitem">Money Brain Code™</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/" href="#" role="menuitem">5'li Bireysel Danışmanlık Paketi</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/bireysel-seans-al/" href="#" role="menuitem">Bireysel Seans Al</a></li>
+            <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" href="#" role="menuitem">Öğrenci Koçluğu Seansı</a></li>
           </ul>
         </li>
-        <li class="pd-menu__item"><a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a></li>
-        <li class="pd-menu__item"><a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
-        <li class="pd-menu__item"><a class="pd-menu__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
+        <li class="pd-menu__item"><a class="pd-menu__link" data-onizleme-href="https://www.pozitifdunya.com.tr/makaleler/" href="#">Makaleler</a></li>
+        <li class="pd-menu__item"><a class="pd-menu__link" data-onizleme-href="https://www.pozitifdunya.com.tr/hakkimda/" href="#">Hakkımda</a></li>
+        <li class="pd-menu__item"><a class="pd-menu__link" data-onizleme-href="https://www.pozitifdunya.com.tr/iletisim/" href="#">İletişim</a></li>
       </ul>
     </nav>
     <div class="pd-actions">
-      <a class="pd-cta" href="https://www.pozitifdunya.com.tr/iletisim/">
+      <a class="pd-cta" data-onizleme-href="https://www.pozitifdunya.com.tr/iletisim/" href="#">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Bana Ulaş
       </a>
@@ -513,26 +519,26 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
         <svg class="pd-mobile__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="pd-mobile__panel" id="pd-acc-panel">
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">NLP Uygulayıcı Eğitimi</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Evlilik ve İlişki Atölyesi</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/money-brain-code/">Money Brain Code™</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">5'li Bireysel Danışmanlık Paketi</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">Bireysel Seans Al</a>
-        <a class="pd-mobile__sub" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">Öğrenci Koçluğu Seansı</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" href="#">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" href="#">NLP Uygulayıcı Eğitimi</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" href="#">Evlilik ve İlişki Atölyesi</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/money-brain-code/" href="#">Money Brain Code™</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/" href="#">5'li Bireysel Danışmanlık Paketi</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/bireysel-seans-al/" href="#">Bireysel Seans Al</a>
+        <a class="pd-mobile__sub" data-onizleme-href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" href="#">Öğrenci Koçluğu Seansı</a>
       </div>
     </li>
-    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a></li>
-    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
-    <li><a class="pd-mobile__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
+    <li><a class="pd-mobile__link" data-onizleme-href="https://www.pozitifdunya.com.tr/makaleler/" href="#">Makaleler</a></li>
+    <li><a class="pd-mobile__link" data-onizleme-href="https://www.pozitifdunya.com.tr/hakkimda/" href="#">Hakkımda</a></li>
+    <li><a class="pd-mobile__link" data-onizleme-href="https://www.pozitifdunya.com.tr/iletisim/" href="#">İletişim</a></li>
   </ul>
   <!-- Kullanıcı Girişi — outline, üstte -->
-  <a class="pd-mobile__btn-sec" href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1">
+  <a class="pd-mobile__btn-sec" data-onizleme-href="https://www.pozitifdunya.com.tr/wp-login.php?redirect_to=https%3A%2F%2Fwww.pozitifdunya.com.tr%2Fwp-admin%2F&reauth=1" href="#">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     Kullanıcı Girişi
   </a>
   <!-- Ders Kayıtları — altın, altta -->
-  <a class="pd-mobile__btn-pri" href="https://www.pozitifdunya.com.tr/egitimler/">
+  <a class="pd-mobile__btn-pri" data-onizleme-href="https://www.pozitifdunya.com.tr/egitimler/" href="#">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
     Ders Kayıtları
   </a>
@@ -919,7 +925,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <h1 class="pd-hero-title">Duygu Odaklı Eril<br>Dişil Denge Ve<br>Dişil Enerji Eğitimi</h1>
           <p class="pd-hero-desc">İlişkilerinde, iş yaşamında ve içsel dünyanızda dengeyi kurmanın dönüşüm dolu yolculuğuna hazır mısınız?</p>
           <div class="pd-hero-actions">
-            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-gold" data-onizleme-href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" href="#">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
           </div>
         </div></div>
@@ -931,7 +937,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <h1 class="pd-hero-title">NLP Uygulayıcı Eğitimi<br>ve Sertifika Programı</h1>
           <p class="pd-hero-desc">Beyninin dilini çöz, düşünce kalıplarını yeniden yapılandır — uluslararası onaylı sertifikanla güçlü bir adım at.</p>
           <div class="pd-hero-actions">
-            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-gold" data-onizleme-href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" href="#">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
           </div>
         </div></div>
@@ -943,7 +949,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <h1 class="pd-hero-title">Evlilik ve İleri<br>Seviye İlişki<br>Atölyesi</h1>
           <p class="pd-hero-desc">Bilinçaltındaki ilişki kalıplarını dönüştür, derin bağ kur ve ilişkinde sürdürülebilir bir sevgi alanı yarat.</p>
           <div class="pd-hero-actions">
-            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-gold" data-onizleme-href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" href="#">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
           </div>
         </div></div>
@@ -975,8 +981,8 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Binlerce kişinin dönüşüm yolculuğuna tanıklık etti</li>
         </ul>
         <div class="pd-about__actions">
-          <a class="pd-btn pd-btn-navy" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a class="pd-btn pd-btn-outline-gold" href="https://www.pozitifdunya.com.tr/iletisim/">Bana Ulaş</a>
+          <a class="pd-btn pd-btn-navy" data-onizleme-href="https://www.pozitifdunya.com.tr/hakkimda/" href="#">Hakkımda Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a class="pd-btn pd-btn-outline-gold" data-onizleme-href="https://www.pozitifdunya.com.tr/iletisim/" href="#">Bana Ulaş</a>
         </div>
       </div>
     </div>
@@ -1009,8 +1015,8 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <div class="pd-pay-card__divider"></div>
           <div class="pd-pay-card__price">₺7.000 <span>KDV dahil</span></div>
           <div class="pd-pay-card__actions">
-            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/9dbXluR" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
-            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Eğitim Detaylarını İncele →</a>
+            <a class="pd-pay-card__buy" data-onizleme-href="https://www.paytr.com/link/9dbXluR" href="#" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" data-onizleme-href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" href="#">Eğitim Detaylarını İncele →</a>
           </div>
         </div>
       </div>
@@ -1030,8 +1036,8 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <div class="pd-pay-card__divider"></div>
           <div class="pd-pay-card__price">₺33.599 <span>KDV dahil</span></div>
           <div class="pd-pay-card__actions">
-            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/ejt23B7" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
-            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Eğitim Detaylarını İncele →</a>
+            <a class="pd-pay-card__buy" data-onizleme-href="https://www.paytr.com/link/ejt23B7" href="#" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" data-onizleme-href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" href="#">Eğitim Detaylarını İncele →</a>
           </div>
         </div>
       </div>
@@ -1051,8 +1057,8 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <div class="pd-pay-card__divider"></div>
           <div class="pd-pay-card__price">₺16.500 <span>KDV dahil</span></div>
           <div class="pd-pay-card__actions">
-            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/xvRn0y3" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
-            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Eğitim Detaylarını İncele →</a>
+            <a class="pd-pay-card__buy" data-onizleme-href="https://www.paytr.com/link/xvRn0y3" href="#" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" data-onizleme-href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" href="#">Eğitim Detaylarını İncele →</a>
           </div>
         </div>
       </div>
@@ -1067,19 +1073,19 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
       <h2 class="pd-h2 light">Diğer Eğitimlerimiz</h2>
     </div>
     <div class="pd-list__grid">
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/money-brain-code/">
+      <a class="pd-list__item" data-onizleme-href="https://www.pozitifdunya.com.tr/money-brain-code/" href="#">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="pd-list__name">Money Brain Code™</span></div>
         <div class="pd-list__right"><span class="pd-list__price">₺33.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">
+      <a class="pd-list__item" data-onizleme-href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/" href="#">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="pd-list__name">5'li Online Bireysel Danışmanlık Paketi</span></div>
         <div class="pd-list__right"><span class="pd-list__price">₺20.000</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">
+      <a class="pd-list__item" data-onizleme-href="https://www.pozitifdunya.com.tr/bireysel-seans-al/" href="#">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="pd-list__name">Bireysel Seans Al</span></div>
         <div class="pd-list__right"><span class="pd-list__price">₺4.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">
+      <a class="pd-list__item" data-onizleme-href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/" href="#">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="pd-list__name">Öğrenci Koçluğu Bireysel Seansı</span></div>
         <div class="pd-list__right"><span class="pd-list__price">₺4.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
@@ -1182,7 +1188,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
           <span class="pd-cta-card__title">0541 905 29 77</span>
           <span class="pd-cta-card__sub">Hafta içi 09:00 – 18:00</span>
         </a>
-        <a class="pd-cta-card" href="https://www.pozitifdunya.com.tr/iletisim/">
+        <a class="pd-cta-card" data-onizleme-href="https://www.pozitifdunya.com.tr/iletisim/" href="#">
           <div class="pd-cta-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <span class="pd-cta-card__label">İletişim Formu</span>
           <span class="pd-cta-card__title">Mesaj Gönder</span>
@@ -1336,6 +1342,21 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
       if(e.key==='ArrowRight')go(1);
     });
   })();
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════
+     ÖNİZLEME KİLİDİ
+     Menüler ve butonlar görünür kalır ama hiçbir yere gitmez.
+     Gerçek adresler data-onizleme-href içinde saklı duruyor —
+     tasarım canlıya alınırken oradan geri yazılacak.
+     ═══════════════════════════════════════════ -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[data-onizleme-href]') : null;
+    if (a) { e.preventDefault(); }
+  }, true);
 })();
 </script>
 </body>

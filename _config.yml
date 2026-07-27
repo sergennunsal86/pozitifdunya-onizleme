@@ -1,0 +1,12 @@
+# GitHub Pages (Jekyll) yapılandırması
+#
+# anasayfa.html ve header-nav.html canlı siteye YAPIŞTIRILACAK kaynak
+# parçalardır — içlerindeki gerçek linkler bozulmamalı. Bu yüzden
+# dosyaların içine dokunmuyoruz, onun yerine yayından çıkarıyoruz.
+# Böylece GitHub Pages üzerinde erişilemez ve indekslenemezler.
+exclude:
+  - anasayfa.html
+  - header-nav.html
+  - CLAUDE.md
+  - README.md
+  - .claude

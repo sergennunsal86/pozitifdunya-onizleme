@@ -1,0 +1,15 @@
+# ⚠️ Bu depo PUBLIC ve GitHub Pages ile yayında.
+# Müşteri verisi, teşhis raporu ve iç notlar buraya ASLA gönderilmez.
+
+# Search Console raporları / müşteri verisi
+gsc-rapor-*/
+# Site teşhis & bakım notları (güvenlik açığı detayı içerir)
+site-bakim-*/
+# Playwright geçici çıktıları
+.playwright-mcp/
+
+# Yerel ayarlar
+.claude/settings.local.json
+
+# Proje talimatlari — iç notlar içerir, public depoda durmamali
+CLAUDE.md

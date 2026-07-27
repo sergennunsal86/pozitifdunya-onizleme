@@ -98,9 +98,11 @@
   color: #fff; line-height: 1.1; letter-spacing: -0.015em;
   max-width: 780px; margin-bottom: 18px;
 }
-.pd-eg__hero-sub {
-  font-size: 17px; line-height: 1.7; color: rgba(255,255,255,0.82);
-  max-width: 620px; margin-bottom: 30px;
+/* Eski sayfada H2 olan hero alt cümlesi — seviyesi korunsun diye h2,
+   görünümü paragraf gibi kalsın diye ayrı boyutlandırıldı. */
+.pd-eg h2.pd-eg__hero-sub {
+  font-family: var(--b); font-size: 17px; font-weight: 400; line-height: 1.7;
+  color: rgba(255,255,255,0.82); max-width: 620px; margin-bottom: 30px;
 }
 .pd-eg__hero-price {
   display: inline-flex; align-items: baseline; gap: 10px;
@@ -318,7 +320,8 @@
         <span class="pd-eg__badge">3 Ay Ders Erişimi</span>
       </div>
       <h1 class="pd-eg__h1">NLP Uygulayıcı Eğitimi ve Sertifika Programı</h1>
-      <p class="pd-eg__hero-sub">NLP İle Zihninin Dilini Çöz. Bilinçaltına Uyan. Hayatını Dönüştür.</p>
+      <!-- Eski sayfada bu cümle H2'ydi; seviyesi korunuyor. -->
+      <h2 class="pd-eg__hero-sub">NLP İle Zihninin Dilini Çöz. Bilinçaltına Uyan. Hayatını Dönüştür.</h2>
       <div class="pd-eg__hero-price">
         <b>₺33.599</b><span>KDV dahil</span>
       </div>
@@ -379,8 +382,11 @@
 <section class="pd-eg__sec pd-eg__sec--cream" aria-label="Neden NLP">
   <div class="pd-eg__c">
     <span class="pd-eg__tag">Neden bu yöntem</span>
-    <h2 class="pd-eg__h2">Neden NLP?</h2>
-    <p class="pd-eg__lead">İşte bu sistemi çözümlemek, yeniden yapılandırmak ve hayatının direksiyonunu yeniden ele almak için geliştirilmiş; günümüzde bilimsel olarak en etkili kabul edilen kişisel dönüşüm aracıdır.</p>
+    <h2 class="pd-eg__h2">Neden NLP ?</h2>
+    <h3 class="pd-eg__h3" style="margin-bottom:12px">NLP (Neuro-Linguistic Programming)</h3>
+    <p class="pd-eg__lead">İşte bu sistemi çözümlemek, yeniden yapılandırmak ve hayatının direksiyonunu yeniden ele almak için geliştirilmiş; günümüzde bilimsel olarak en etkili kabul edilen kişisel dönüşüm aracıdır. Sadece “iyi hissetmek” değil, kanıtlanmış tekniklerle dönüşmek isteyenler için tasarlanmıştır.</p>
+    <h3 class="pd-eg__h3" style="margin-top:26px">Dışındaki değil, içindeki dünyaya uyanmaya hazır mısın?</h3>
+    <p class="pd-eg__p">Bedenindeki, zihnindeki, duygularındaki ve ruhundaki dünyayı NLP ile dönüştürmeye hoş geldin.</p>
     <div class="pd-eg__cards">
       <div class="pd-eg__card">
         <div class="pd-eg__card-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v6l-5 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-9V3"/><line x1="8" y1="3" x2="16" y2="3"/></svg></div>
@@ -437,7 +443,7 @@
       <div class="pd-eg__step">
         <div class="pd-eg__step-n">04</div>
         <div>
-          <h3 class="pd-eg__h3">Negatif iç ses, değersizlik ve yetersizlik</h3>
+          <h3 class="pd-eg__h3">Negatif İç ses, değersizlik ve yetersizlik</h3>
           <p class="pd-eg__p">Negatif iç ses, değersizlik ve yetersizlik inançları artık seni yönetemez. Bilinçaltındaki sınırlayıcı inançların yerine güçlendirici düşünce sistemleri kurarsın.</p>
         </div>
       </div>
@@ -496,7 +502,8 @@
 <section class="pd-eg__sec pd-eg__sec--lila" aria-label="Sık sorulan sorular">
   <div class="pd-eg__c">
     <span class="pd-eg__tag">Merak edilenler</span>
-    <h2 class="pd-eg__h2">NLP Uygulayıcı Eğitimi ve Sertifika Programı</h2>
+    <!-- Eski sayfada bu başlık H3'tü; seviyesi korunuyor. -->
+    <h3 class="pd-eg__h2" style="font-family:var(--h)">NLP Uygulayıcı Eğitimi ve Sertifika Programı</h3>
     <p class="pd-eg__lead">Eğitimin işleyişi, sertifika ve staj süreciyle ilgili en çok sorulanlar.</p>
     <div class="pd-eg__faq">
       <!-- KURAL: İlk akordiyon her zaman açık gelir (open). -->
@@ -543,10 +550,11 @@
     <div class="pd-eg__buy">
       <div>
         <span class="pd-eg__tag">Kayıt</span>
-        <h2 class="pd-eg__h2">NLP uygulayıcı eğitimi ve sertifika programı al</h2>
+        <h2 class="pd-eg__h2">NLP Sertifika Programına Katıl ve Hayatına Yön Ver</h2>
+        <h3 class="pd-eg__h3">NLP, sadece öğretmekle kalmaz… seni önce kendinle tanıştırır.</h3>
+        <p class="pd-eg__p">İçsel çözülmeler yaşadıkça, çevrendeki herşeyin nasıl dönüştüğünü izlersin. Bu sadece bir eğitim değil, kendini anlamanın ve hayatını yeniden inşa etmenin kapısıdır. Çünkü... Zihnini çözmeden hayatını değiştiremezsin. Ama zihnini çözdüğünde, hiçbir şey eskisi gibi kalmaz. Bugün içindeki dünyaya uyanmaya niyet ediyorsan, bu yolculukta seni NLP’nin güçlü araçlarıyla desteklemeye hazırım.</p>
+        <h2 class="pd-eg__h2" style="font-size:clamp(22px,2.4vw,30px);margin-top:26px">NLP uygulayıcı eğitimi ve sertifika programı al</h2>
         <p class="pd-eg__p">Düşünme biçimini yeniden yapılandıracak güçlü bir NLP eğitimi.</p>
-        <p class="pd-eg__p">NLP, sadece öğretmekle kalmaz — seni önce kendinle tanıştırır. İçsel çözülmeler yaşadıkça, çevrendeki her şeyin nasıl dönüştüğünü izlersin. Bu sadece bir eğitim değil, kendini anlamanın ve hayatını yeniden inşa etmenin kapısıdır.</p>
-        <p class="pd-eg__p">Çünkü zihnini çözmeden hayatını değiştiremezsin. Ama zihnini çözdüğünde, hiçbir şey eskisi gibi kalmaz.</p>
       </div>
       <div class="pd-eg__buy-card">
         <div class="pd-eg__buy-price">₺33.599</div>

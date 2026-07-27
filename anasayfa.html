@@ -178,7 +178,11 @@
 .pd-pay{background:var(--pd-cream);padding:80px 0}
 .pd-pay__head{margin-bottom:48px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .pd-pay__sub{font-family:var(--pd-b);font-size:15px;color:var(--pd-text)}
-.pd-pay__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+/* 5 kart — 6 sutunluk izgara, her kart 2 sutun kaplar.
+   4. kart 2. sutundan baslar, boylece son satirdaki 2 kart ortalanir. */
+.pd-pay__grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px}
+.pd-pay__grid > .pd-pay-card{grid-column:span 2}
+.pd-pay__grid > .pd-pay-card:nth-child(4){grid-column:2 / span 2}
 .pd-pay-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(62,42,81,.10);display:flex;flex-direction:column;transition:transform var(--pd-ease),box-shadow var(--pd-ease);border:1px solid rgba(62,42,81,.07)}
 .pd-pay-card:hover{transform:translateY(-7px);box-shadow:0 16px 52px rgba(62,42,81,.14)}
 .pd-pay-card__img-wrap{height:220px !important;overflow:hidden !important;flex-shrink:0 !important;position:relative}
@@ -193,11 +197,18 @@
 .pd-pay-card__divider{height:1px;background:rgba(62,42,81,.08);margin:18px 0}
 .pd-pay-card__price{font-family:var(--pd-h);font-size:30px;font-weight:700;color:var(--pd-violet);line-height:1;margin-bottom:4px}
 .pd-pay-card__price span{font-family:var(--pd-b);font-size:13px;font-weight:400;color:var(--pd-text);margin-left:4px}
-.pd-pay-card__actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+/* min-height: PayTR linki olmayan kartlarda alt "Detaylari Incele" satiri yok.
+   Sabit yukseklik olmazsa o kartlarin butonu digerlerinden asagida kaliyor. */
+.pd-pay-card__actions{display:flex;flex-direction:column;gap:10px;margin-top:18px;min-height:88px}
 .pd-pay-card__buy{font-family:var(--pd-b);font-size:14px;font-weight:700;letter-spacing:.04em;text-align:center;padding:14px;border-radius:8px;background:var(--pd-gold);color:#fff;transition:background var(--pd-ease),transform var(--pd-ease),box-shadow var(--pd-ease);display:flex;align-items:center;justify-content:center;gap:8px}
 .pd-pay-card__buy:hover{background:var(--pd-gold-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(114,95,153,.38)}
 .pd-pay-card__detail{font-family:var(--pd-b);font-size:13px;font-weight:500;text-align:center;color:var(--pd-violet);opacity:.6;padding:8px;display:block;transition:opacity var(--pd-ease),color var(--pd-ease)}
 .pd-pay-card__detail:hover{opacity:1;color:var(--pd-blue)}
+
+/* Kampanya rozeti (gorselin sag ustu) + uzeri cizili eski fiyat */
+.pd-pay-card__badge--kampanya{left:auto;right:14px;background:var(--pd-gold);box-shadow:0 4px 14px rgba(114,95,153,.40)}
+.pd-pay-card__price-old{font-family:var(--pd-b);font-size:17px;font-weight:600;color:#9a93a8;text-decoration:line-through;line-height:1;margin-bottom:6px}
+.pd-pay-card__price-note{font-family:var(--pd-b);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--pd-gold);margin-top:6px}
 
 /* ═══════════════════════════════════════════════
    5. YOUTUBE — flex + scroll-snap + modal
@@ -400,14 +411,21 @@
   .pd-about__grid{grid-template-columns:1fr;gap:48px}
   .pd-about__badge{right:16px}
   .pd-about__img-wrap::before,.pd-about__img-wrap::after{display:none}
-  .pd-pay__grid{grid-template-columns:1fr 1fr}
+  /* tablet: satir basina 2 kart, tek kalan 5. kart ortalanir */
+  .pd-pay__grid{grid-template-columns:repeat(4,1fr)}
+  .pd-pay__grid > .pd-pay-card:nth-child(4){grid-column:span 2}
+  .pd-pay__grid > .pd-pay-card:nth-child(5){grid-column:2 / span 2}
   .pd-list__name{font-size:16px}
 }
 @media(max-width:767px){
   .pd-hero{height:90vh;min-height:500px}
   .pd-hero-desc{font-size:15px;margin-bottom:24px}
   .pd-hero-actions{flex-direction:column;align-items:flex-start;gap:10px}
+  /* mobil: tek sutun, izgara istisnalari sifirlanir */
   .pd-pay__grid{grid-template-columns:1fr}
+  .pd-pay__grid > .pd-pay-card,
+  .pd-pay__grid > .pd-pay-card:nth-child(4),
+  .pd-pay__grid > .pd-pay-card:nth-child(5){grid-column:auto}
   .pd-about,.pd-list,.pd-pay,.pd-yt,.pd-reviews,.pd-cta-final{padding:56px 0}
   .pd-pg .pd-c,.pd-pg .yt-wrap{padding:0 16px}
   .pd-list__item{flex-direction:column;align-items:flex-start;gap:8px;padding:14px 12px}
@@ -420,6 +438,41 @@
   .pd-hero-title{font-size:34px}
   .pd-pay-card__price{font-size:26px}
   .pd-about__badge{right:0;bottom:16px}
+}
+
+/* ═══════════════════════════════════════════════
+   ELEMENTOR GLOBAL LINK RENGI EZMESI
+   Elementor Kit su kurali yaziyor:
+       .elementor-kit-11 a { color: var(--e-global-color-secondary) }
+   Bu secici iki parcali (sinif + etiket) oldugu icin bizim tek
+   sinifli kurallarimizi yeniyor; butonlarin yazisi beyaz yerine
+   soluk mor (#7970C9) cikiyordu. Asagidaki kurallar ".pd-pg"
+   onekiyle ozgullugu yukseltip dogru rengi geri veriyor.
+   27.07.2026'da canlida olculerek tespit edildi (12 baglanti etkilenmisti).
+   ═══════════════════════════════════════════════ */
+.pd-pg a.pd-pay-card__buy{color:#fff}
+.pd-pg a.pd-pay-card__buy:hover{color:#fff}
+.pd-pg a.pd-pay-card__detail{color:var(--pd-violet)}
+.pd-pg a.pd-pay-card__detail:hover{color:var(--pd-blue)}
+.pd-pg a.pd-list__item{color:#fff}
+.pd-pg a.pd-cta-card{color:#fff}
+
+/* ═══════════════════════════════════════════════
+   TAM GENISLIK DUZELTMESI
+   Yukaridaki ".pd-pg" kurali Elementor HTML widget'i icin
+   yazilmisti: Elementor icerigi dar bir kaba koydugu icin
+   100vw ile disari tasmak gerekiyordu.
+   Bu sayfa ise Gutenberg + "Elementor Tam Genislik" sablonu ile
+   yayinlaniyor; .pd-pg zaten <body>'nin dogrudan cocugu ve tam
+   genislikte. Orada 100vw kaydirma cubugunu da saydigi icin
+   sayfada 11px yatay tasma (ve alt kaydirma cubugu) olusuyordu.
+   27.07.2026'da canlida olculdu: scrollWidth 1697 > clientWidth 1686.
+   ═══════════════════════════════════════════════ */
+.pd-pg{
+  margin-left:0 !important;
+  margin-right:0 !important;
+  width:100% !important;
+  max-width:100% !important;
 }
 </style>
 
@@ -445,28 +498,30 @@
       </div>
 
       <!-- Slide 2: NLP — pd-hs2 -->
+      <!-- Slide 2: İleri Seviye İlişki Blokajları — pd-hs2
+           DİKKAT: Sayfada tek H1 olmalı. İlk slayt h1, diğerleri h2. -->
       <div class="swiper-slide pd-hero-slide pd-hs2">
-        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg')"></div>
+        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg')"></div>
         <div class="pd-hero-content"><div class="pd-hero-inner">
           <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
-          <h1 class="pd-hero-title">NLP Uygulayıcı Eğitimi<br>ve Sertifika Programı</h1>
-          <p class="pd-hero-desc">Beyninin dilini çöz, düşünce kalıplarını yeniden yapılandır — uluslararası onaylı sertifikanla güçlü bir adım at.</p>
+          <h2 class="pd-hero-title">Evlilik ve İleri<br>Seviye İlişki<br>Atölyesi</h2>
+          <p class="pd-hero-desc">Bilinçaltındaki ilişki kalıplarını dönüştür, derin bağ kur ve ilişkinde sürdürülebilir bir sevgi alanı yarat.</p>
           <div class="pd-hero-actions">
-            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
           </div>
         </div></div>
       </div>
 
-      <!-- Slide 3: Evlilik Atölyesi — pd-hs3 -->
+      <!-- Slide 3: NLP Uygulayıcı Eğitimi — pd-hs3 -->
       <div class="swiper-slide pd-hero-slide pd-hs3">
-        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg')"></div>
+        <div class="pd-hero-bg" style="background-image:url('https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg')"></div>
         <div class="pd-hero-content"><div class="pd-hero-inner">
           <div class="pd-hero-badge">Pozitif Dünya Eğitimleri</div>
-          <h1 class="pd-hero-title">Evlilik ve İleri<br>Seviye İlişki<br>Atölyesi</h1>
-          <p class="pd-hero-desc">Bilinçaltındaki ilişki kalıplarını dönüştür, derin bağ kur ve ilişkinde sürdürülebilir bir sevgi alanı yarat.</p>
+          <h2 class="pd-hero-title">NLP Uygulayıcı Eğitimi<br>ve Sertifika Programı</h2>
+          <p class="pd-hero-desc">Beyninin dilini çöz, düşünce kalıplarını yeniden yapılandır — uluslararası onaylı sertifikanla güçlü bir adım at.</p>
           <div class="pd-hero-actions">
-            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a class="pd-btn pd-btn-gold" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">Detayları Gör <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             <a class="pd-btn pd-btn-outline" href="#odeme-vitrin">Hemen Kayıt Ol</a>
           </div>
         </div></div>
@@ -486,18 +541,20 @@
     <div class="pd-about__grid">
       <div class="pd-about__img-wrap">
         <img class="pd-about__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/06/para-egitimi-sayfasi-icin-scaled.jpg" alt="Gülhan Toktay — NLP Trainer ve İlişki Koçu" loading="lazy">
-        <div class="pd-about__badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><em>17+</em> Yıl</span></div>
+        <div class="pd-about__badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><em>17</em> Yıl Deneyim</span></div>
       </div>
       <div>
         <div class="pd-tag">Kimim?</div>
         <h2 class="pd-h2" style="margin-bottom:6px">Gülhan Toktay</h2>
         <span class="pd-about__sub">NLP Trainer · İlişki Koçu · Bilinçaltı Dönüşüm Uzmanı</span>
-        <p class="pd-about__desc">Dışındaki değil, içindeki dünyaya uyanmak isteyenler için buradayım. 17 yılı aşkın NLP eğitmenliği, ilişki koçluğu ve bilinçaltı dönüşüm pratiğimle; ilişkilerinde, kariyer yolculuğunda ve hayatının her alanında gerçek ve kalıcı değişim yaşamana destek oluyorum.</p>
-        <p class="pd-about__desc" style="margin-top:-10px;margin-bottom:28px">Beyninin dilini çözüyoruz, eski kalıplardan özgürleşiyorsun. Duygularına alan açtığın her adımda birlikteyiz.</p>
+        <!-- Metin /hakkimda/ sayfasindaki gercek biyografiden uyarlandi. Uydurma bilgi yok. -->
+        <p class="pd-about__desc">Siyaset Bilimi ve Kamu Yönetimi alanında yüksek lisansımı tamamladım. 17 yıl boyunca kamuda görev yaparken özellikle eğitim, kişisel gelişim ve meslek edindirme alanlarında projeler geliştirip uyguladım. Bugün kamu ve özel sektöre yönelik eğitim projeleri tasarlamaya, danışmanlık vermeye ve bireylerin hayatlarına dokunmaya devam ediyorum.</p>
+        <p class="pd-about__desc" style="margin-top:-10px;margin-bottom:28px">16 yaşımda bir kişisel gelişim kitabı sayesinde NLP ile tanıştım. Bugün tüm eğitim programlarımın altyapısında NLP var — çünkü NLP sadece bir teknik değil, beynin diliyle çalışan bir teknolojidir.</p>
         <ul class="pd-about__list">
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>NLP Trainer — E-Devlet ve uluslararası onaylı sertifika</li>
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Money Brain Code™ — Patentli Zenginlik ve Başarı Programı'nın sahibi</li>
-          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Binlerce kişinin dönüşüm yolculuğuna tanıklık etti</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Siyaset Bilimi ve Kamu Yönetimi yüksek lisansı</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Sertifikalı NLP eğitmeni — bireysel ve profesyonel koçluk süreçleri</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Türkiye Belediyeler Birliği ödüllü “STÜDYO-Z” projesinin sahibi</li>
+          <li class="pd-about__li"><div class="pd-about__check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#3e2a51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Tescilli eğitim markası “Money Brain Code”</li>
         </ul>
         <div class="pd-about__actions">
           <a class="pd-btn pd-btn-navy" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda Sayfası <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -520,10 +577,12 @@
     </div>
     <div class="pd-pay__grid">
 
+      <!-- 1 — Duygu Odaklı Eril Dişil Denge (KAMPANYALI) -->
       <div class="pd-pay-card">
         <div class="pd-pay-card__img-wrap">
-          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/disil-enerji-egitimi-banner.jpg" alt="Eril Dişil Denge Eğitimi" style="object-position:72% center">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/disil-enerji-egitimi-banner.jpg" alt="Duygu Odaklı Eril Dişil Denge Eğitimi" style="object-position:72% center">
           <span class="pd-pay-card__badge">Canlı Online</span>
+          <span class="pd-pay-card__badge pd-pay-card__badge--kampanya">Ağustos'a Özel</span>
         </div>
         <div class="pd-pay-card__body">
           <div class="pd-pay-card__title">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</div>
@@ -534,7 +593,9 @@
             <li class="pd-pay-card__feat">KDV dahil fiyat</li>
           </ul>
           <div class="pd-pay-card__divider"></div>
-          <div class="pd-pay-card__price">₺7.000 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__price-old">₺12.900</div>
+          <div class="pd-pay-card__price">₺7.777 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__price-note">Ağustos Ayına Özel</div>
           <div class="pd-pay-card__actions">
             <a class="pd-pay-card__buy" href="https://www.paytr.com/link/9dbXluR" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
             <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Eğitim Detaylarını İncele →</a>
@@ -542,6 +603,52 @@
         </div>
       </div>
 
+      <!-- 2 — Bireysel Seans Al (PayTR linki yok, sayfaya yönlendirir) -->
+      <div class="pd-pay-card">
+        <div class="pd-pay-card__img-wrap">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/05/woman-life-coach-in-headset-conducts-online-consultation-by-video-call-on-laptop-in-bedroom-at-home.jpg" alt="Bireysel Seans">
+          <span class="pd-pay-card__badge">Birebir</span>
+        </div>
+        <div class="pd-pay-card__body">
+          <div class="pd-pay-card__title">Bireysel Seans Al</div>
+          <ul class="pd-pay-card__features">
+            <li class="pd-pay-card__feat">1 saat birebir seans (Zoom veya WhatsApp)</li>
+            <li class="pd-pay-card__feat">Bağlanma stili ve tetikleyici analizi</li>
+            <li class="pd-pay-card__feat">Bilimsel temelli 2 test ile bilinçaltı haritası</li>
+            <li class="pd-pay-card__feat">İlk seansta hedefe göre süreç planı</li>
+          </ul>
+          <div class="pd-pay-card__divider"></div>
+          <div class="pd-pay-card__price">₺4.500 <span>seans başı</span></div>
+          <div class="pd-pay-card__actions">
+            <a class="pd-pay-card__buy" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Detayları İncele</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Evlilik ve İleri Seviye İlişki Atölyesi -->
+      <div class="pd-pay-card">
+        <div class="pd-pay-card__img-wrap">
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg" alt="Evlilik ve İleri Seviye İlişki Atölyesi">
+          <span class="pd-pay-card__badge">Atölye</span>
+        </div>
+        <div class="pd-pay-card__body">
+          <div class="pd-pay-card__title">Evlilik ve İleri Seviye İlişki Atölyesi</div>
+          <ul class="pd-pay-card__features">
+            <li class="pd-pay-card__feat">3 canlı ders (Zoom)</li>
+            <li class="pd-pay-card__feat">1 ay WhatsApp danışmanlık desteği</li>
+            <li class="pd-pay-card__feat">1 birebir hediye seans dahil</li>
+            <li class="pd-pay-card__feat">3 ay sınırsız video erişimi</li>
+          </ul>
+          <div class="pd-pay-card__divider"></div>
+          <div class="pd-pay-card__price">₺16.500 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__actions">
+            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/xvRn0y3" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
+            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Eğitim Detaylarını İncele →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — NLP Uygulayıcı Eğitimi -->
       <div class="pd-pay-card">
         <div class="pd-pay-card__img-wrap">
           <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/nlp-egitimi-banner.jpg" alt="NLP Uygulayıcı Eğitimi">
@@ -564,24 +671,24 @@
         </div>
       </div>
 
+      <!-- 5 — Money Brain Code (PayTR linki yok, sayfaya yönlendirir) -->
       <div class="pd-pay-card">
         <div class="pd-pay-card__img-wrap">
-          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2026/04/iliski-blokaji-egitimi-banner.jpg" alt="Evlilik İlişki Atölyesi">
-          <span class="pd-pay-card__badge">Atölye</span>
+          <img class="pd-pay-card__img" src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/06/closeup-image-of-brain-and-money-2025-03-13-16-56-57-utc-scaled.jpeg" alt="Money Brain Code">
+          <span class="pd-pay-card__badge">Tescilli Program</span>
         </div>
         <div class="pd-pay-card__body">
-          <div class="pd-pay-card__title">Evlilik ve İleri Seviye İlişki Atölyesi</div>
+          <div class="pd-pay-card__title">Money Brain Code™</div>
           <ul class="pd-pay-card__features">
-            <li class="pd-pay-card__feat">3 canlı ders (Zoom)</li>
-            <li class="pd-pay-card__feat">1 ay WhatsApp danışmanlık desteği</li>
-            <li class="pd-pay-card__feat">1 birebir hediye seans dahil</li>
-            <li class="pd-pay-card__feat">3 ay sınırsız video erişimi</li>
+            <li class="pd-pay-card__feat">4 canlı dönüşüm dersi</li>
+            <li class="pd-pay-card__feat">2 bireysel seans</li>
+            <li class="pd-pay-card__feat">30 gün WhatsApp danışmanlığı</li>
+            <li class="pd-pay-card__feat">3 ay ders erişimi</li>
           </ul>
           <div class="pd-pay-card__divider"></div>
-          <div class="pd-pay-card__price">₺16.500 <span>KDV dahil</span></div>
+          <div class="pd-pay-card__price">₺33.500 <span>KDV dahil</span></div>
           <div class="pd-pay-card__actions">
-            <a class="pd-pay-card__buy" href="https://www.paytr.com/link/xvRn0y3" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>Güvenli Satın Al</a>
-            <a class="pd-pay-card__detail" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Eğitim Detaylarını İncele →</a>
+            <a class="pd-pay-card__buy" href="https://www.pozitifdunya.com.tr/money-brain-code/"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Detayları İncele</a>
           </div>
         </div>
       </div>
@@ -598,17 +705,9 @@
       <h2 class="pd-h2 light">Diğer Eğitimlerimiz</h2>
     </div>
     <div class="pd-list__grid">
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/money-brain-code/">
-        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="pd-list__name">Money Brain Code™</span></div>
-        <div class="pd-list__right"><span class="pd-list__price">₺33.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-      </a>
       <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="pd-list__name">5'li Online Bireysel Danışmanlık Paketi</span></div>
         <div class="pd-list__right"><span class="pd-list__price">₺20.000</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-      </a>
-      <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">
-        <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="pd-list__name">Bireysel Seans Al</span></div>
-        <div class="pd-list__right"><span class="pd-list__price">₺4.500</span><svg class="pd-list__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a class="pd-list__item" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">
         <div class="pd-list__left"><div class="pd-list__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="pd-list__name">Öğrenci Koçluğu Bireysel Seansı</span></div>

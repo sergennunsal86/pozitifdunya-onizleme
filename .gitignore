@@ -5,6 +5,8 @@
 gsc-rapor-*/
 # Site teşhis & bakım notları (güvenlik açığı detayı içerir)
 site-bakim-*/
+# Canlıya alma planları (site yapısı, eklenti listesi, iç değerlendirme)
+canliya-alma-plani-*/
 # Playwright geçici çıktıları
 .playwright-mcp/
 

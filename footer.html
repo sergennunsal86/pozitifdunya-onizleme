@@ -1,0 +1,242 @@
+<!-- ================================================================
+     Pozitif Dünya — Footer v1.0
+     Elementor Theme Builder → Footer şablonu, HTML widget'ına yapıştır
+     Tüm kurallar .pd-ft öneki ile izole edilmiştir.
+     ================================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+.pd-ft *, .pd-ft *::before, .pd-ft *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.pd-ft a { text-decoration: none; }
+.pd-ft ul { list-style: none; }
+.pd-ft img { display: block; max-width: 100%; }
+
+.pd-ft {
+  --ft-navy:   #3e2a51;
+  --ft-deep:   #2d1f3d;
+  --ft-violet: #725F99;
+  --ft-lav:    #B8A9D5;
+  --ft-pastel: #CEC9EB;
+  --ft-h: 'Playfair Display', serif;
+  --ft-b: 'Inter', sans-serif;
+  --ft-ease: 0.26s ease;
+
+  position: relative;
+  background: linear-gradient(178deg, var(--ft-navy) 0%, var(--ft-deep) 100%);
+  font-family: var(--ft-b);
+  color: rgba(255,255,255,0.72);
+  padding: 0;
+  width: 100%;
+}
+/* üst kenarda marka gradyanı */
+.pd-ft::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #3e2a51 0%, #725F99 45%, #B8A9D5 100%);
+}
+
+.pd-ft__wrap { max-width: 1280px; margin: 0 auto; padding: 64px 32px 0; }
+
+.pd-ft__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.25fr;
+  gap: 48px;
+  padding-bottom: 52px;
+}
+
+/* ── Marka sütunu ── */
+.pd-ft__logo img { height: 46px; width: auto; filter: brightness(0) invert(1); opacity: .95; }
+.pd-ft__tagline {
+  font-size: 14.5px; line-height: 1.75; color: rgba(255,255,255,0.62);
+  margin-top: 20px; max-width: 340px;
+}
+.pd-ft__soc-row { display: flex; gap: 9px; margin-top: 26px; }
+.pd-ft__soc {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.13);
+  background: rgba(255,255,255,0.04);
+  transition: color var(--ft-ease), border-color var(--ft-ease), background var(--ft-ease), transform var(--ft-ease);
+}
+.pd-ft__soc:hover {
+  color: #fff; border-color: var(--ft-violet);
+  background: rgba(114,95,153,0.30);
+  transform: translateY(-2px);
+}
+
+/* ── Sütun başlıkları ── */
+.pd-ft__title {
+  font-family: var(--ft-b);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ft-lav);
+  margin-bottom: 20px; display: block;
+}
+
+/* ── Bağlantı listeleri ── */
+.pd-ft__list { display: flex; flex-direction: column; gap: 11px; }
+.pd-ft__link {
+  position: relative;
+  font-size: 14.5px; line-height: 1.45;
+  color: rgba(255,255,255,0.70);
+  padding-left: 0;
+  transition: color var(--ft-ease), padding-left var(--ft-ease);
+}
+.pd-ft__link:hover { color: var(--ft-pastel); padding-left: 8px; }
+.pd-ft__link::before {
+  content: '';
+  position: absolute; left: 0; top: 50%;
+  width: 4px; height: 1px; background: var(--ft-lav);
+  transform: translateY(-50%) scaleX(0); transform-origin: left;
+  transition: transform var(--ft-ease);
+}
+.pd-ft__link:hover::before { transform: translateY(-50%) scaleX(1); }
+
+/* ── İletişim sütunu ── */
+.pd-ft__contact { display: flex; flex-direction: column; gap: 16px; }
+.pd-ft__ci { display: flex; gap: 12px; align-items: flex-start; }
+.pd-ft__ci-icon {
+  width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(114,95,153,0.24); color: var(--ft-pastel);
+}
+.pd-ft__ci-text { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.72); padding-top: 6px; }
+a.pd-ft__ci-text { transition: color var(--ft-ease); }
+a.pd-ft__ci-text:hover { color: #fff; }
+
+.pd-ft__cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  margin-top: 6px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
+  color: #fff;
+  background: var(--ft-violet);
+  padding: 14px 22px; border-radius: 9px;
+  box-shadow: 0 8px 24px rgba(114,95,153,0.32);
+  transition: background var(--ft-ease), transform var(--ft-ease);
+}
+.pd-ft__cta:hover { background: #674980; transform: translateY(-2px); }
+
+/* ── Alt şerit ── */
+.pd-ft__bottom {
+  border-top: 1px solid rgba(255,255,255,0.10);
+  padding: 22px 0 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 18px; flex-wrap: wrap;
+}
+.pd-ft__copy { font-size: 13px; color: rgba(255,255,255,0.45); }
+.pd-ft__copy a { color: rgba(255,255,255,0.62); transition: color var(--ft-ease); }
+.pd-ft__copy a:hover { color: var(--ft-pastel); }
+.pd-ft__legal { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.pd-ft__legal a {
+  font-size: 12.5px; color: rgba(255,255,255,0.45);
+  transition: color var(--ft-ease);
+}
+.pd-ft__legal a:hover { color: var(--ft-pastel); }
+
+/* ── Responsive ── */
+@media (max-width: 1023px) {
+  .pd-ft__wrap { padding: 56px 24px 0; }
+  .pd-ft__grid { grid-template-columns: 1fr 1fr; gap: 40px 32px; }
+  .pd-ft__brand { grid-column: 1 / -1; }
+  .pd-ft__tagline { max-width: 520px; }
+}
+@media (max-width: 639px) {
+  .pd-ft__wrap { padding: 44px 20px 0; }
+  .pd-ft__grid { grid-template-columns: 1fr; gap: 34px; padding-bottom: 36px; }
+  .pd-ft__bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .pd-ft__legal { gap: 6px 16px; }
+}
+</style>
+
+<footer class="pd-ft" aria-label="Site alt bilgi">
+  <div class="pd-ft__wrap">
+    <div class="pd-ft__grid">
+
+      <!-- Marka -->
+      <div class="pd-ft__brand">
+        <a class="pd-ft__logo" href="https://www.pozitifdunya.com.tr/" aria-label="Pozitif Dünya ana sayfa">
+          <img src="https://www.pozitifdunya.com.tr/wp-content/uploads/2025/05/PozitifDunya-Logo.png" alt="Pozitif Dünya" width="180" height="46" loading="lazy">
+        </a>
+        <p class="pd-ft__tagline">İçsel denge, farkındalık ve dönüşüm yolculuğunuzda yanınızdayız. Duygularınıza alan açtığınız her adımda birlikteyiz.</p>
+        <div class="pd-ft__soc-row">
+          <a class="pd-ft__soc" href="https://www.instagram.com/pozitiffdunyam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a class="pd-ft__soc" href="https://www.facebook.com/profile.php?id=100087200362730" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a class="pd-ft__soc" href="https://www.youtube.com/@GulhanToktay" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.46-5.17a2.98 2.98 0 0 0-2.1-2.11C18.77 4.25 12 4.25 12 4.25s-6.77 0-8.44.47a2.98 2.98 0 0 0-2.1 2.11C1 8.5 1 12 1 12s0 3.5.46 5.17a2.98 2.98 0 0 0 2.1 2.11c1.67.47 8.44.47 8.44.47s6.77 0 8.44-.47a2.98 2.98 0 0 0 2.1-2.11C23 15.5 23 12 23 12zM9.75 15.02V8.98L15.5 12z"/></svg>
+          </a>
+          <a class="pd-ft__soc" href="https://www.linkedin.com/in/g%C3%BClhan-toktay-096698288/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM6 9H2v12h4zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Eğitimler -->
+      <div>
+        <span class="pd-ft__title">Eğitimler</span>
+        <ul class="pd-ft__list">
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/">Eril Dişil Denge Eğitimi</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/">NLP Uygulayıcı Eğitimi</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/">Evlilik ve İlişki Atölyesi</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/money-brain-code/">Money Brain Code™</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/bireysel-seans-al/">Bireysel Seans Al</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/5li-online-bireysel-danismanlik-paketi/">5'li Danışmanlık Paketi</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/ogrenci-koclugu-bireysel-seansi/">Öğrenci Koçluğu Seansı</a></li>
+        </ul>
+      </div>
+
+      <!-- Kurumsal -->
+      <div>
+        <span class="pd-ft__title">Keşfet</span>
+        <ul class="pd-ft__list">
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/">Ana Sayfa</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/hakkimda/">Hakkımda</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/makaleler/">Makaleler</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/iletisim/">İletişim</a></li>
+          <li><a class="pd-ft__link" href="https://www.pozitifdunya.com.tr/egitimler/">Ders Kayıtları</a></li>
+        </ul>
+      </div>
+
+      <!-- İletişim -->
+      <div>
+        <span class="pd-ft__title">İletişim</span>
+        <div class="pd-ft__contact">
+          <div class="pd-ft__ci">
+            <div class="pd-ft__ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="4,6 12,13 20,6"/></svg></div>
+            <a class="pd-ft__ci-text" href="mailto:info@pozitifdunya.com.tr">info@pozitifdunya.com.tr</a>
+          </div>
+          <div class="pd-ft__ci">
+            <div class="pd-ft__ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div>
+            <a class="pd-ft__ci-text" href="tel:+905419052977">0541 905 29 77</a>
+          </div>
+          <div class="pd-ft__ci">
+            <div class="pd-ft__ci-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <span class="pd-ft__ci-text">Kemal Türkler Mah. Hüma Sokak No:16F<br>Sancaktepe / İstanbul</span>
+          </div>
+          <a class="pd-ft__cta" href="https://www.pozitifdunya.com.tr/iletisim/">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Bana Ulaşın
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pd-ft__bottom">
+      <div class="pd-ft__copy">© 2026 Pozitif Dünya. Tüm hakları saklıdır. Powered by <a href="https://dijital4.com" target="_blank" rel="noopener noreferrer">Dijital4</a></div>
+      <nav class="pd-ft__legal" aria-label="Yasal bilgiler">
+        <a href="https://www.pozitifdunya.com.tr/cerezler/">Çerezler Aydınlatma Metni</a>
+        <a href="https://www.pozitifdunya.com.tr/kvkk/">KVKK</a>
+        <a href="https://www.pozitifdunya.com.tr/yasal-uyari/">Yasal Uyarı</a>
+        <a href="https://www.pozitifdunya.com.tr/acik-riza-beyani/">Açık Rıza Beyanı</a>
+        <a href="https://www.pozitifdunya.com.tr/telif-hakki/">Telif Hakkı</a>
+      </nav>
+    </div>
+  </div>
+</footer>

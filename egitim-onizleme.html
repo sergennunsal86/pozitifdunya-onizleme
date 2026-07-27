@@ -23,13 +23,6 @@
     body { background: #fff; }
 
     /* Elementor container simülasyonu — pd-pg breakout için gerekli */
-    /* ÖNİZLEME NOTU
-       Ana sayfa önizlemesinde .preview-wrap, Elementor'un dar kabını
-       taklit etmek için 1280px ile sınırlanıyordu. Eğitim sayfası
-       canlıda tam genişlik şablonuyla (Gutenberg + tam genişlik)
-       yayınlanacağı için burada sınırı kaldırıyoruz — aksi hâlde
-       bölümler kutulanıyor ve sabit header'ın beyaz logosu
-       kenardaki beyaz alanda kayboluyor. */
     .preview-wrap {
       max-width: none;
       margin: 0;
@@ -1131,8 +1124,19 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
 .pd-eg__sec--cream { background: var(--cream); }
 .pd-eg__sec--lila  { background: linear-gradient(168deg, #FBFAFD 0%, #F1EEF8 100%); }
 .pd-eg__sec--dark  { background: linear-gradient(168deg, var(--violet) 0%, var(--deep) 100%); }
-.pd-eg__sec--dark .pd-eg__p, .pd-eg__sec--dark .pd-eg__lead { color: rgba(255,255,255,0.76); }
-.pd-eg__sec--dark .pd-eg__h3 { color: #fff; }
+
+/* KOYU BÖLÜM METİN RENKLERİ — özgüllük notu
+   Temel kurallar ".pd-eg p.pd-eg__p" biçiminde yazılı (etiket + 2 sınıf),
+   çünkü Elementor'un link/tipografi ezmesini yenmeleri gerekiyor.
+   Bu yüzden koyu bölüm istisnası da en az o kadar özgül olmalı;
+   ".pd-eg__sec--dark .pd-eg__p" (2 sınıf) yetmiyordu ve yazılar koyu
+   zeminde koyu mor kalıp okunmuyordu. 27.07.2026'da düzeltildi. */
+.pd-eg .pd-eg__sec--dark h2.pd-eg__h2,
+.pd-eg .pd-eg__sec--dark h3.pd-eg__h3 { color: #ffffff; }
+.pd-eg .pd-eg__sec--dark p.pd-eg__p { color: rgba(255,255,255,0.78); }
+.pd-eg .pd-eg__sec--dark .pd-eg__lead { color: rgba(255,255,255,0.74); }
+.pd-eg .pd-eg__sec--dark .pd-eg__step { border-bottom-color: rgba(255,255,255,0.14); }
+.pd-eg .pd-eg__sec--dark .pd-eg__step-n { color: var(--lav); }
 
 .pd-eg__split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .pd-eg__split-img { border-radius: 16px; overflow: hidden; box-shadow: 0 18px 52px rgba(62,42,81,0.16); }
@@ -1384,7 +1388,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
   <div class="pd-eg__c">
     <span class="pd-eg__tag light">Dönüşüm alanları</span>
     <h2 class="pd-eg__h2 light">NLP ile Neleri Dönüştürebilirsin?</h2>
-    <p class="pd-eg__lead" style="color:rgba(255,255,255,0.72)">NLP sadece bireysel dönüşüm aracı değil, aynı zamanda profesyonel yaşamda da devrim yaratabilecek bir bilinçaltı teknolojisidir. İster danışanla çalışan bir uzmansın, ister kendi iç yolculuğuna çıkan bir birey — NLP, zihnin dilini çözerek hem senin hem de çevrendekilerin yaşamında kalıcı fark yaratmanı sağlar.</p>
+    <p class="pd-eg__lead">NLP sadece bireysel dönüşüm aracı değil, aynı zamanda profesyonel yaşamda da devrim yaratabilecek bir bilinçaltı teknolojisidir. İster danışanla çalışan bir uzmansın, ister kendi iç yolculuğuna çıkan bir birey — NLP, zihnin dilini çözerek hem senin hem de çevrendekilerin yaşamında kalıcı fark yaratmanı sağlar.</p>
     <div class="pd-eg__steps">
       <div class="pd-eg__step">
         <div class="pd-eg__step-n">01</div>
@@ -1472,7 +1476,8 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
     <h2 class="pd-eg__h2">NLP Uygulayıcı Eğitimi ve Sertifika Programı</h2>
     <p class="pd-eg__lead">Eğitimin işleyişi, sertifika ve staj süreciyle ilgili en çok sorulanlar.</p>
     <div class="pd-eg__faq">
-      <details class="pd-eg__q">
+      <!-- KURAL: İlk akordiyon her zaman açık gelir (open). -->
+      <details class="pd-eg__q" open>
         <summary>Bu eğitim tam olarak neyi kapsıyor?</summary>
         <div class="pd-eg__a">Eğitim canlı ve interaktif dersler şeklinde gerçekleştirilir. Her derste NLP’nin temel kavramları, ileri seviye teknikleri ve uygulama yöntemleri detaylı olarak aktarılır. Katılımcılar derse aktif olarak katılır, uygulamalı çalışmalar yapar ve soru-cevap bölümlerinde doğrudan etkileşimde bulunur. Eğitim tamamlandıktan sonra tüm ders kayıtlarına 3 ay boyunca sınırsız erişim sağlanır.</div>
       </details>

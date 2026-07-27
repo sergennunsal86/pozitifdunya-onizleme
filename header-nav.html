@@ -140,13 +140,39 @@
   background: transparent;
   transition: background var(--pd-ease), box-shadow var(--pd-ease), height var(--pd-ease);
 }
+/* Saydam durumda menü beyaz yazıyor. Banner açık renkliyse yazı okunmaz hâle
+   gelir. Bunu banner'a bırakmıyoruz: header'ın kendi altında garantili bir
+   koyu perde var. Nav alanı her zaman en az %55 koyu, altındaki 64px'lik şerit
+   de yumuşak geçiş sağlıyor ki keskin bir çizgi oluşmasın. */
 .pd-nav.pd-transparent {
   background: linear-gradient(
     to bottom,
-    rgba(62,42,81,0.68) 0%,
-    rgba(62,42,81,0.18) 60%,
-    transparent 100%
+    rgba(45,31,61,0.80) 0%,
+    rgba(45,31,61,0.58) 100%
   );
+}
+.pd-nav.pd-transparent::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 64px;
+  background: linear-gradient(to bottom, rgba(45,31,61,0.58), rgba(45,31,61,0));
+  pointer-events: none;
+}
+/* İkinci güvence: çok parlak bir görselde perde bile yetmezse yazı kendi
+   gölgesiyle ayrışsın. Koyu zeminde gözle fark edilmez. */
+.pd-nav.pd-transparent .pd-menu__link,
+.pd-nav.pd-transparent .pd-cta,
+.pd-nav.pd-transparent .pd-menu__link .pd-caret {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.38);
+}
+.pd-nav.pd-transparent .pd-logo img {
+  filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0,0,0,0.38));
+}
+.pd-nav.pd-transparent .pd-b1,
+.pd-nav.pd-transparent .pd-b2,
+.pd-nav.pd-transparent .pd-b3 {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
 }
 .pd-nav.pd-solid {
   background: rgba(255,255,255,0.96);
@@ -628,7 +654,12 @@ body:has(.pd-mobile.is-open) .pd-nav .pd-logo img { filter: none !important; }
 <!-- ═══════════════════════════════════════════
      HEADER
 ═══════════════════════════════════════════ -->
-<header class="pd-nav pd-transparent" id="pd-nav" role="banner">
+<!-- Başlangıç hâli BİLEREK "pd-solid" (beyaz). Saydama geçişi script yapıyor.
+     Sebebi: script bir şekilde çalışmazsa header saydam kalırdı ve banner'sız
+     beyaz sayfalarda beyaz yazı beyaz zeminde kaybolurdu. Bu sıralamada en kötü
+     ihtimalde okunur bir beyaz header kalır. Script gövdeden hemen sonra
+     çalıştığı için ana sayfada göze çarpan bir geçiş olmuyor. -->
+<header class="pd-nav pd-solid" id="pd-nav" role="banner">
   <div class="pd-nav__wrap">
 
     <a class="pd-logo" href="https://www.pozitifdunya.com.tr/" aria-label="Pozitif Dünya Ana Sayfa">
@@ -907,7 +938,7 @@ body:has(.pd-mobile.is-open) .pd-nav .pd-logo img { filter: none !important; }
     } catch (e) {}
   });
 
-  console.log('[PD-Nav] v2.3 yüklendi. overlayHero:', overlayHero, '| path:', cur);
+  console.log('[PD-Nav] v2.4 yüklendi. overlayHero:', overlayHero, '| path:', cur);
 
 })();
 </script>

@@ -293,52 +293,94 @@ header.pd-nav.pd-solid .pd-menu__link.is-active { color: var(--pd-gold-dk) !impo
 
 .pd-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   left: 50%;
-  transform: translateX(-50%) translateY(-6px);
-  background: var(--pd-white);
-  border-radius: 12px;
-  box-shadow: 0 10px 48px rgba(62,42,81,0.16);
-  border-top: 3px solid var(--pd-gold);
-  padding: 10px;
-  min-width: 340px;
+  transform: translateX(-50%) translateY(-8px);
+  background: linear-gradient(168deg, #FFFFFF 0%, #FBF9FD 52%, #F4F1FA 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(184,169,213,0.38);
+  box-shadow: 0 20px 60px rgba(62,42,81,0.22), 0 2px 10px rgba(62,42,81,0.08);
+  padding: 16px 12px 12px;
+  min-width: 400px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  gap: 4px;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  overflow: hidden;
   transition: opacity var(--pd-ease), transform var(--pd-ease), visibility var(--pd-ease);
+}
+/* ust kenarda marka gradyani — duz cizgi yerine renk gecisi */
+.pd-dropdown::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #3e2a51 0%, #725F99 48%, #B8A9D5 100%);
 }
 .pd-menu__item:hover .pd-dropdown {
   opacity: 1; visibility: visible; pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
 
+/* iki sutunu birden kaplayan kucuk baslik */
+.pd-dropdown__head {
+  grid-column: 1 / -1;
+  font-family: var(--pd-font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pd-gold);
+  padding: 2px 12px 10px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid rgba(184,169,213,0.30);
+  list-style: none;
+}
+
 .pd-dropdown__link {
   font-family: var(--pd-font-b);
   font-size: 13.5px;
   font-weight: 500;
-  color: var(--pd-navy);
-  padding: 9px 12px;
-  border-radius: 7px;
+  color: #3d3450;
+  padding: 10px 12px 10px 13px;
+  border-radius: 9px;
   display: flex;
   align-items: center;
-  gap: 7px;
-  transition: background var(--pd-ease), color var(--pd-ease);
+  gap: 9px;
+  position: relative;
+  transition: background var(--pd-ease), color var(--pd-ease), transform var(--pd-ease);
+}
+/* sol kenardan kayarak giren mor aksan cubugu */
+.pd-dropdown__link::after {
+  content: '';
+  position: absolute; left: 3px; top: 50%;
+  width: 3px; height: 0;
+  border-radius: 2px;
+  background: var(--pd-gold);
+  transform: translateY(-50%);
+  transition: height var(--pd-ease);
 }
 .pd-dropdown__link::before {
   content: '';
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: #dde3ea;
+  background: #CEC9EB;
   flex-shrink: 0;
-  transition: background var(--pd-ease);
+  transition: background var(--pd-ease), transform var(--pd-ease);
 }
-.pd-dropdown__link:hover { background: rgba(114,95,153,0.10); color: var(--pd-gold-dk); }
-.pd-dropdown__link:hover::before { background: var(--pd-gold); }
-.pd-dropdown__link.is-active { background: rgba(114,95,153,0.12); color: var(--pd-navy); font-weight: 600; }
+.pd-dropdown__link:hover {
+  background: linear-gradient(90deg, rgba(114,95,153,0.15) 0%, rgba(206,201,235,0.18) 100%);
+  color: var(--pd-gold-dk);
+  transform: translateX(3px);
+}
+.pd-dropdown__link:hover::before { background: var(--pd-gold); transform: scale(1.5); }
+.pd-dropdown__link:hover::after  { height: 58%; }
+.pd-dropdown__link.is-active {
+  background: linear-gradient(90deg, rgba(114,95,153,0.16) 0%, rgba(206,201,235,0.20) 100%);
+  color: var(--pd-navy); font-weight: 600;
+}
 .pd-dropdown__link.is-active::before { background: var(--pd-gold); }
+.pd-dropdown__link.is-active::after  { height: 58%; }
 
 .pd-actions { flex-shrink: 0; display: flex; align-items: center; gap: 10px; margin-left: auto; }
 
@@ -480,6 +522,7 @@ header.pd-nav.pd-solid .pd-cta:hover { background: var(--pd-gold); border-color:
             <svg class="pd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <ul class="pd-dropdown" role="menu">
+            <li class="pd-dropdown__head" aria-hidden="true">Eğitim Programlarımız</li>
             <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/eril-disil-denge-egitimi/" href="#" role="menuitem">Duygu Odaklı Eril Dişil Denge Ve Dişil Enerji Eğitimi</a></li>
             <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/nlp-sertifika-programi-ve-uygulayici-egitimi/" href="#" role="menuitem">NLP Uygulayıcı Eğitimi</a></li>
             <li><a class="pd-dropdown__link" data-onizleme-href="https://www.pozitifdunya.com.tr/evlilik-ve-ileri-seviye-iliski-atolyesi/" href="#" role="menuitem">Evlilik ve İlişki Atölyesi</a></li>

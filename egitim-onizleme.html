@@ -23,10 +23,17 @@
     body { background: #fff; }
 
     /* Elementor container simülasyonu — pd-pg breakout için gerekli */
+    /* ÖNİZLEME NOTU
+       Ana sayfa önizlemesinde .preview-wrap, Elementor'un dar kabını
+       taklit etmek için 1280px ile sınırlanıyordu. Eğitim sayfası
+       canlıda tam genişlik şablonuyla (Gutenberg + tam genişlik)
+       yayınlanacağı için burada sınırı kaldırıyoruz — aksi hâlde
+       bölümler kutulanıyor ve sabit header'ın beyaz logosu
+       kenardaki beyaz alanda kayboluyor. */
     .preview-wrap {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 40px;
+      max-width: none;
+      margin: 0;
+      padding: 0;
       position: relative;
     }
 

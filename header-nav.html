@@ -105,6 +105,13 @@
   background: rgba(255,255,255,0.06);
 }
 
+/* Giriş yapmış kullanıcıya "Giriş Yap" gösterilmez — hem masaüstü hem mobil.
+   Eski header'da bunu Ek CSS'teki "body.logged-in .elementor-social-icon-user"
+   kuralı yapıyordu; o kural yeni header'da karşılıksız kaldı (28.07.2026
+   denetiminde tespit edildi), koruma buraya taşındı. */
+body.logged-in .pd-topbar__login,
+body.logged-in .pd-mobile__btn-sec { display: none !important; }
+
 /* Ders Kayıtları — altın pill */
 .pd-topbar__btn {
   font-family: var(--pd-font-b);
@@ -938,7 +945,7 @@ body:has(.pd-mobile.is-open) .pd-nav .pd-logo img { filter: none !important; }
     } catch (e) {}
   });
 
-  console.log('[PD-Nav] v2.4 yüklendi. overlayHero:', overlayHero, '| path:', cur);
+  console.log('[PD-Nav] v2.5 yüklendi. overlayHero:', overlayHero, '| path:', cur);
 
 })();
 </script>

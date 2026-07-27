@@ -82,7 +82,9 @@
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(100deg, rgba(45,31,61,0.94) 0%, rgba(62,42,81,0.86) 42%, rgba(62,42,81,0.42) 100%);
 }
-.pd-eg__hero-in { position: relative; z-index: 2; width: 100%; padding: 120px 0 92px; }
+/* Header banner'ın ÜZERİNDE saydam duruyor (ana sayfadaki gibi). Bu yüzden
+   üst boşluk header yüksekliğini de karşılamalı: üst bar 38 + nav 80 = 118px. */
+.pd-eg__hero-in { position: relative; z-index: 2; width: 100%; padding: 156px 0 92px; }
 .pd-eg__badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 .pd-eg__badge {
   font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em;
@@ -291,7 +293,7 @@
   .pd-eg__c { padding: 0 18px; }
   .pd-eg__sec { padding: 52px 0; }
   .pd-eg__hero { min-height: 540px; }
-  .pd-eg__hero-in { padding: 96px 0 78px; }
+  .pd-eg__hero-in { padding: 138px 0 78px; }
   .pd-eg__hero-cta { flex-direction: column; align-items: stretch; }
   .pd-eg a.pd-eg__btn { width: 100%; }
   .pd-eg__strip-grid { grid-template-columns: 1fr; }
@@ -304,9 +306,18 @@
   .pd-eg__sticky { display: flex; }
   .pd-eg { padding-bottom: 78px; }
 }
+/* 639px altında üst bar gizleniyor (header CSS'i), yani karşılanacak
+   yükseklik sadece nav: 80px. */
+@media (max-width: 639px) {
+  .pd-eg__hero-in { padding: 112px 0 78px; }
+}
 </style>
 
 <div class="pd-eg">
+
+<!-- Header'a "bu sayfanın üstünde koyu banner var" de. Header script'i gövdeden
+     önce çalıştığı için kendi başına göremiyor; burada anında haber veriyoruz. -->
+<script>if (window.PD_NAV) { window.PD_NAV.setOverlayHero(true); }</script>
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="pd-eg__hero" aria-label="Eğitim tanıtımı">

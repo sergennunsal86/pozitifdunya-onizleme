@@ -773,24 +773,54 @@ body:has(.pd-mobile.is-open) .pd-nav .pd-logo img { filter: none !important; }
     document.body.insertBefore(mobile, nav ? nav.nextSibling : document.body.firstChild);
   }
 
-  /* ── Sayfa tipi ── */
-  var isHome = document.body.classList.contains('home') ||
-               document.body.classList.contains('front-page') ||
-               window.location.pathname === '/' ||
-               document.querySelector('.pd-hero') !== null;
-
-  if (!isHome) {
-    nav.classList.remove('pd-transparent');
-    nav.classList.add('pd-solid');
-    document.body.classList.add('pd-page-offset');
+  /* ── Sayfa tipi ──
+     Sayfanın en üstünde koyu, tam genişlikte bir banner varsa header onun
+     ÜZERİNDE saydam durur, aşağı kaydırınca beyaz bara döner (ana sayfadaki
+     estetik). Böyle bir banner yoksa header baştan beyaz olur ve gövdeye
+     boşluk verilir. Yeni bir şablon eklendiğinde ya sınıfı buraya yaz ya da
+     banner öğesine data-pd-overlay-hero koy. */
+  function pdDetectHero() {
+    return document.body.classList.contains('home') ||
+           document.body.classList.contains('front-page') ||
+           window.location.pathname === '/' ||
+           document.querySelector('.pd-hero, .pd-eg__hero, [data-pd-overlay-hero]') !== null;
   }
+  var overlayHero = pdDetectHero();
+
+  function pdApplyMode() {
+    if (overlayHero) {
+      document.body.classList.remove('pd-page-offset');
+      if (window.scrollY > 80) {
+        nav.classList.add('pd-solid'); nav.classList.remove('pd-transparent');
+      } else {
+        nav.classList.add('pd-transparent'); nav.classList.remove('pd-solid');
+      }
+    } else {
+      nav.classList.remove('pd-transparent');
+      nav.classList.add('pd-solid');
+      document.body.classList.add('pd-page-offset');
+    }
+  }
+  pdApplyMode();
+
+  /* Header, sayfa govdesinden ONCE calisir; banner o an DOM'da olmayabilir.
+     Bu yuzden sayfa kurulunca bir daha bakiyoruz. Eğitim sablonu ayrica
+     PD_NAV.setOverlayHero(true) ile aninda haber veriyor (titreme olmasin). */
+  window.PD_NAV = {
+    setOverlayHero: function (v) {
+      if (v !== overlayHero) { overlayHero = v; pdApplyMode(); }
+    }
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.PD_NAV.setOverlayHero(pdDetectHero());
+  });
 
   /* ── Scroll ── */
   var ticking = false;
   window.addEventListener('scroll', function () {
     if (!ticking) {
       window.requestAnimationFrame(function () {
-        if (isHome) {
+        if (overlayHero) {
           if (window.scrollY > 80) {
             nav.classList.remove('pd-transparent');
             nav.classList.add('pd-solid');
@@ -877,7 +907,7 @@ body:has(.pd-mobile.is-open) .pd-nav .pd-logo img { filter: none !important; }
     } catch (e) {}
   });
 
-  console.log('[PD-Nav] v2.1 yüklendi. isHome:', isHome, '| path:', cur);
+  console.log('[PD-Nav] v2.3 yüklendi. overlayHero:', overlayHero, '| path:', cur);
 
 })();
 </script>

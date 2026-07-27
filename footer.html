@@ -1,7 +1,15 @@
 <!-- ================================================================
-     Pozitif Dünya — Footer v1.0
+     Pozitif Dünya — Footer v2.0 (açık tema)
      Elementor Theme Builder → Footer şablonu, HTML widget'ına yapıştır
      Tüm kurallar .pd-ft öneki ile izole edilmiştir.
+
+     ÖNEMLİ: Elementor Kit ".elementor-kit-11 a { color: ... }" yazıyor.
+     O seçici iki parçalı (sınıf + etiket) olduğu için tek sınıflı
+     kuralları yeniyor ve bütün bağlantıları soluk mora (#7970C9)
+     boyuyordu — 26 bağlantının 20'si etkilenmişti, "Bana Ulaşın"
+     butonunun yazısı zeminle aynı renge düşüp okunmaz olmuştu.
+     Bu yüzden renk veren her kural ".pd-ft a.sinif" biçiminde yazılıdır.
+     27.07.2026'da canlıda ölçülerek tespit edildi.
      ================================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,20 +26,21 @@
   --ft-navy:   #3e2a51;
   --ft-deep:   #2d1f3d;
   --ft-violet: #725F99;
+  --ft-dark:   #674980;
   --ft-lav:    #B8A9D5;
-  --ft-pastel: #CEC9EB;
-  --ft-h: 'Playfair Display', serif;
+  --ft-text:   #3d3450;
+  --ft-muted:  #6b6280;
   --ft-b: 'Inter', sans-serif;
+  --ft-h: 'Playfair Display', serif;
   --ft-ease: 0.26s ease;
 
   position: relative;
-  background: linear-gradient(178deg, var(--ft-navy) 0%, var(--ft-deep) 100%);
+  background: linear-gradient(178deg, #FFFFFF 0%, #FBFAFD 44%, #F2EFF8 100%);
   font-family: var(--ft-b);
-  color: rgba(255,255,255,0.72);
-  padding: 0;
+  color: var(--ft-text);
   width: 100%;
 }
-/* üst kenarda marka gradyanı */
+/* üst kenarda marka gradyanı — header ile aynı dil */
 .pd-ft::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -39,7 +48,6 @@
 }
 
 .pd-ft__wrap { max-width: 1280px; margin: 0 auto; padding: 64px 32px 0; }
-
 .pd-ft__grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1.25fr;
@@ -48,23 +56,24 @@
 }
 
 /* ── Marka sütunu ── */
-.pd-ft__logo img { height: 46px; width: auto; filter: brightness(0) invert(1); opacity: .95; }
+.pd-ft__logo img { height: 46px; width: auto; }
 .pd-ft__tagline {
-  font-size: 14.5px; line-height: 1.75; color: rgba(255,255,255,0.62);
+  font-size: 14.5px; line-height: 1.75; color: var(--ft-muted);
   margin-top: 20px; max-width: 340px;
 }
 .pd-ft__soc-row { display: flex; gap: 9px; margin-top: 26px; }
-.pd-ft__soc {
+.pd-ft a.pd-ft__soc {
   width: 38px; height: 38px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.55);
-  border: 1px solid rgba(255,255,255,0.13);
-  background: rgba(255,255,255,0.04);
+  color: rgba(62,42,81,0.55);
+  border: 1px solid rgba(62,42,81,0.14);
+  background: #ffffff;
   transition: color var(--ft-ease), border-color var(--ft-ease), background var(--ft-ease), transform var(--ft-ease);
 }
-.pd-ft__soc:hover {
-  color: #fff; border-color: var(--ft-violet);
-  background: rgba(114,95,153,0.30);
+.pd-ft a.pd-ft__soc:hover {
+  color: var(--ft-dark);
+  border-color: var(--ft-violet);
+  background: rgba(114,95,153,0.09);
   transform: translateY(-2px);
 }
 
@@ -72,69 +81,76 @@
 .pd-ft__title {
   font-family: var(--ft-b);
   font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--ft-lav);
+  text-transform: uppercase; color: var(--ft-violet);
   margin-bottom: 20px; display: block;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(184,169,213,0.38);
 }
 
 /* ── Bağlantı listeleri ── */
 .pd-ft__list { display: flex; flex-direction: column; gap: 11px; }
-.pd-ft__link {
+.pd-ft a.pd-ft__link {
   position: relative;
-  font-size: 14.5px; line-height: 1.45;
-  color: rgba(255,255,255,0.70);
+  font-size: 14.5px; line-height: 1.45; font-weight: 400;
+  color: var(--ft-text);
   padding-left: 0;
   transition: color var(--ft-ease), padding-left var(--ft-ease);
 }
-.pd-ft__link:hover { color: var(--ft-pastel); padding-left: 8px; }
-.pd-ft__link::before {
+.pd-ft a.pd-ft__link:hover { color: var(--ft-dark); padding-left: 9px; }
+.pd-ft a.pd-ft__link::before {
   content: '';
   position: absolute; left: 0; top: 50%;
-  width: 4px; height: 1px; background: var(--ft-lav);
+  width: 5px; height: 1.5px; border-radius: 1px; background: var(--ft-violet);
   transform: translateY(-50%) scaleX(0); transform-origin: left;
   transition: transform var(--ft-ease);
 }
-.pd-ft__link:hover::before { transform: translateY(-50%) scaleX(1); }
+.pd-ft a.pd-ft__link:hover::before { transform: translateY(-50%) scaleX(1); }
 
 /* ── İletişim sütunu ── */
-.pd-ft__contact { display: flex; flex-direction: column; gap: 16px; }
+.pd-ft__contact { display: flex; flex-direction: column; gap: 15px; }
 .pd-ft__ci { display: flex; gap: 12px; align-items: flex-start; }
 .pd-ft__ci-icon {
   width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(114,95,153,0.24); color: var(--ft-pastel);
+  background: rgba(114,95,153,0.11); color: var(--ft-violet);
 }
-.pd-ft__ci-text { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.72); padding-top: 6px; }
-a.pd-ft__ci-text { transition: color var(--ft-ease); }
-a.pd-ft__ci-text:hover { color: #fff; }
+.pd-ft__ci-text { font-size: 14px; line-height: 1.55; color: var(--ft-text); padding-top: 6px; }
+.pd-ft a.pd-ft__ci-text { color: var(--ft-text); transition: color var(--ft-ease); }
+.pd-ft a.pd-ft__ci-text:hover { color: var(--ft-dark); }
 
-.pd-ft__cta {
+.pd-ft a.pd-ft__cta {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
-  color: #fff;
+  color: #ffffff;
   background: var(--ft-violet);
-  padding: 14px 22px; border-radius: 9px;
-  box-shadow: 0 8px 24px rgba(114,95,153,0.32);
-  transition: background var(--ft-ease), transform var(--ft-ease);
+  padding: 15px 24px; border-radius: 9px;
+  box-shadow: 0 10px 26px rgba(114,95,153,0.30);
+  transition: background var(--ft-ease), transform var(--ft-ease), box-shadow var(--ft-ease);
 }
-.pd-ft__cta:hover { background: #674980; transform: translateY(-2px); }
+.pd-ft a.pd-ft__cta:hover {
+  color: #ffffff;
+  background: var(--ft-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(114,95,153,0.38);
+}
 
 /* ── Alt şerit ── */
 .pd-ft__bottom {
-  border-top: 1px solid rgba(255,255,255,0.10);
+  border-top: 1px solid rgba(62,42,81,0.10);
   padding: 22px 0 26px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 18px; flex-wrap: wrap;
 }
-.pd-ft__copy { font-size: 13px; color: rgba(255,255,255,0.45); }
-.pd-ft__copy a { color: rgba(255,255,255,0.62); transition: color var(--ft-ease); }
-.pd-ft__copy a:hover { color: var(--ft-pastel); }
+.pd-ft__copy { font-size: 13px; color: var(--ft-muted); }
+.pd-ft .pd-ft__copy a { color: var(--ft-violet); font-weight: 500; transition: color var(--ft-ease); }
+.pd-ft .pd-ft__copy a:hover { color: var(--ft-dark); }
 .pd-ft__legal { display: flex; flex-wrap: wrap; gap: 6px 20px; }
-.pd-ft__legal a {
-  font-size: 12.5px; color: rgba(255,255,255,0.45);
+.pd-ft .pd-ft__legal a {
+  font-size: 12.5px; color: var(--ft-muted);
   transition: color var(--ft-ease);
 }
-.pd-ft__legal a:hover { color: var(--ft-pastel); }
+.pd-ft .pd-ft__legal a:hover { color: var(--ft-dark); }
 
 /* ── Responsive ── */
 @media (max-width: 1023px) {
@@ -191,7 +207,7 @@ a.pd-ft__ci-text:hover { color: #fff; }
         </ul>
       </div>
 
-      <!-- Kurumsal -->
+      <!-- Keşfet -->
       <div>
         <span class="pd-ft__title">Keşfet</span>
         <ul class="pd-ft__list">
